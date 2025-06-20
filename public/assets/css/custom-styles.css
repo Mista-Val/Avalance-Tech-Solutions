@@ -961,6 +961,75 @@ section {
     position: relative;
 }
 
+/* Scroll to Top/Footer Button */
+.scroll-btn {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: #4f46e5 !important; /* Using explicit color to ensure visibility */
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important; /* Always use flex for layout */
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.2rem !important;
+    z-index: 9999 !important; /* Very high z-index to ensure it's on top */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    opacity: 0;
+    visibility: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
+}
+
+.scroll-btn.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0);
+}
+
+/* Ensure the icon is properly centered */
+.scroll-btn i {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.scroll-btn:hover {
+    background: #4338ca !important; /* Slightly darker shade for hover */
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+    opacity: 1 !important;
+}
+
+.scroll-btn i {
+    transition: transform 0.3s ease;
+}
+
+.scroll-btn:hover i {
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: #0f172a;
+    color: #fff;
+    padding: 3rem 0 0;
+    position: relative;
+    z-index: 3;
+    clear: both;
+}
+
 #core-values .section-title h1 {
     color: var(--text-primary);
 }
@@ -1090,7 +1159,21 @@ section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
     padding: 6rem 0;
     position: relative;
-    overflow: hidden;
+    z-index: 2;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/contact-bg.jpg') center/cover no-repeat;
+    opacity: 0.1;
+    z-index: -1;
 }
 
 #contact::before {
@@ -1402,11 +1485,31 @@ footer .copyright {
 /* Pricing Section */
 #pricing {
     position: relative;
-    padding: 6rem 0;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    padding: 100px 0;
+    background: #0f172a;
+    color: white;
+    min-height: auto;
+    display: block;
+    z-index: 1;
+}
+
+#pricing .bg-image,
+#pricing .bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#pricing .bg-overlay {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+#pricing .container {
+    position: relative;
+    z-index: 2;
 }
 
 #pricing .bg-overlay {
@@ -1435,9 +1538,9 @@ footer .copyright {
 
 #pricing .container {
     position: relative;
-    z-index: 1;
-    padding-top: 5rem;
-    padding-bottom: 3rem;
+    z-index: 2;
+    padding: 40px 15px;
+    overflow: visible !important;
 }
 
 /* Pricing Header Styles */
@@ -1593,8 +1696,9 @@ footer .copyright {
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-normal);
-    overflow: hidden;
-    height: 100%;
+    overflow: visible;
+    height: auto;
+    min-height: 600px;
     color: #e2e8f0;
     margin-bottom: 2rem;
 }

@@ -4,8 +4,7 @@ package-lock.json
 yarn.lock
 
 # Environment variables
-.env
-.env.*
+
 sendgrid.env
 
 # Build output
