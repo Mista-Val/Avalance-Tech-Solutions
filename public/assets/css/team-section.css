@@ -1,77 +1,70 @@
-/* Team Card Styles - Consolidated and Optimized */
+/* Team Section */
 #team {
-    background-color: #3e93e9b1;
-    background-image: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     position: relative;
-    z-index: 1;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+    padding: 6rem 0;
     overflow: hidden;
-    padding: 5rem 0;
 }
 
-.team-bg-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: -1;
+#team .container {
+    position: relative;
+    z-index: 2;
 }
 
-/* Team Card Base Styles */
-#team .team-card,
+#team .text-uppercase {
+    color: #60a5fa;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+#team .display-5 {
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#team .lead {
+    color: #cbd5e1;
+    font-size: 1.25rem;
+    margin-bottom: 4rem;
+}
+
+/* Team Card */
 .team-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
     position: relative;
-    background: transparent !important;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    backdrop-filter: blur(10px);
 }
 
-/* Card Content Wrapper */
-.team-card-content {
-    background: #f9fafb;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Hover States */
-#team .team-card:hover,
 .team-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.15);
-    border-color: rgba(14, 165, 233, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 
-/* Reset any conflicting pseudo-elements */
-#team .team-card::before,
-#team .team-card::after,
-.team-card::before,
-.team-card::after {
-    content: none !important;
+/* Team Card Content */
+.team-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
+/* Team Image Wrapper */
 .team-img-wrapper {
     position: relative;
-    overflow: hidden;
     padding-top: 100%;
-    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-    transition: all 0.5s ease;
-}
-
-.team-card:hover .team-img-wrapper {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
 .team-img-wrapper img {
@@ -88,13 +81,14 @@
     transform: scale(1.05);
 }
 
+/* Social Overlay */
 .team-social-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(15, 23, 42, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,63 +100,71 @@
     opacity: 1;
 }
 
-.team-social-links {
+/* Social Links */
+.social-links--team {
     display: flex;
     gap: 1rem;
+}
+
+.social-links--team .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
     transform: translateY(20px);
-    transition: transform 0.3s ease 0.1s;
+    opacity: 0;
 }
 
-.team-card:hover .team-social-links {
+.team-card:hover .social-links--team .social-link {
     transform: translateY(0);
+    opacity: 1;
 }
 
-/* Social icon styles have been moved to _social-links.css for better organization */
+.team-card:hover .social-links--team .social-link:nth-child(1) { transition-delay: 0.1s; }
+.team-card:hover .social-links--team .social-link:nth-child(2) { transition-delay: 0.2s; }
+.team-card:hover .social-links--team .social-link:nth-child(3) { transition-delay: 0.3s; }
 
+.social-links--team .social-link:hover {
+    background: #4f46e5;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+}
+
+/* Team Info */
 .team-info {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: rgba(249, 250, 251, 0.95);
-    transition: all 0.3s ease;
-}
-
-.team-card:hover .team-info {
-    background: rgba(255, 255, 255, 0.98);
 }
 
 .team-info h3 {
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #0f172a;
     margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-    transition: all 0.3s ease;
+    color: #fff;
 }
 
-.team-card:hover .team-info h3 {
-    color: #0ea5e9;
-}
-
-.team-info p:first-of-type {
-    color: #0ea5e9;
+.team-info .text-primary {
+    color: #60a5fa !important;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    display: block;
 }
 
-.team-info p:last-of-type {
-    color: #334155;
-    font-size: 0.9rem;
-    line-height: 1.6;
+.team-info .text-muted {
+    color: #cbd5e1 !important;
+    font-size: 0.95rem;
+    line-height: 1.7;
     margin-bottom: 0;
-    transition: all 0.3s ease;
-}
-
-.team-card:hover .team-info p:last-of-type {
-    color: #334155;
 }
 
 /* Responsive Adjustments */
@@ -173,14 +175,24 @@
 }
 
 @media (max-width: 767.98px) {
-    .team-card {
-        max-width: 350px;
-        margin-left: auto;
-        margin-right: auto;
+    #team {
+        padding: 4rem 0;
     }
     
     #team .display-5 {
-        font-size: 2.25rem;
+        font-size: 2rem;
+    }
+    
+    #team .lead {
+        font-size: 1.1rem;
+    }
+    
+    .team-info {
+        padding: 1.5rem 1.25rem;
+    }
+    
+    .team-info h3 {
+        font-size: 1.3rem;
     }
 }
 
@@ -188,7 +200,7 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -196,60 +208,12 @@
     }
 }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
 .team-card {
     opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-    transform-origin: center bottom;
-}
-
-.team-card:hover {
-    animation: float 3s ease-in-out infinite;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 .team-card:nth-child(1) { animation-delay: 0.1s; }
 .team-card:nth-child(2) { animation-delay: 0.2s; }
 .team-card:nth-child(3) { animation-delay: 0.3s; }
 .team-card:nth-child(4) { animation-delay: 0.4s; }
-
-/* Join Team Button */
-#team .btn-primary {
-    background: linear-gradient(135deg, #0ea5e9, #3b82f6);
-    border: none;
-    padding: 0.75rem 2rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-#team .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(135deg, #3b82f6, #0ea5e9);
-    transition: all 0.4s ease;
-    z-index: -1;
-}
-
-#team .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
-}
-
-#team .btn-primary:hover::before {
-    width: 100%;
-}

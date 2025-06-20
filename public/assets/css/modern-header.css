@@ -70,6 +70,7 @@ header.main-header {
     z-index: var(--z-header) !important;
     width: 100% !important;
     margin: 0 !important;
+    padding: 0 15px !important; /* Add horizontal padding */
 }
 
 header.main-header.scrolled {
@@ -83,14 +84,14 @@ header.main-header.scrolled {
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
     box-sizing: border-box;
     position: relative;
-    gap: 2rem; /* Add gap between logo, nav, and CTA */
+    gap: 1.5rem; /* Reduced gap for better spacing */
 }
 
 /* Logo */
@@ -98,10 +99,11 @@ header.main-header.scrolled {
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 0.75rem; /* Reduced gap to fit more text */
+    gap: 0.75rem;
     margin-right: auto;
-    padding-left: 1rem; /* Reduced left padding */
-    white-space: nowrap; /* Prevent wrapping */
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .logo-img {
@@ -112,13 +114,14 @@ header.main-header.scrolled {
 }
 
 .brand-name {
-    font-size: 2.1rem; /* Slightly reduced from 2.34rem */
+    font-size: 1.8rem; /* Further reduced for better fit */
     font-weight: 700;
     color: var(--text-dark);
-    letter-spacing: -0.4px; /* Slightly tighter letter spacing */
+    letter-spacing: -0.4px;
     white-space: nowrap;
     transition: color 0.3s ease;
-    line-height: 1.1; /* Tighter line height */
+    line-height: 1.1;
+    margin: 0; /* Reset any default margins */
 }
 
 .text-gradient {
@@ -141,9 +144,11 @@ header.main-header.scrolled {
     list-style: none;
     display: flex;
     margin: 0;
-    padding: 0 2rem 0 0; /* Add right padding for CTA button */
-    gap: 0.5rem;
+    padding: 0 1rem 0 0;
+    gap: 0.25rem;
     position: relative;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .nav-link {
@@ -151,10 +156,12 @@ header.main-header.scrolled {
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
     transition: var(--transition);
     border-radius: 4px;
-    margin: 0 0.25rem;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -435,10 +442,10 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Ensure proper spacing for static header */
+/* Ensure proper spacing for fixed header */
 @media (min-width: 992px) {
     .main-header {
-        position: static; /* Changed from sticky to static */
+        position: fixed !important; /* Keep header fixed on desktop */
     }
 }
 

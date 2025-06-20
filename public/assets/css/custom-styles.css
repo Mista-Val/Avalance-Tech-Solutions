@@ -350,6 +350,9 @@ section {
     margin-bottom: 25px;
     font-size: 1.1rem;
     line-height: 1.8;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
 }
 
 .service-link {
@@ -374,28 +377,6 @@ section {
 .service-link:hover i {
     transform: translateX(5px);
 }
-
-/* Team Section */
-#team {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), var(--dark-bg);
-    color: white;
-    padding: 8rem 0;
-    overflow: hidden;
-}
-
-#team .section-title h1 {
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-#team .section-title p {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* Team member styles have been moved to team-section.css for better organization and maintenance */
-
-/* Social links styles have been moved to _social-links.css for better organization */
 
 /* Contact Section */
 #contact {
@@ -1379,16 +1360,6 @@ footer {
     display: inline-block;
 }
 
-/* Team Section */
-#team {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-/* Team card styles have been moved to team-section.css for better organization and maintenance */
-/* Social links styles are defined in the main .social-links section */
-
 /* Section Title */
 .section-title {
     font-size: 2.25rem;
@@ -1415,9 +1386,6 @@ footer {
     line-height: 1.6;
 }
 
-/* Team member styles have been moved to team-section.css */
-
-/* Contact Form - Consolidated with new styles */
 
 /* Footer */
 footer {
@@ -2111,11 +2079,12 @@ footer .copyright {
 
 .title-underline .fa-star {
     color: #2ecbbef3;
-    font-size: 1.5rem;
-    margin: 0 1rem;
-    text-shadow: 0 0 20px rgba(38, 187, 220, 0.7);
-    filter: drop-shadow(0 0 1px rgba(255, 98, 0, 0.532));
+    font-size: 4.5rem; 
+    margin: 0 1.2rem; 
+    text-shadow: 0 0 25px rgba(38, 187, 220, 0.8); 
+    filter: drop-shadow(0 0 2px rgba(255, 98, 0, 0.7)); 
     animation: pulse 5s ease-in-out infinite;
+    transform: translateZ(0); 
 }
 
 /* Pulse animation */
