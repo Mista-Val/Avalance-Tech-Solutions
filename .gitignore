@@ -34,9 +34,7 @@ yarn-error.log*
 # Debug logs
 *.log
 
-k8s/*
-config/*
-credentials/*
+.env
 
 # Twilio 2FA recovery code
 twilio_2FA_recovery_code.txt
