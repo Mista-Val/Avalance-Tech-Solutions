@@ -1,0 +1,112 @@
+/* Home Section Styles */
+#home {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
+    overflow: hidden;
+    padding: 14rem 0 10rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero-banner.jpg') no-repeat center center/cover fixed;
+}
+
+/* Typography */
+#home h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    line-height: 1.2;
+    color: #ffffff;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+}
+
+#home h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #00e5ff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#home p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#home hr {
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+    margin: 3rem auto;
+    border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199.98px) {
+    #home h1 {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #home {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 98%);
+    }
+    
+    #home h1 {
+        font-size: 4rem;
+    }
+    
+    #home h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #home {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 99%);
+        padding: 12rem 0 8rem;
+    }
+    
+    #home h1 {
+        font-size: 3.2rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    #home h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    #home p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    #home h1 {
+        font-size: 2.8rem;
+    }
+    
+    #home h3 {
+        font-size: 1.2rem;
+    }
+    
+    #home p {
+        font-size: 1.1rem;
+    }
+}

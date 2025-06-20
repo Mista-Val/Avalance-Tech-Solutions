@@ -1,0 +1,137 @@
+/* Social Links Component */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-links--header {
+    /* Header specific styles */
+    gap: 15px;
+    margin-left: auto;
+}
+
+.social-links--team {
+    /* Team section specific styles */
+    gap: 8px;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.social-links--mobile {
+    /* Mobile specific styles */
+    gap: 10px;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background: rgba(0, 180, 216, 0.4);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.4rem;
+    border: 2px solid rgba(0, 180, 216, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover {
+    background: #00e5ff;
+    color: #0f172a;
+    transform: translateY(-5px) scale(1.15);
+    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.6);
+    border-color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+/* Team social links specific */
+.team-social-links .social-link {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.team-social-links .social-link:hover {
+    background: #fff;
+    color: #0f172a;
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Footer specific styles */
+footer .social-links {
+    margin-bottom: 1.5rem;
+}
+
+footer .social-links .social-link {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    border: none;
+    box-shadow: none;
+    margin-right: 1rem;
+}
+
+footer .social-links .social-link:hover {
+    background: transparent;
+    color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: none;
+}
+
+/* Mobile contact social links */
+.mobile-contact .social-links {
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.mobile-contact .social-links .social-link {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .social-links--header {
+        display: none; /* Hide header social links on mobile */
+        gap: 10px;
+    }
+    
+    .social-links--mobile {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}

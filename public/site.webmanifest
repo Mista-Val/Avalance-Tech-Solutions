@@ -1,0 +1,49 @@
+{
+  "name": "Avalance Tech Solutions",
+  "short_name": "Avalance Tech",
+  "description": "Professional IT consultation services for businesses. Expert guidance in digital transformation, cloud migration, and cybersecurity.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0066cc",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Avalance Tech Solutions Homepage"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with our team",
+      "url": "/#contact",
+      "icons": [{"src": "/assets/images/contact-icon.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "description": "View our IT services",
+      "url": "/#services"
+    }
+  ]
+}

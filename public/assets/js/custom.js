@@ -53,12 +53,6 @@ jQuery(document).ready(function($){
 });
 
 
-// PRELOADER JS
-$(window).load(function(){
-    $('.preloader').fadeOut(1000); // set duration in brackets    
-});
-
-
 // jQuery to collapse the navbar on scroll //
 $(window).scroll(function() {
     if ($(".navbar").offset().top > 50) {
@@ -73,13 +67,7 @@ $(window).scroll(function() {
 -------------------------------------------*/
 $(function(){
 
-  // ------- WOW ANIMATED ------ //
-  wow = new WOW(
-  {
-    mobile: false
-  });
-  wow.init();
-
+  // Animation handled by AOS (Animate On Scroll)
 
   // HIDE MOBILE MENU AFTER CLIKING ON A LINK
   $('.navbar-collapse a').click(function(){

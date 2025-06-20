@@ -1,707 +1,143 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const fs = require('fs');
+const dotenv = require('dotenv');
 const path = require('path');
 const cors = require('cors');
-const helmet = require('helmet');
-const compression = require('compression');
-const rateLimit = require('express-rate-limit');
-const dotenv = require('dotenv');
-const morgan = require('morgan');
 
 // Load environment variables
 dotenv.config();
 
-// Environment variables
-// Set default port if not specified in environment
+// Environment variables with defaults
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
-const JWT_SECRET = process.env.JWT_SECRET;
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
+
+// MongoDB Connection
+const mongoose = require('mongoose');
+
+if (!MONGODB_URI) {
+    console.error('Error: MONGODB_URI is not defined in environment variables');
+    process.exit(1);
+}
+
+console.log('Connecting to MongoDB...');
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('✅ Connected to MongoDB'))
+.catch(err => {
+    console.error('❌ MongoDB connection error:', err.message);
+    process.exit(1);
+});
+
+// Log environment
+console.log('Environment:', process.env.NODE_ENV || 'development');
+console.log('Server running on port:', PORT);
 
 // Create Express app
 const app = express();
 
-// Import routes
-const contactRoutes = require('./routes/contact');
-const serviceRoutes = require('./routes/services');
-const teamRoutes = require('./routes/team');
-const adminRoutes = require('./routes/admin');
+// Middleware
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001', 'http://localhost:8080', 'http://127.0.0.1:8080'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 
-// Environment configuration
-const env = process.env.NODE_ENV || 'development';
-const isProduction = env === 'production';
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Basic security headers
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    next();
+});
+
+// Simple test endpoints
+app.get('/api/test', (req, res) => {
+    console.log('GET Test endpoint hit!');
+    res.status(200).json({ 
+        success: true, 
+        message: 'GET test endpoint works!',
+        method: 'GET',
+        url: req.originalUrl,
+        query: req.query
+    });
+});
+
+app.post('/api/test', (req, res) => {
+    console.log('POST Test endpoint hit!', req.body);
+    res.status(200).json({ 
+        success: true, 
+        message: 'POST test endpoint works!',
+        method: 'POST',
+        url: req.originalUrl,
+        body: req.body
+    });
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({
         status: 'ok',
-        environment: env,
         timestamp: new Date().toISOString(),
         uptime: process.uptime()
     });
 });
 
-// Security headers with comprehensive CSP
-app.use(helmet({
-    contentSecurityPolicy: {
-        useDefaults: true,
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: [
-                "'self'",
-                "'unsafe-inline'",
-                "'unsafe-eval'",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "https://code.jquery.com",
-                "https://cdn.jsdelivr.net",
-                "https://stackpath.bootstrapcdn.com",
-                "https://cdnjs.cloudflare.com"
-            ],
-            scriptSrcElem: [
-                "'self'",
-                "'unsafe-inline'",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "https://code.jquery.com",
-                "https://cdn.jsdelivr.net",
-                "https://stackpath.bootstrapcdn.com",
-                "https://cdnjs.cloudflare.com"
-            ],
-            styleSrc: [
-                "'self'",
-                "'unsafe-inline'",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "https://fonts.googleapis.com",
-                "https://cdn.jsdelivr.net",
-                "https://stackpath.bootstrapcdn.com",
-                "https://cdnjs.cloudflare.com"
-            ],
-            imgSrc: [
-                "'self'",
-                "data:",
-                "blob:",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "https://*.google-analytics.com",
-                "https://*.google.com",
-                "https://*.gstatic.com",
-                "https://solutions.avalance-resources.online"
-            ],
-            fontSrc: [
-                "'self'",
-                "data:",
-                "blob:",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "https://fonts.gstatic.com",
-                "https://cdn.jsdelivr.net",
-                "https://stackpath.bootstrapcdn.com",
-                "https://cdnjs.cloudflare.com"
-            ],
-            connectSrc: [
-                "'self'",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "ws://0.0.0.0:3000",
-                "ws://localhost:3000",
-                "https://*.google-analytics.com",
-                "https://*.google.com",
-                "https://solutions.avalance-resources.online"
-            ],
-            frameSrc: [
-                "'self'",
-                "http://0.0.0.0:3000",
-                "http://localhost:3000",
-                "https://www.google.com"
-            ],
-            objectSrc: ["'none'"],
-            baseUri: ["'self'"],
-            formAction: ["'self'"],
-            frameAncestors: ["'self'"],
-            upgradeInsecureRequests: env === 'production' ? [] : null  // Disable in development
-        }
-    },
-    crossOriginEmbedderPolicy: false,
-    crossOriginResourcePolicy: { policy: "same-site" }
-}));
-
-// Set up static file serving with proper headers
-app.use((req, res, next) => {
-    // Set cache control for assets
-    if (req.path.match(/\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
-        res.setHeader('Cache-Control', 'public, max-age=31536000');
-    } else {
-        res.setHeader('Cache-Control', 'no-store');
-    }
-    next();
-});
-
-// Request logging middleware
-app.use((req, res, next) => {
-    const start = Date.now();
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.url} - ${req.ip}`;
-    console.log(logEntry);
-    
-    // Log to file
-    fs.appendFile('logs/access.log', logEntry + '\n', { flag: 'a' }, (err) => {
-        if (err) console.error('Error writing to access.log:', err);
-    });
-
-    res.on('finish', () => {
-        const duration = Date.now() - start;
-        const logEntry = `${new Date().toISOString()} - ${req.method} ${req.url} - ${res.statusCode} - ${duration}ms`;
-        console.log(logEntry);
-        fs.appendFile('logs/access.log', logEntry + '\n', { flag: 'a' }, (err) => {
-            if (err) console.error('Error writing to access.log:', err);
-        });
-    });
-    next();
-});
-
-// Disable caching for HTML files
-app.use((req, res, next) => {
-    if (req.path.endsWith('.html') || req.path === '/') {
-        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-        res.set('Pragma', 'no-cache');
-        res.set('Expires', '0');
-        res.set('Surrogate-Control', 'no-store');
-    }
-    next();
-});
-
-// CORS configuration
-const allowedOrigins = process.env.NODE_ENV === 'production'
-    ? ['https://solutions.avalance-resources.online']
-    : [
-        'http://localhost:3000',
-        'http://localhost:8080',
-        'http://127.0.0.1:3000',
-        'http://127.0.0.1:8080',
-        'http://localhost',
-        'http://127.0.0.1'
-    ];
-
-app.use(cors({
-    origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps, curl, etc.)
-        if (!origin && process.env.NODE_ENV !== 'production') {
-            return callback(null, true);
-        }
-        
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            console.warn(`Blocked request from origin: ${origin}`);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    allowedHeaders: [
-        'Content-Type',
-        'Authorization',
-        'X-Requested-With',
-        'Accept',
-        'Origin',
-        'X-Access-Token',
-        'X-Forwarded-For'
-    ],
-    exposedHeaders: ['Content-Length', 'Content-Type', 'X-Total-Count'],
-    credentials: true,
-    maxAge: 86400, // 24 hours
-    preflightContinue: false,
-    optionsSuccessStatus: 204
-}));
-
-// Handle preflight requests
-app.options('*', cors());
-
-// Request logging middleware
-app.use((req, res, next) => {
-    const start = Date.now();
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.url} - ${req.ip}`;
-    
-    // Log to console
-    console.log(logEntry);
-    
-    // Log to file
-    // Create logs directory if it doesn't exist
-    const logDir = 'logs';
-    if (!fs.existsSync(logDir)) {
-        fs.mkdirSync(logDir, { recursive: true });
-    }
-
-    // Get current date for log file name
-    const date = new Date();
-    const logFileName = path.join(logDir, `access-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.log`);
-    
-    // Log to file with proper error handling
-    fs.appendFile(logFileName, logEntry + '\n', { flag: 'a' }, (err) => {
-        if (err) {
-            console.error(`Error writing to ${logFileName}:`, err);
-            // Fallback to simple log file if daily rotation fails
-            fs.appendFile(path.join(logDir, 'access.log'), logEntry + '\n', { flag: 'a' }, (fallbackErr) => {
-                if (fallbackErr) {
-                    console.error('Error writing to fallback log:', fallbackErr);
-                }
-            });
-        }
-    });
-
-    res.on('finish', () => {
-        const duration = Date.now() - start;
-        const logEntry = `${new Date().toISOString()} - ${req.method} ${req.url} - ${res.statusCode} - ${duration}ms`;
-        console.log(logEntry);
-        
-        // Log response with same file rotation
-        fs.appendFile(logFileName, logEntry + '\n', { flag: 'a' }, (err) => {
-            if (err) {
-                console.error(`Error writing to ${logFileName}:`, err);
-                fs.appendFile(path.join(logDir, 'access.log'), logEntry + '\n', { flag: 'a' }, (fallbackErr) => {
-                    if (fallbackErr) {
-                        console.error('Error writing to fallback log:', fallbackErr);
-                    }
-                });
-            }
-        });
-    });
-    next();
-});
-
-// CORS configuration
-app.use(cors({
-    origin: 'https://solutions.avalance-resources.online',
-    credentials: true
-}));
-
-// Rate limiting
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-    message: 'Too many requests from this IP, please try again later.'
-});
-app.use(limiter);
-
-// Error logging middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    
-    // Log error to file
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.url} - ${err.message}
-${err.stack}
-
-`;
-    fs.appendFile('error.log', logEntry, (err) => {
-        if (err) console.error('Error writing to error.log:', err);
-    });
-
-    // Send appropriate error response
-    if (process.env.NODE_ENV === 'development') {
-        res.status(500).json({
-            error: 'Internal Server Error',
-            details: err.message,
-            stack: err.stack
-        });
-    } else {
-        res.status(500).json({
-            error: 'Internal Server Error'
-        });
-    }
-});
-
-
-// Environment-specific settings
-if (isProduction) {
-    // Production settings
-    app.set('trust proxy', 1);
-    app.use(helmet());
-} else {
-    // Development settings
-    app.use(morgan('dev'));
+// Import and use routes
+try {
+    const contactRoutes = require('./routes/contact');
+    app.use('/api/contacts', contactRoutes);
+    console.log('Contact routes mounted at /api/contacts');
+} catch (error) {
+    console.error('Failed to load contact routes:', error);
 }
 
-// Contact form specific rate limiting
-const contactLimiter = rateLimit({
-    windowMs: 60 * 60 * 1000, // 1 hour
-    max: 5, // limit each IP to 5 contact form submissions per hour
-    message: 'Too many contact form submissions, please try again later.'
-});
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware setup
-app.use(morgan('combined'));
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// Debug route to check index.html content
-app.get('/debug/index', (req, res) => {
-    const filePath = path.join(__dirname, 'public', 'index.html');
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            return res.status(500).send(`Error reading file: ${err.message}`);
-        }
-        res.type('text/plain').send(data);
-    });
-});
-
-// Serve index.html as root route
-app.get('/', (req, res) => {
-    const filePath = path.join(__dirname, 'public', 'index.html');
-    console.log(`Serving root route from: ${filePath}`);
-    res.sendFile(filePath);
-});
-
-// SPA Fallback - Serve index.html for all other non-API routes
-app.get('*', (req, res, next) => {
-    // Skip API routes
-    if (req.path.startsWith('/api/')) {
-        return next();
-    }
-    
-    // Skip static file requests (they'll be handled by express.static)
-    if (req.path.includes('.')) {
-        const ext = path.extname(req.path).toLowerCase();
-        const staticExtensions = ['.js', '.css', '.jpg', '.jpeg', '.png', '.gif', '.ico', '.svg', '.woff', '.woff2', '.ttf', '.eot', '.json', '.webp', '.mp4', '.mp3', '.wav', '.pdf'];
-        if (staticExtensions.includes(ext)) {
-            return next();
-        }
-    }
-    
-    // For all other routes, serve index.html
-    const filePath = path.join(__dirname, 'public', 'index.html');
-    console.log(`SPA Fallback: Serving index.html for ${req.path}`);
-    res.sendFile(filePath);
-});
-
-// Configure static file serving with proper MIME types and caching
-const staticOptions = {
-    etag: true,
-    lastModified: true,
-    fallthrough: false, // Don't fall through to next middleware if file not found
-    setHeaders: (res, filePath) => {
-        try {
-            const ext = path.extname(filePath).toLowerCase();
-            const mimeTypes = {
-                '.js': 'application/javascript',
-                '.css': 'text/css',
-                '.woff2': 'font/woff2',
-                '.woff': 'font/woff',
-                '.ttf': 'font/ttf',
-                '.eot': 'application/vnd.ms-fontobject',
-                '.svg': 'image/svg+xml',
-                '.png': 'image/png',
-                '.jpg': 'image/jpeg',
-                '.jpeg': 'image/jpeg',
-                '.gif': 'image/gif',
-                '.ico': 'image/x-icon',
-                '.json': 'application/json',
-                '.html': 'text/html',
-                '.txt': 'text/plain',
-                '.webmanifest': 'application/manifest+json',
-                '.webp': 'image/webp',
-                '.mp4': 'video/mp4',
-                '.webm': 'video/webm',
-                '.mp3': 'audio/mpeg',
-                '.wav': 'audio/wav',
-                '.ogg': 'audio/ogg',
-                '.pdf': 'application/pdf',
-                '.doc': 'application/msword',
-                '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                '.xls': 'application/vnd.ms-excel',
-                '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                '.ppt': 'application/vnd.ms-powerpoint',
-                '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                '.zip': 'application/zip',
-                '.gz': 'application/gzip',
-                '.tar': 'application/x-tar',
-                '.rar': 'application/x-rar-compressed',
-                '.7z': 'application/x-7z-compressed',
-                '.exe': 'application/x-msdownload',
-                '.dmg': 'application/x-apple-diskimage',
-                '.iso': 'application/x-iso9660-image'
-            };
-
-            // Set Content-Type header if MIME type is known
-            if (mimeTypes[ext]) {
-                res.setHeader('Content-Type', mimeTypes[ext]);
-                
-                // Set cache control for assets (1 year for production)
-                if (['.js', '.css', '.woff', '.woff2', '.ttf', '.eot', '.otf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.webm', '.mp4', '.mp3', '.wav', '.ogg'].includes(ext)) {
-                    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-                } else {
-                    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-                }
-            } else {
-                console.log(`Unknown file type: ${ext}`);
-            }
-        } catch (error) {
-            console.error(`Error setting headers for ${filePath}:`, error);
-        }
-    },
-    onError: (err, filePath, req, res) => {
-        console.error(`Error serving ${filePath}:`, err);
-        if (!res.headersSent) {
-            res.status(404).json({ 
-                error: 'File not found',
-                message: 'The requested resource was not found',
-                path: filePath
-            });
-        }
-    }
-};
-
-// Serve static files from the public directory with the configured options
-app.use(express.static(path.join(__dirname, 'public'), staticOptions));
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
-});
-
-// API Routes
-app.use('/api/contacts', contactLimiter, contactRoutes);
-app.use('/api/services', serviceRoutes);
-app.use('/api/team', teamRoutes);
-app.use('/api/admin', adminRoutes);
-
-// Serve static files from the public directory (must come after API routes)
-app.use(express.static(path.join(__dirname, 'public'), staticOptions));
-
-// Serve index.html for all other routes (SPA support)
-app.get('*', (req, res) => {
-    if (!req.originalUrl.startsWith('/api/')) {
-        console.log(`Serving index.html for: ${req.originalUrl}`);
-        res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    } else {
-        res.status(404).json({ error: 'Not found', message: 'The requested resource was not found' });
-    }
-});
-
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-    res.status(200).json({
-        status: 'OK',
-        message: 'Avalance Tech Solutions API is running',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime()
-    });
-});
-
-// Database connection with X.509 authentication
-const mongooseOptions = {
-    tls: true,
-    tlsCertificateKeyFile: process.env.MONGODB_CERT_PATH,
-    authMechanism: 'MONGODB-X509',
-    authSource: '$external',
-    retryWrites: true,
-    w: 'majority'
-};
-
-console.log('Connecting to MongoDB with X.509 certificate authentication');
-
-mongoose.connect(process.env.MONGODB_URI, mongooseOptions)
-.then(() => {
-    console.log('✅ Connected to MongoDB');
-})
-.catch((error) => {
-    console.error('❌ MongoDB connection error:', error);
-    process.exit(1);
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-    // Log the error
-    const errorDetails = {
-        timestamp: new Date().toISOString(),
-        method: req.method,
-        url: req.originalUrl,
-        ip: req.ip,
-        error: {
-            message: err.message,
-            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-            name: err.name,
-            ...(err.errors && { errors: err.errors })
-        },
-        headers: req.headers,
-        body: req.body
-    };
-
-    console.error('Error:', JSON.stringify(errorDetails, null, 2));
-    
-    // Log error to file
-    const logsDir = path.join(__dirname, 'logs');
-    if (!fs.existsSync(logsDir)) {
-        fs.mkdirSync(logsDir, { recursive: true });
-    }
-    
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} - ${err.message}\n${err.stack}\n\n`;
-    fs.appendFile(path.join(logsDir, 'error.log'), logEntry, { flag: 'a' }, (fsErr) => {
-        if (fsErr) console.error('Error writing to error.log:', fsErr);
-    });
-
-    // Determine status code
-    const statusCode = err.statusCode || err.status || 500;
-    
-    // Prepare error response
-    const errorResponse = {
-        error: {
-            code: err.code || 'INTERNAL_SERVER_ERROR',
-            message: statusCode >= 500 && process.env.NODE_ENV !== 'development' 
-                ? 'Internal Server Error' 
-                : err.message,
-            ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
-            ...(err.errors && { errors: err.errors })
-        },
-        requestId: req.id || 'none',
-        timestamp: new Date().toISOString()
-    };
-
-    // Send error response
-    res.status(statusCode).json(errorResponse);
-});
-
-// 404 handler - must be last route
+// 404 handler
 app.use((req, res) => {
-    // If it's an API request, return JSON
-    if (req.originalUrl.startsWith('/api/')) {
-        return res.status(404).json({
-            error: {
-                code: 'NOT_FOUND',
-                message: 'The requested resource was not found',
-                path: req.path,
-                method: req.method
-            },
-            timestamp: new Date().toISOString()
-        });
-    }
-    
-    // For non-API requests, serve the 404.html page if it exists
-    const notFoundPage = path.join(__dirname, 'public', '404.html');
-    if (fs.existsSync(notFoundPage)) {
-        return res.status(404).sendFile(notFoundPage);
-    }
-    
-    // Fallback to a simple text response
-    res.status(404).send('404 - Page Not Found');
-});
-
-// Create HTTP server
-const createServer = () => {
-    const http = require('http');
-    
-    // In development or if no SSL certs are provided, use HTTP
-    if (!isProduction || !process.env.SSL_KEY_PATH) {
-        console.log('⚠️  Running in HTTP mode');
-        return http.createServer(app);
-    }
-    
-    // In production with SSL certificates
-    try {
-        console.log('🔐 Running in HTTPS mode');
-        const https = require('https');
-        const fs = require('fs');
-        
-        const privateKey = fs.readFileSync(process.env.SSL_KEY_PATH, 'utf8');
-        const certificate = fs.readFileSync(process.env.SSL_CERT_PATH, 'utf8');
-        const credentials = {
-            key: privateKey,
-            cert: certificate
-        };
-        
-        // Add CA if provided
-        if (process.env.SSL_CA_PATH) {
-            credentials.ca = fs.readFileSync(process.env.SSL_CA_PATH, 'utf8');
-        }
-        
-        return https.createServer(credentials, app);
-    } catch (error) {
-        console.error('⚠️  Failed to set up HTTPS, falling back to HTTP');
-        console.error('   Error:', error.message);
-        return http.createServer(app);
-    }
-};
-
-const server = createServer();
-
-// Start the server
-server.listen(PORT, '0.0.0.0', () => {
-    const host = server.address().address;
-    const port = server.address().port;
-    const protocol = isProduction ? 'https' : 'http';
-    
-    console.log('🚀 Avalance Tech Solutions server is running');
-    console.log(`📱 Environment: ${env}`);
-    console.log(`🌐 Server URL: ${protocol}://${host}:${port}`);
-    console.log(`🌍 Network URL: ${protocol}://${require('os').hostname()}:${port}`);
-    console.log(`🔗 Local: ${protocol}://localhost:${port}`);
-});
-
-// Handle server errors
-server.on('error', (error) => {
-    if (error.syscall !== 'listen') {
-        throw error;
-    }
-
-    // Handle specific listen errors with friendly messages
-    switch (error.code) {
-        case 'EACCES':
-            console.error(`Port ${PORT} requires elevated privileges`);
-            process.exit(1);
-            break;
-        case 'EADDRINUSE':
-            console.error(`Port ${PORT} is already in use`);
-            process.exit(1);
-            break;
-        default:
-            throw error;
-    }
-});
-
-// Increase the server timeout to 2 minutes
-server.timeout = 120000;
-
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
-    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-    // Log to file
-    const logEntry = `${new Date().toISOString()} - Unhandled Rejection: ${reason}\n${reason.stack || ''}\n\n`;
-    fs.appendFile(path.join(__dirname, 'logs', 'error.log'), logEntry, () => {});
-});
-
-// Handle uncaught exceptions
-process.on('uncaughtException', (error) => {
-    console.error('Uncaught Exception:', error);
-    // Log to file
-    const logEntry = `${new Date().toISOString()} - Uncaught Exception: ${error.message}\n${error.stack || ''}\n\n`;
-    fs.appendFile(path.join(__dirname, 'logs', 'error.log'), logEntry, () => {
-        // Exit with error code after logging
-        process.exit(1);
+    res.status(404).json({
+        success: false,
+        message: 'Not Found',
+        path: req.path
     });
 });
 
-// Graceful shutdown handler
-const shutdown = async (signal) => {
-    console.log(`\n${signal} received: closing HTTP server`);
-    
-    try {
-        // Close the server first to stop accepting new connections
-        await new Promise((resolve) => server.close(resolve));
-        
-        // Close MongoDB connection if it exists
-        if (mongoose.connection.readyState === 1) {
-            await mongoose.connection.close(false);
-            console.log('MongoDB connection closed');
-        }
-        
-        console.log('HTTP server closed');
-        process.exit(0);
-    } catch (err) {
-        console.error('Error during shutdown:', err);
-        process.exit(1);
-    }
-};
+// Error handler
+app.use((err, req, res, next) => {
+    console.error('Error:', err);
+    res.status(500).json({
+        success: false,
+        message: 'Internal Server Error',
+        error: process.env.NODE_ENV === 'development' ? err.message : {}
+    });
+});
 
-// Listen for termination signals
-process.on('SIGTERM', () => shutdown('SIGTERM'));
-process.on('SIGINT', () => shutdown('SIGINT'));
+// Start server
+const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log('🚀 Avalance Tech Solutions server is running');
+    console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🌐 Server URL: http://localhost:${PORT}`);
+});
+
+// Handle shutdown
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received. Shutting down...');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
+});
+
+process.on('SIGINT', () => {
+    console.log('SIGINT received. Shutting down...');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
+});

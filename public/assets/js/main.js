@@ -1,176 +1,200 @@
-// Main application initialization
+/**
+ * Main Application Initialization
+ * Orchestrates the setup of all components and manages the application lifecycle
+ */
 (function() {
     'use strict';
 
     // Configuration
     const config = {
-        preloaderHideDelay: 300,
-        preloaderForceHide: 5000,
-        scrollOffset: 100,
-        animationDuration: 800
+        animationDuration: 800,
+        debug: false
     };
-
-    // Cache DOM elements
-    const dom = {
-        preloader: document.getElementById('loading'),
-        navbar: document.querySelector('.navbar')
-    };
-
-    /**
-     * Initialize smooth scrolling for anchor links
-     */
-    function initSmoothScrolling() {
-        document.addEventListener('click', function(e) {
-            const anchor = e.target.closest('a[href^="#"]');
-            if (!anchor || anchor.getAttribute('href') === '#') return;
-            
-            e.preventDefault();
-            const targetId = anchor.getAttribute('href');
-            
-            try {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - config.scrollOffset,
-                        behavior: 'smooth'
-                    });
-                }
-            } catch (error) {
-                console.error('Smooth scrolling error:', error);
-                window.location.href = targetId; // Fallback
-            }
-        });
+    
+    // Store cleanup functions
+    const cleanupFns = [];
+    let isInitialized = false;
+    
+    // Safe style setter with error handling
+    function safeSetStyle(element, styles) {
+        if (!element || !element.style) return false;
+        try {
+            Object.assign(element.style, styles);
+            return true;
+        } catch (e) {
+            if (config.debug) console.error('Style error:', e);
+            return false;
+        }
     }
-
+    
     /**
-     * Initialize WOW.js for scroll animations
+     * Safe initialization wrapper to prevent multiple initializations
      */
-    function initWow() {
-        if (typeof WOW !== 'undefined') {
+    function safeInit(fn, name) {
+        return function() {
             try {
-                new WOW({
-                    boxClass: 'wow',
-                    animateClass: 'animated',
-                    offset: 0,
-                    mobile: true,
-                    live: true
-                }).init();
+                if (config.debug) console.log(`Initializing ${name || 'component'}`);
+                return fn.apply(this, arguments);
             } catch (e) {
-                console.error('WOW.js initialization error:', e);
-            }
-        }
-    }
-
-
-    /**
-     * Hide the preloader with animation
-     * @param {boolean} force - Whether to force hide immediately
-     */
-    function hidePreloader(force = false) {
-        if (!dom.preloader) return;
-        
-        if (force) {
-            dom.preloader.style.display = 'none';
-            return;
-        }
-        
-        dom.preloader.style.opacity = '0';
-        dom.preloader.style.transition = 'opacity 0.5s ease';
-        
-        setTimeout(() => {
-            if (dom.preloader) {
-                dom.preloader.style.display = 'none';
-            }
-        }, config.preloaderHideDelay);
-    }
-
-    /**
-     * Initialize preloader timeout
-     */
-    function initPreloader() {
-        if (!dom.preloader) return;
-        
-        // Hide preloader when all assets are loaded
-        const hideOnLoad = () => {
-            window.removeEventListener('load', hideOnLoad);
-            clearTimeout(forceHideTimeout);
-            hidePreloader();
-        };
-        
-        // Force hide after timeout
-        const forceHideTimeout = setTimeout(() => {
-            hidePreloader(true);
-        }, config.preloaderForceHide);
-        
-        // Set up event listeners
-        if (document.readyState === 'complete') {
-            hideOnLoad();
-        } else {
-            window.addEventListener('load', hideOnLoad);
-        }
-    }
-
-    /**
-     * Initialize navbar scroll behavior
-     */
-    function initNavbar() {
-        if (!dom.navbar) return;
-        
-        const updateNavbar = () => {
-            if (window.scrollY > 50) {
-                dom.navbar.classList.add('scrolled');
-            } else {
-                dom.navbar.classList.remove('scrolled');
+                console.error(`Error initializing ${name || 'component'}:`, e);
+                return null;
             }
         };
-        
-        window.addEventListener('scroll', updateNavbar, { passive: true });
-        updateNavbar(); // Initial check
+    }
+
+    
+    /**
+     * Register cleanup function to be called on page unload
+     */
+    function onCleanup(fn) {
+        if (typeof fn === 'function') {
+            cleanupFns.push(fn);
+        }
     }
 
     /**
      * Initialize AOS (Animate On Scroll)
      */
-    function initAOS() {
-        if (typeof AOS !== 'undefined') {
-            AOS.init({
-                duration: config.animationDuration,
-                easing: 'ease-in-out',
-                once: true,
-                offset: 100
-            });
-        }
-    }
+    const initAOS = safeInit(function() {
+        if (typeof AOS === 'undefined') return;
+        
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out',
+            mirror: false
+        });
+        
+        return AOS;
+    }, 'AOS');
 
     /**
-     * Initialize Bootstrap tooltips
+     * Initialize Magnific Popup for image galleries
      */
-    function initTooltips() {
-        if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            tooltipTriggerList.map(el => new bootstrap.Tooltip(el));
-        }
-    }
+    const initMagnificPopup = safeInit(function() {
+        if (typeof $ === 'undefined' || typeof $.fn.magnificPopup === 'undefined') return;
+        
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1]
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+            }
+        });
+        
+        return true;
+    }, 'Magnific Popup');
 
     /**
      * Initialize all components
      */
     function init() {
-        initSmoothScrolling();
-        initWow();
-        initAOS();
-        initTooltips();
-        initNavbar();
-        initPreloader();
+        if (isInitialized) {
+            if (config.debug) console.warn('App already initialized');
+            return;
+        }
         
-        // Log initialization
-        console.log('Application initialized');
+        try {
+            // Initialize components
+            initAOS();
+            initMagnificPopup();
+            
+            // Mark as initialized
+            isInitialized = true;
+            
+            if (config.debug) console.log('App initialized successfully');
+            
+            // Make sure body is visible
+            safeSetStyle(document.body, {
+                visibility: 'visible',
+                opacity: '1',
+                overflow: 'auto'
+            });
+            
+            // Hide loader after all components are initialized
+            // Small delay to ensure all elements are in place
+            setTimeout(() => {
+                if (window.pageLoader && typeof window.pageLoader.hide === 'function') {
+                    window.pageLoader.hide();
+                }
+            }, 100);
+            
+        } catch (e) {
+            console.error('Fatal error during initialization:', e);
+            
+            // Ensure page is visible and loader is hidden even if there's an error
+            safeSetStyle(document.body, {
+                visibility: 'visible',
+                opacity: '1',
+                overflow: 'auto'
+            });
+            
+            if (window.pageLoader && typeof window.pageLoader.hide === 'function') {
+                window.pageLoader.hide();
+            }
+        }
     }
 
-    // Start initialization when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        setTimeout(init, 0);
+    /**
+     * Clean up all event listeners and resources
+     */
+    function cleanup() {
+        if (!isInitialized) return;
+        
+        if (config.debug) console.log('Cleaning up...');
+        
+        // Run all cleanup functions in reverse order
+        for (let i = cleanupFns.length - 1; i >= 0; i--) {
+            try {
+                if (typeof cleanupFns[i] === 'function') {
+                    cleanupFns[i]();
+                }
+            } catch (e) {
+                console.error('Error during cleanup:', e);
+            }
+        }
+        
+        // Clear the array
+        cleanupFns.length = 0;
+        isInitialized = false;
+    }
+    
+    /**
+     * Initialize the application
+     */
+    function start() {
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            // If document is already loaded or loading, initialize immediately
+            window.setTimeout(init, 0);
+        } else {
+            // Wait for DOM to be ready
+            document.addEventListener('DOMContentLoaded', init);
+        }
+        
+        // Clean up on page unload
+        window.addEventListener('unload', cleanup);
+    }
+    
+    // Start the application
+    start();
+    
+    // Expose public API
+    window.app = {
+        init,
+        cleanup,
+        onCleanup,
+        isInitialized: () => isInitialized
+    };
+    
+    // For debugging
+    if (config.debug) {
+        window.app._config = config;
     }
 })();

@@ -13,6 +13,12 @@
 	<meta name="robots" content="index, follow">
 	<meta name="googlebot" content="index, follow">
 
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+	<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+	<link rel="manifest" href="/site.webmanifest">
+
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://solutions.avalance-resources.online/">
@@ -41,143 +47,168 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="assets/css/loading-spinner.css">
+	<!-- Core Styles -->
 	<link rel="stylesheet" href="assets/css/theme-styles.css">
-	<link rel="stylesheet" href="assets/css/custom-styles.css">
+	<link rel="stylesheet" href="assets/css/animations.css">
+
+	<!-- Component Styles -->
+	<link rel="stylesheet" href="assets/css/navbar.css">
+	<link rel="stylesheet" href="assets/css/modern-header.css">
+	<link rel="stylesheet" href="assets/css/preloader.css">
+	<link rel="stylesheet" href="assets/css/mobile-contact.css">
+	<link rel="stylesheet" href="assets/css/modal-styles.css">
+	<link rel="stylesheet" href="assets/css/_social-links.css">
+
+	<!-- Section Styles -->
+	<link rel="stylesheet" href="assets/css/home-section.css">
 	<link rel="stylesheet" href="assets/css/about-section.css">
 	<link rel="stylesheet" href="assets/css/clients.css">
-	<link rel="stylesheet" href="assets/css/modern-header.css">
-	<link rel="stylesheet" href="assets/css/modal-styles.css">
+	<link rel="stylesheet" href="assets/css/team-section.css">
+
+	<!-- Override Styles -->
 	<link rel="stylesheet" href="assets/css/custom-styles.css">
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 	<link rel="apple-touch-icon" href="assets/images/favicon.ico">
-	<link rel="manifest" href="assets/images/site.webmanifest">
+	<link rel="manifest" href="site.webmanifest">
 </head>
 
-<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50" class="preloader-active">
-	<!-- Preloader -->
-	<div id="loading" class="preloader">
-		<div class="spinner"></div>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+	<!-- Page Loader -->
+	<div id="page-loader" class="page-loader">
+		<div class="loader-container">
+			<div class="loader">
+				<div class="loader-layer loader-layer-1"></div>
+				<div class="loader-layer loader-layer-2"></div>
+				<div class="loader-layer loader-layer-3"></div>
+			</div>
+			<div class="loader-text">Loading...</div>
+		</div>
 	</div>
 
-	<!-- Top Bar -->
-    <div class="top-bar py-2">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="contact-info d-none d-md-flex align-items-center">
-                <a href="tel:+234 802 981 9798" class="text-white me-4">
-                    <i class="fas fa-phone-alt me-2"></i>+234 802 981 9798
-                </a>
-                <a href="mailto:info@avalanche-resources.online" class="text-white">
-                    <i class="fas fa-envelope me-2"></i>info@avalance-resources.online
-                </a>
-            </div>
-            <div class="social-links">
-                <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
+	<!-- Initial Fade -->
+	<div id="initial-fade" class="initial-fade"></div>
+	<div class="top-bar py-2">
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="contact-info d-none d-md-flex align-items-center">
+				<a href="tel:+234 802 981 9798" class="text-white me-4">
+			</div>
+			<div class="social-links social-links--header">
+						<a href="#" class="social-link" aria-label="Facebook">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a href="#" class="social-link" aria-label="Twitter">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a href="#" class="social-link" aria-label="LinkedIn">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+						<a href="#" class="social-link" aria-label="Instagram">
+							<i class="fab fa-instagram"></i>
+						</a>
+					</div>
+		</div>
+	</div>
+	</div>
+	<!-- Main Header -->
+	<header class="main-header">
+		<div class="container">
+			<div class="header-content">
+				<!-- Logo -->
+				<a href="#home" class="logo">
+					<img src="assets/images/avalance-logo.jpeg" alt="Avalance Tech Solutions" class="logo-img">
+					<span class="brand-name"><span class="text-gradient">Avalance Tech Solutions</span></span>
+				</a>
 
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#home" class="logo">
-                    <img src="assets/images/avalance-logo.jpeg" alt="Avalance Tech Solutions" class="logo-img">
-                    <span class="brand-name"><span class="text-gradient">Avalance Tech Solutions</span></span>
-                </a>
+				<!-- Mobile Toggle -->
+				<button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-                <div class="nav-container">
-                    <nav class="main-nav">
-                        <ul class="nav-list">
-                            <li class="nav-item">
-                                <a href="#home" class="nav-link active" data-scroll>Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#pricing" class="nav-link" data-scroll>Our Packages</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#about" class="nav-link" data-scroll>About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#work" class="nav-link" data-scroll>Work</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#contact" class="nav-link" data-scroll>Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
+				<!-- Desktop Navigation -->
+				<div class="nav-container">
+					<nav class="main-nav">
+						<ul class="nav-list">
+							<li class="nav-item">
+								<a href="#home" class="nav-link active" data-scroll>Home</a>
+							</li>
+							<li class="nav-item">
+								<a href="#pricing" class="nav-link" data-scroll>Services</a>
+							</li>
+							<li class="nav-item">
+								<a href="#about" class="nav-link" data-scroll>About</a>
+							</li>
+							<li class="nav-item">
+								<a href="#work" class="nav-link" data-scroll>Work</a>
+							</li>
+							<li class="nav-item">
+								<a href="#contact" class="nav-link" data-scroll>Contact</a>
+							</li>
+						</ul>
+					</nav>
 
-                    <div class="header-cta ms-4 d-none d-lg-block">
-                        <a href="#contact" class="btn btn-primary btn-gradient">Get Started</a>
-                    </div>
+					<div class="header-cta ms-4 d-none d-lg-block">
+						<a href="#contact" class="btn btn-primary btn-gradient">Get Started</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 
-                    <!-- Mobile Toggle -->
-                    <button class="mobile-toggle d-lg-none ms-3" aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+	<!-- Mobile Menu Backdrop -->
+	<div class="mobile-menu-backdrop"></div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-inner">
-            <ul class="mobile-nav-list">
-                <li><a href="#home" class="mobile-nav-link active">Home</a></li>
-                <li><a href="#pricing" class="mobile-nav-link">Our Packages</a></li>
-                <li><a href="#about" class="mobile-nav-link">About</a></li>
-                <li><a href="#work" class="mobile-nav-link">Work</a></li>
-                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-            </ul>
-            <div class="mobile-contact mt-4">
-                <a href="tel:+2348029819798" class="d-block mb-3">
-                    <i class="fas fa-phone me-2"></i>+234 802 981 9798
-                </a>
-                <a href="mailto:info@avalance-resources.online" class="d-block mb-4">
-                    <i class="fas fa-envelope me-2"></i>info@avalance-resources.online
-                </a>
-                <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-            </div>
-        </div>
-    </div>
+	<!-- Mobile Menu -->
+	<div class="collapse navbar-collapse mobile-menu" id="navbarNav">
+		<div class="mobile-menu-inner">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link mobile-nav-link active" href="#home">
+						<i class="fas fa-home"></i> Home
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mobile-nav-link" href="#pricing">
+						<i class="fas fa-tags"></i> Services
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mobile-nav-link" href="#about">
+						<i class="fas fa-info-circle"></i> About
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mobile-nav-link" href="#work">
+						<i class="fas fa-briefcase"></i> Our Work
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mobile-nav-link" href="#contact">
+						<i class="fas fa-envelope"></i> Contact
+					</a>
+				</li>
+			</ul>
+
+			<div class="mobile-contact">
+				<h6 class="px-3 mb-2 text-uppercase text-muted small fw-bold">Contact Us</h6>
+				<a href="tel:+2348029819798">
+					<i class="fas fa-phone-alt"></i> +234 802 981 9798
+				</a>
+				<a href="mailto:info@avalance-resources.online">
+					<i class="fas fa-envelope"></i> info@avalance-resources.online
+				</a>
+				<a href="#contact" class="btn btn-primary btn-gradient w-100 mt-2">
+					Get In Touch
+				</a>
+			</div>
+		</div>
+	</div>
 
 	<!-- home section -->
-	<section id="home" style="
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        color: #ffffff;
-        text-align: center;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
-        overflow: hidden;
-    ">
-    <div style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('/hero-banner.jpg') center/cover no-repeat fixed;
-        z-index: -2;
-    "></div>
-    <div style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
-        z-index: -1;
-    "></div>
+	<section id="home">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -408,100 +439,140 @@
 			</div>
 	</section>
 
-	<!-- team section -->
-	<section id="team">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="section-title">
-						<h1>OUR EXPERT TEAM</h1>
-						<hr>
-					</div>
+	<!-- Team Section -->
+	<section id="team" class="py-6 py-lg-8 position-relative overflow-hidden">
+		<!-- Background Pattern -->
+		<div class="team-bg-pattern"></div>
+
+		<div class="container position-relative">
+			<div class="row justify-content-center text-center mb-5">
+				<div class="col-lg-8">
+					<span class="text-uppercase text-primary fw-bold d-block mb-3">Our Experts</span>
+					<h2 class="display-5 fw-bold mb-4">Meet Our Leadership Team</h2>
+					<p class="lead text-muted mx-auto" style="max-width: 700px;">Passionate professionals driving
+						innovation and delivering exceptional results for our clients</p>
 				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="team-member animated fadeIn">
-						<div class="team-img team-member-img-container">
-							<img src="assets/images/team/valerian.jpg" alt="Valerian Agbata"
-								class="img-fluid team-member-img">
-						</div>
-						<div class="team-info">
-							<h4>Valerian Agbata</h4>
-							<h5>Lead Developer</h5>
-							<p>Expert software architect and DevOps Engineer with extensive experience in full-stack
-								development and system integration.</p>
-							<div class="social-links">
-								<a href="https://linkedin.com/in/valerian-agbata" target="_blank"><i
-										class="fa-brands fa-linkedin"></i></a>
-								<a href="https://github.com/Mista-Val" target="_blank"><i
-										class="fa-brands fa-github"></i></a>
+			</div>
+
+			<div class="row g-4">
+				<!-- Team Member 1 -->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<article class="team-card">
+						<div class="team-card-content">
+							<div class="team-img-wrapper">
+								<img src="assets/images/team/valerian.jpg" alt="Valerian Agbata" class="img-fluid">
+								<div class="team-social-overlay">
+									<div class="social-links social-links--team">
+										<a href="https://linkedin.com/in/valerian-agbata" target="_blank"
+											class="social-link" aria-label="LinkedIn">
+											<i class="fab fa-linkedin-in"></i>
+										</a>
+										<a href="https://github.com/Mista-Val" target="_blank" class="social-link"
+											aria-label="GitHub">
+											<i class="fab fa-github"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="team-info p-4 text-center">
+								<h3 class="h5 mb-1">Valerian Agbata</h3>
+								<p class="text-primary fw-bold mb-3">Lead Developer</p>
+								<p class="small text-muted mb-0">Expert software architect and DevOps Engineer with
+									extensive experience in full-stack development and system integration.</p>
+							</div>
+					</article>
+				</div>
+
+				<!-- Team Member 2 -->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<article class="team-card">
+						<div class="team-card-content">
+							<div class="team-img-wrapper">
+								<img src="assets/images/team/emmanuel.jpg" alt="Emmanuel Jonathan" class="img-fluid">
+								<div class="team-social-overlay">
+									<div class="social-links social-links--team">
+										<a href="https://github.com/jeinfra" target="_blank" class="social-link"
+											aria-label="LinkedIn">
+											<i class="fab fa-linkedin-in"></i>
+										</a>
+										<a href="https://twitter.com/Jon_zenithchain" target="_blank"
+											class="social-link" aria-label="Twitter">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="team-info p-4 text-center">
+								<h3 class="h5 mb-1">Emmanuel Jon</h3>
+								<p class="text-primary fw-bold mb-3">Chief Operations</p>
+								<p class="small text-muted mb-0">Strategic operations leader with expertise in process
+									optimization, cloud infrastructure and DevSecOps.</p>
 							</div>
 						</div>
-					</div>
+					</article>
 				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="team-member animated fadeIn">
-						<div class="team-img team-member-img-container">
-							<img src="assets/images/team/emmanuel.jpg" alt="Emmanuel Jonathan"
-								class="img-fluid team-member-img">
-						</div>
-						<div class="team-info">
-							<h4>Emmanuel Jon</h4>
-							<h5>Chief Operations</h5>
-							<p>Strategic operations leader with expertise in process optimization, cloud infrastructure
-								and DevSecOps.
-							</p>
-							<div class="social-links">
-								<a href="https://github.com/jeinfra" target="_blank"><i
-										class="fa-brands fa-linkedin"></i></a>
-								<a href="https://twitter.com/Jon_zenithchain" target="_blank"><i
-										class="fa-brands fa-twitter"></i></a>
+
+				<!-- Team Member 3 -->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<article class="team-card">
+						<div class="team-card-content">
+							<div class="team-img-wrapper">
+								<img src="assets/images/team/gabriel.jpg" alt="Gabriel Idachaba" class="img-fluid">
+								<div class="team-social-overlay">
+									<div class="social-links social-links--team">
+										<a href="https://linkedin.com/in/gabriel-idachaba" target="_blank"
+											class="social-link" aria-label="LinkedIn">
+											<i class="fab fa-linkedin-in"></i>
+										</a>
+										<a href="https://github.com/gabriel-idachaba" target="_blank"
+											class="social-link" aria-label="GitHub">
+											<i class="fab fa-github"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="team-info p-4 text-center">
+								<h3 class="h5 mb-1">Gabriel Idachaba</h3>
+								<p class="text-primary fw-bold mb-3">Team Lead</p>
+								<p class="small text-muted mb-0">Experienced Senior DevOps Engineer and technical leader
+									with expertise in project management and team development.</p>
 							</div>
 						</div>
-					</div>
+					</article>
 				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="team-member animated fadeIn">
-						<div class="team-img team-member-img-container">
-							<img src="assets/images/team/gabriel.jpg" alt="Gabriel Idachaba"
-								class="img-fluid team-member-img">
-						</div>
-						<div class="team-info">
-							<h4>Gabriel Idachaba</h4>
-							<h5>Team Lead</h5>
-							<p>Experienced Senior DevOps Engineer and technical leader with expertise in project
-								management and team
-								development.
-							</p>
-							<div class="social-links">
-								<a href="https://linkedin.com/in/gabriel-idachaba" target="_blank"><i
-										class="fa-brands fa-linkedin"></i></a>
-								<a href="https://github.com/gabriel-idachaba" target="_blank"><i
-										class="fa-brands fa-github"></i></a>
+
+				<!-- Team Member 4 -->
+				<div class="col-xl-3 col-lg-4 col-md-6">
+					<article class="team-card">
+						<div class="team-card-content">
+							<div class="team-img-wrapper">
+								<img src="assets/images/team/vivian.jpg" alt="Jonathan Vivian" class="img-fluid">
+								<div class="team-social-overlay">
+									<div class="social-links social-links--team">
+										<a href="https://www.linkedin.com/in/example" target="_blank"
+											class="social-link" aria-label="LinkedIn">
+											<i class="fab fa-linkedin-in"></i>
+										</a>
+										<a href="https://github.com/example" target="_blank" class="social-link"
+											aria-label="GitHub">
+											<i class="fab fa-github"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="team-info p-4 text-center">
+								<h3 class="h5 mb-1">Jonathan Vivian</h3>
+								<p class="text-primary fw-bold mb-3">DevOps Engineer</p>
+								<p class="small text-muted mb-0">DevOps specialist with expertise in CI/CD pipelines,
+									infrastructure automation and Cybersecurity.</p>
 							</div>
 						</div>
-					</div>
+					</article>
 				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="team-member animated fadeIn">
-						<div class="team-img team-member-img-container">
-							<img src="assets/images/team/vivian.jpg" alt="Agbata Vivian"
-								class="img-fluid team-member-img">
-						</div>
-						<div class="team-info">
-							<h4>Jonathan Vivian</h4>
-							<h5>DevOps Engineer</h5>
-							<p>DevOps specialist with expertise in CI/CD pipelines, infrastructure automation and
-								Cybersecurity specialist.
-							</p>
-							<div class="social-links">
-								<a href="https://linkedin.com/in/agbata-vivian" target="_blank"><i
-										class="fa-brands fa-linkedin"></i></a>
-								<a href="https://github.com/agbata-vivian" target="_blank"><i
-										class="fa-brands fa-github"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
+			</div>
+
+			<div class="text-center mt-6">
+				<a href="#contact" class="btn btn-primary btn-lg px-5">Join Our Team</a>
 			</div>
 		</div>
 	</section>
@@ -519,7 +590,8 @@
 					<span class="pricing-badge">Our Services</span>
 					<h2 class="pricing-title"><span class="text-gradient">Comprehensive IT Solutions</span></h2>
 					<div class="section-divider mx-auto my-4"></div>
-					<p class="pricing-subtitle">Flexible pricing plans designed to meet your business needs and budget</p>
+					<p class="pricing-subtitle">Flexible pricing plans designed to meet your business needs and budget
+					</p>
 				</div>
 			</div>
 
@@ -677,15 +749,16 @@
 						<div class="position-relative z-1">
 							<span class="cta-badge">Get Started</span>
 							<h3 class="cta-title mb-3"><span class="text-gradient">Need a Custom Solution?</span></h3>
-							<p class="cta-text mb-4">Contact us to discuss your specific requirements and get a personalized quote tailored to your needs.</p>
-						<a href="#contact" class="btn btn-primary">
-							Contact Sales
-							<i class="fas fa-arrow-right ms-2"></i>
-						</a>
+							<p class="cta-text mb-4">Contact us to discuss your specific requirements and get a
+								personalized quote tailored to your needs.</p>
+							<a href="#contact" class="btn btn-primary">
+								Contact Sales
+								<i class="fas fa-arrow-right ms-2"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 
 	<!-- Modal for Business IT Solutions -->
@@ -709,13 +782,13 @@
 									<label for="companyName" class="form-label">Company Name <span
 											class="text-danger">*</span></label>
 									<input type="text" class="form-control bg-dark text-light border-secondary"
-										id="companyName" required>
+										id="companyName" name="companyName" autocomplete="organization" required>
 								</div>
 								<div class="mb-3">
 									<label for="industry" class="form-label">Industry <span
 											class="text-danger">*</span></label>
 									<select class="form-select bg-dark text-light border-secondary" id="industry"
-										required>
+										name="industry" required>
 										<option value="" selected disabled>Select your industry</option>
 										<option value="finance">Finance & Banking</option>
 										<option value="healthcare">Healthcare</option>
@@ -727,7 +800,8 @@
 								</div>
 								<div class="mb-3">
 									<label for="employees" class="form-label">Number of Employees</label>
-									<select class="form-select bg-dark text-light border-secondary" id="employees">
+									<select class="form-select bg-dark text-light border-secondary" id="employees"
+										name="employees">
 										<option value="1-10">1-10</option>
 										<option value="11-50">11-50</option>
 										<option value="51-200">51-200</option>
@@ -744,25 +818,25 @@
 									<label for="contactName" class="form-label">Full Name <span
 											class="text-danger">*</span></label>
 									<input type="text" class="form-control bg-dark text-light border-secondary"
-										id="contactName" required>
+										id="contactName" name="name" autocomplete="name" required>
 								</div>
 								<div class="mb-3">
 									<label for="jobTitle" class="form-label">Job Title <span
 											class="text-danger">*</span></label>
 									<input type="text" class="form-control bg-dark text-light border-secondary"
-										id="jobTitle" required>
+										id="jobTitle" name="jobTitle" autocomplete="organization-title" required>
 								</div>
 								<div class="mb-3">
 									<label for="email" class="form-label">Email <span
 											class="text-danger">*</span></label>
 									<input type="email" class="form-control bg-dark text-light border-secondary"
-										id="email" required>
+										id="email" name="email" autocomplete="email" required>
 								</div>
 								<div class="mb-3">
 									<label for="phone" class="form-label">Phone Number <span
 											class="text-danger">*</span></label>
 									<input type="tel" class="form-control bg-dark text-light border-secondary"
-										id="phone" required>
+										id="phone" name="phone" autocomplete="tel" required>
 								</div>
 							</div>
 						</div>
@@ -774,32 +848,36 @@
 								<label class="form-label">Which services are you interested in? <span
 										class="text-danger">*</span></label>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="infrastructure"
-										id="service1">
+									<input class="form-check-input" type="checkbox" name="services[]"
+										value="infrastructure" id="service1">
 									<label class="form-check-label" for="service1">
 										IT Infrastructure Setup & Management
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="security" id="service2">
+									<input class="form-check-input" type="checkbox" name="services[]" value="security"
+										id="service2">
 									<label class="form-check-label" for="service2">
 										Network Security & Firewall Configuration
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="automation" id="service3">
+									<input class="form-check-input" type="checkbox" name="services[]" value="automation"
+										id="service3">
 									<label class="form-check-label" for="service3">
 										Business Process Automation
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="assessment" id="service4">
+									<input class="form-check-input" type="checkbox" name="services[]" value="assessment"
+										id="service4">
 									<label class="form-check-label" for="service4">
 										IT Assessment & Strategy Planning
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="support" id="service5">
+									<input class="form-check-input" type="checkbox" name="services[]" value="support"
+										id="service5">
 									<label class="form-check-label" for="service5">
 										Ongoing Technical Support
 									</label>
@@ -810,7 +888,7 @@
 								<label for="challenges" class="form-label">What are your biggest IT challenges?
 									<span class="text-danger">*</span></label>
 								<textarea class="form-control bg-dark text-light border-secondary" id="challenges"
-									rows="2" required></textarea>
+									name="challenges" rows="2" required></textarea>
 							</div>
 
 							<div class="row g-3">
@@ -818,7 +896,7 @@
 									<label for="timeline" class="form-label">Project Timeline <span
 											class="text-danger">*</span></label>
 									<select class="form-select bg-dark text-light border-secondary" id="timeline"
-										required>
+										name="timeline" required>
 										<option value="" selected disabled>Select timeline</option>
 										<option value="immediate">Immediately</option>
 										<option value="1-3months">1-3 months</option>
@@ -831,7 +909,7 @@
 									<label for="budget" class="form-label">Budget Range <span
 											class="text-danger">*</span></label>
 									<select class="form-select bg-dark text-light border-secondary" id="budget"
-										required>
+										name="budget" required>
 										<option value="" selected disabled>Select budget range</option>
 										<option value="1-5k">$1,000 - $5,000</option>
 										<option value="5-10k">$5,001 - $10,000</option>
@@ -845,12 +923,13 @@
 							<div class="mb-3 mt-3">
 								<label for="additionalInfo" class="form-label">Additional Information</label>
 								<textarea class="form-control bg-dark text-light border-secondary" id="additionalInfo"
-									rows="3"
+									name="additionalInfo" rows="3"
 									placeholder="Please provide any additional details about your project..."></textarea>
 							</div>
 
 							<div class="form-check mb-4">
-								<input class="form-check-input" type="checkbox" id="newsletter" checked>
+								<input class="form-check-input" type="checkbox" id="newsletter" name="newsletter"
+									checked>
 								<label class="form-check-label" for="newsletter">
 									Subscribe to our newsletter for IT insights and updates
 								</label>
@@ -890,70 +969,6 @@
 						<div class="row g-3">
 							<!-- Company Information -->
 							<div class="col-md-6">
-								<h5 class="text-primary mb-3">Company Information</h5>
-								<div class="mb-3">
-									<label for="cloudCompanyName" class="form-label">Company Name <span
-											class="text-danger">*</span></label>
-									<input type="text" class="form-control bg-dark text-light border-secondary"
-										id="cloudCompanyName" required>
-								</div>
-								<div class="mb-3">
-									<label for="cloudIndustry" class="form-label">Industry <span
-											class="text-danger">*</span></label>
-									<select class="form-select bg-dark text-light border-secondary" id="cloudIndustry"
-										required>
-										<option value="" selected disabled>Select your industry</option>
-										<option value="finance">Finance & Banking</option>
-										<option value="healthcare">Healthcare</option>
-										<option value="retail">Retail & E-commerce</option>
-										<option value="manufacturing">Manufacturing</option>
-										<option value="technology">Technology</option>
-										<option value="other">Other</option>
-									</select>
-								</div>
-								<div class="mb-3">
-									<label for="cloudEmployees" class="form-label">Number of Employees</label>
-									<select class="form-select bg-dark text-light border-secondary" id="cloudEmployees">
-										<option value="1-50">1-50</option>
-										<option value="51-200">51-200</option>
-										<option value="201-1000">201-1,000</option>
-										<option value="1001-5000">1,001-5,000</option>
-										<option value="5000+">5,000+</option>
-									</select>
-								</div>
-							</div>
-
-							<!-- Contact Information -->
-							<div class="col-md-6">
-								<h5 class="text-primary mb-3">Contact Information</h5>
-								<div class="mb-3">
-									<label for="cloudContactName" class="form-label">Full Name <span
-											class="text-danger">*</span></label>
-									<input type="text" class="form-control bg-dark text-light border-secondary"
-										id="cloudContactName" required>
-								</div>
-								<div class="mb-3">
-									<label for="cloudJobTitle" class="form-label">Job Title <span
-											class="text-danger">*</span></label>
-									<input type="text" class="form-control bg-dark text-light border-secondary"
-										id="cloudJobTitle" required>
-								</div>
-								<div class="mb-3">
-									<label for="cloudEmail" class="form-label">Email <span
-											class="text-danger">*</span></label>
-									<input type="email" class="form-control bg-dark text-light border-secondary"
-										id="cloudEmail" required>
-								</div>
-								<div class="mb-3">
-									<label for="cloudPhone" class="form-label">Phone Number <span
-											class="text-danger">*</span></label>
-									<input type="tel" class="form-control bg-dark text-light border-secondary"
-										id="cloudPhone" required>
-								</div>
-							</div>
-						</div>
-
-						<!-- Current Infrastructure -->
 						<div class="mt-4">
 							<h5 class="text-primary mb-3">Current Infrastructure</h5>
 							<div class="row g-3">
@@ -961,7 +976,7 @@
 									<label for="infraType" class="form-label">Current Infrastructure <span
 											class="text-danger">*</span></label>
 									<select class="form-select bg-dark text-light border-secondary" id="infraType"
-										required>
+										name="infrastructureType" required>
 										<option value="" selected disabled>Select current infrastructure</option>
 										<option value="onprem">On-premises servers</option>
 										<option value="cloud">Cloud-based</option>
@@ -972,7 +987,8 @@
 								<div class="col-md-6">
 									<label for="currentCloud" class="form-label">Current Cloud Provider (if
 										any)</label>
-									<select class="form-select bg-dark text-light border-secondary" id="currentCloud">
+									<select class="form-select bg-dark text-light border-secondary" id="currentCloud"
+										name="currentCloud">
 										<option value="none" selected>None</option>
 										<option value="aws">Amazon Web Services (AWS)</option>
 										<option value="azure">Microsoft Azure</option>
@@ -992,22 +1008,22 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="migration"
-												id="cloudService1">
+											<input class="form-check-input" type="checkbox" name="services[]"
+												value="migration" id="cloudService1">
 											<label class="form-check-label" for="cloudService1">
 												Cloud Migration
 											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="hybrid"
-												id="cloudService2">
+											<input class="form-check-input" type="checkbox" name="services[]"
+												value="hybrid" id="cloudService2">
 											<label class="form-check-label" for="cloudService2">
 												Hybrid Cloud Solutions
 											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="devops"
-												id="cloudService3">
+											<input class="form-check-input" type="checkbox" name="services[]"
+												value="devops" id="cloudService3">
 											<label class="form-check-label" for="cloudService3">
 												CI/CD Automation
 											</label>
@@ -1015,22 +1031,22 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="monitoring"
-												id="cloudService4">
+											<input class="form-check-input" type="checkbox" name="services[]"
+												value="monitoring" id="cloudService4">
 											<label class="form-check-label" for="cloudService4">
 												24/7 Monitoring
 											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="support"
-												id="cloudService5">
+											<input class="form-check-input" type="checkbox" name="services[]"
+												value="support" id="cloudService5">
 											<label class="form-check-label" for="cloudService5">
 												Dedicated Support Team
 											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="other"
-												id="cloudService6">
+											<input class="form-check-input" type="checkbox" name="services[]"
+												value="other" id="cloudService6">
 											<label class="form-check-label" for="cloudService6">
 												Other (please specify)
 											</label>
@@ -1043,14 +1059,14 @@
 								<label for="cloudChallenges" class="form-label">What challenges are you facing with
 									your current infrastructure? <span class="text-danger">*</span></label>
 								<textarea class="form-control bg-dark text-light border-secondary" id="cloudChallenges"
-									rows="2" required></textarea>
+									name="challenges" rows="2" required></textarea>
 							</div>
 
 							<div class="mb-3">
 								<label for="cloudGoals" class="form-label">What are your primary goals for cloud
 									adoption? <span class="text-danger">*</span></label>
 								<textarea class="form-control bg-dark text-light border-secondary" id="cloudGoals"
-									rows="2" required></textarea>
+									name="goals" rows="2" required></textarea>
 							</div>
 
 							<div class="row g-3">
@@ -1058,7 +1074,7 @@
 									<label for="cloudTimeline" class="form-label">Project Timeline <span
 											class="text-danger">*</span></label>
 									<select class="form-select bg-dark text-light border-secondary" id="cloudTimeline"
-										required>
+										name="timeline" required>
 										<option value="" selected disabled>Select timeline</option>
 										<option value="immediate">Immediately</option>
 										<option value="1-3months">1-3 months</option>
@@ -1071,7 +1087,7 @@
 									<label for="cloudBudget" class="form-label">Estimated Budget Range <span
 											class="text-danger">*</span></label>
 									<select class="form-select bg-dark text-light border-secondary" id="cloudBudget"
-										required>
+										name="budget" required>
 										<option value="" selected disabled>Select budget range</option>
 										<option value="5-10k">$5,000 - $10,000</option>
 										<option value="10-25k">$10,001 - $25,000</option>
@@ -1086,12 +1102,13 @@
 							<div class="mb-3 mt-3">
 								<label for="cloudAdditionalInfo" class="form-label">Additional Information</label>
 								<textarea class="form-control bg-dark text-light border-secondary"
-									id="cloudAdditionalInfo" rows="3"
+									id="cloudAdditionalInfo" name="additionalInfo" rows="3"
 									placeholder="Please provide any additional details about your cloud infrastructure needs..."></textarea>
 							</div>
 
 							<div class="form-check mb-4">
-								<input class="form-check-input" type="checkbox" id="cloudNewsletter" checked>
+								<input class="form-check-input" type="checkbox" id="cloudNewsletter" name="newsletter"
+									checked>
 								<label class="form-check-label" for="cloudNewsletter">
 									Subscribe to our cloud insights and updates
 								</label>
@@ -1106,8 +1123,7 @@
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 								<button type="button" class="btn btn-outline-secondary me-md-2"
 									data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-primary-custom">Request Cloud
-									Consultation</button>
+								<button type="submit" class="btn btn-primary-custom">Request Cloud Consultation</button>
 							</div>
 						</div>
 					</form>
@@ -1117,31 +1133,123 @@
 	</div>
 	<!-- Modal for Custom Software Development -->
 	<div class="modal fade" id="customDevModal" tabindex="-1" aria-labelledby="customDevModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="customDevModalLabel">Custom Software Development</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content bg-dark text-light">
+				<div class="modal-header border-secondary">
+					<h3 class="modal-title text-primary" id="customDevModalLabel">Custom Software Development</h3>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form>
-						<div class="mb-3">
-							<label for="name" class="form-label">Name:</label>
-							<input type="text" class="form-control" id="name" required>
+					<form id="customDevForm">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="customDevName" class="form-label">Full Name <span
+											class="text-danger">*</span></label>
+									<input type="text" class="form-control bg-dark text-light border-secondary"
+										id="customDevName" name="name" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="customDevEmail" class="form-label">Email <span
+											class="text-danger">*</span></label>
+									<input type="email" class="form-control bg-dark text-light border-secondary"
+										id="customDevEmail" name="email" required>
+								</div>
+							</div>
 						</div>
-						<div class="mb-3">
-							<label for="email" class="form-label">Email:</label>
-							<input type="email" class="form-control" id="email" required>
+
+						<div class="row g-3">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="customDevPhone" class="form-label">Phone <span
+											class="text-danger">*</span></label>
+									<input type="tel" class="form-control bg-dark text-light border-secondary"
+										id="customDevPhone" name="phone" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="customDevCompany" class="form-label">Company</label>
+									<input type="text" class="form-control bg-dark text-light border-secondary"
+										id="customDevCompany" name="company">
+								</div>
+							</div>
 						</div>
+
 						<div class="mb-3">
-							<label for="phone" class="form-label">Phone:</label>
-							<input type="tel" class="form-control" id="phone" required>
+							<label for="customDevProjectType" class="form-label">Project Type <span
+									class="text-danger">*</span></label>
+							<select class="form-select bg-dark text-light border-secondary" id="customDevProjectType"
+								name="projectType" required>
+								<option value="" selected disabled>Select project type</option>
+								<option value="web">Web Application</option>
+								<option value="mobile">Mobile Application</option>
+								<option value="desktop">Desktop Application</option>
+								<option value="enterprise">Enterprise Software</option>
+								<option value="other">Other</option>
+							</select>
 						</div>
+
 						<div class="mb-3">
-							<label for="message" class="form-label">Project Details:</label>
-							<textarea class="form-control" id="message" rows="4" required></textarea>
+							<label for="customDevMessage" class="form-label">Project Details <span
+									class="text-danger">*</span></label>
+							<textarea class="form-control bg-dark text-light border-secondary" id="customDevMessage"
+								name="message" rows="4" required
+								placeholder="Please describe your project requirements, goals, and any specific technologies or features you have in mind."></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label for="customDevTimeline" class="form-label">Timeline <span
+										class="text-danger">*</span></label>
+								<select class="form-select bg-dark text-light border-secondary" id="customDevTimeline"
+									name="timeline" required>
+									<option value="" selected disabled>Select timeline</option>
+									<option value="immediate">Immediately</option>
+									<option value="1-3months">1-3 months</option>
+									<option value="3-6months">3-6 months</option>
+									<option value="6-12months">6-12 months</option>
+									<option value="flexible">Flexible</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="customDevBudget" class="form-label">Budget Range <span
+										class="text-danger">*</span></label>
+								<select class="form-select bg-dark text-light border-secondary" id="customDevBudget"
+									name="budget" required>
+									<option value="" selected disabled>Select budget range</option>
+									<option value="5-10k">$5,000 - $10,000</option>
+									<option value="10-25k">$10,001 - $25,000</option>
+									<option value="25-50k">$25,001 - $50,000</option>
+									<option value="50-100k">$50,001 - $100,000</option>
+									<option value="100k+">$100,000+</option>
+									<option value="tbd">To be determined</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-check mb-4 mt-4">
+							<input class="form-check-input" type="checkbox" id="customDevNewsletter" name="newsletter"
+								checked>
+							<label class="form-check-label" for="customDevNewsletter">
+								Subscribe to our software development insights and updates
+							</label>
+						</div>
+
+						<div class="alert alert-secondary" role="alert">
+							<small>We respect your data. By submitting this form, you agree that we will contact you in
+								relation to our software development services, in accordance with our <a href="#"
+									class="text-primary">privacy policy</a>.</small>
+						</div>
+
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<button type="button" class="btn btn-outline-secondary me-md-2"
+								data-bs-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary-custom">Request Consultation</button>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -1168,7 +1276,9 @@
 
 						<div class="contact-item">
 							<div class="contact-icon">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+									fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round">
 									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
 									<circle cx="12" cy="10" r="3"></circle>
 								</svg>
@@ -1182,8 +1292,12 @@
 
 						<div class="contact-item">
 							<div class="contact-icon">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+									fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round">
+									<path
+										d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+									</path>
 									<polyline points="22,6 12,13 2,6"></polyline>
 								</svg>
 							</div>
@@ -1199,8 +1313,12 @@
 
 						<div class="contact-item">
 							<div class="contact-icon">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+									fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round">
+									<path
+										d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+									</path>
 								</svg>
 							</div>
 							<div>
@@ -1212,7 +1330,9 @@
 
 						<div class="contact-item">
 							<div class="contact-icon">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+									fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round">
 									<circle cx="12" cy="12" r="10"></circle>
 									<polyline points="12 6 12 12 16 14"></polyline>
 								</svg>
@@ -1235,29 +1355,33 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group mb-4">
-										<input type="text" class="form-control" id="contactName" placeholder="Your Name"
-											required>
+										<label for="contactName" class="form-label visually-hidden">Your Name</label>
+										<input type="text" class="form-control" id="contactName" name="name"
+											placeholder="Your Name" autocomplete="name" required>
 										<div class="invalid-feedback">Please enter your name.</div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group mb-4">
-										<input type="email" class="form-control" id="contactEmail"
-											placeholder="Your Email" required>
+										<label for="contactEmail" class="form-label visually-hidden">Your Email</label>
+										<input type="email" class="form-control" id="contactEmail" name="email"
+											placeholder="Your Email" autocomplete="email" required>
 										<div class="invalid-feedback">Please enter a valid email address.</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group mb-4">
-								<input type="text" class="form-control" id="contactSubject" placeholder="Subject"
-									required>
+								<label for="contactSubject" class="form-label visually-hidden">Subject</label>
+								<input type="text" class="form-control" id="contactSubject" name="subject"
+									placeholder="Subject" autocomplete="off" required>
 								<div class="invalid-feedback">Please enter a subject.</div>
 							</div>
 
 							<div class="form-group mb-4">
-								<textarea class="form-control" id="contactMessage" rows="6" placeholder="Your Message"
-									required></textarea>
+								<label for="contactMessage" class="form-label visually-hidden">Your Message</label>
+								<textarea class="form-control" id="contactMessage" name="message" rows="6"
+									placeholder="Your Message" autocomplete="off" required></textarea>
 								<div class="invalid-feedback">Please enter your message.</div>
 							</div>
 
@@ -1279,332 +1403,57 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<p>&copy; 2025 Avalance Tech Solutions. All rights reserved.</p>
-					<div class="footer-social">
-						<a href="https://www.facebook.com/avalancetechsolutions" target="_blank"
-							rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-						<a href="https://twitter.com/avalancetech" target="_blank" rel="noopener noreferrer"
-							aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-						<a href="https://www.linkedin.com/company/avalancetechsolutions" target="_blank"
-							rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-						<a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
-								class="fab fa-github"></i></a>
+					<div class="social-links social-links--footer">
+						<a href="https://www.facebook.com/avalancetechsolutions" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a href="https://twitter.com/avalancetech" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-link">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a href="https://www.linkedin.com/company/avalancetechsolutions" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+						<a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
+							<i class="fab fa-github"></i>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</footer>
 
-	<!-- Third-party JS -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-	<script src="assets/js/header.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+	<!-- Third-party JS with proper loading order and optimization -->
+	<!-- Load jQuery with defer since it's not needed immediately -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
 
-	<!-- Custom Scripts -->
+	<!-- Other third-party scripts with defer where possible -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+		defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+
+	<!-- Custom Scripts with proper dependency order -->
+	<script src="assets/js/overlay-manager.js" defer></script>
+	<script src="assets/js/navigation.js" defer></script>
+	<script src="assets/js/header.js" defer></script>
+	<script src="assets/js/main.js" defer></script>
+	<script src="assets/js/contact.js" defer></script>
+
+	<!-- Initialize AOS after all scripts are loaded -->
 	<script>
-		// Initialize AOS (Animate On Scroll)
-		AOS.init({
-			duration: 1000,
-			once: true
-		});
-
-		// Initialize WOW.js
-		new WOW().init();
-
-		// Initialize Magnific Popup
-		$(document).ready(function () {
-			$('.image-link').magnificPopup({
-				type: 'image',
-				gallery: {
-					enabled: true
-				}
-			});
-
-			// Your existing jQuery code
-			console.log('jQuery is ready');
-
-			// Handle anchor clicks
-			$(document).on('click', 'a[href^="#"]', function (e) {
-				try {
-					const href = $(this).attr('href');
-					if (href === '#') return;
-					e.preventDefault();
-
-					// Smooth scroll to target
-					$('html, body').animate({
-						scrollTop: $(href).offset().top - 100
-					}, 800);
-					const navbarCollapse = document.querySelector('.navbar-collapse.show');
-					if (navbarCollapse) {
-						const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) ||
-							new bootstrap.Collapse(navbarCollapse, { toggle: false });
-						bsCollapse.hide();
-					}
-
-					const headerOffset = 120;
-					const elementPosition = targetElement.getBoundingClientRect().top;
-					const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-					window.scrollTo({
-						top: offsetPosition,
-						behavior: 'smooth'
-					});
-
-					if (history.pushState) {
-						history.pushState(null, null, targetId);
-					} else {
-						location.hash = targetId;
-					}
-				} catch (error) {
-					console.error('Error in click handler:', error);
-				}
-			});
-
-			const sections = document.querySelectorAll('section[id]');
-			const navLinks = document.querySelectorAll('#mainNav .nav-link');
-			let ticking = false;
-
-			function updateActiveNavLink() {
-				if (ticking) return;
-				ticking = true;
-
-				window.requestAnimationFrame(() => {
-					try {
-						let current = '';
-						const scrollPosition = window.scrollY + 100; // Adjust offset as needed
-
-						sections.forEach(section => {
-							const sectionTop = section.offsetTop;
-							const sectionHeight = section.offsetHeight;
-							if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-								current = '#' + section.id;
-							}
-						});
-
-						navLinks.forEach(link => {
-							link.classList.toggle('active', link.getAttribute('href') === current);
-						});
-					} catch (error) {
-						console.error('Error in scroll handler:', error);
-					} finally {
-						ticking = false;
-					}
+		document.addEventListener('DOMContentLoaded', function () {
+			if (typeof AOS !== 'undefined') {
+				AOS.init({
+					duration: 800,
+					easing: 'ease-in-out',
+					once: true
 				});
 			}
-
-			window.addEventListener('scroll', function () {
-				window.requestAnimationFrame(updateActiveNavLink);
-			}, { passive: true });
-
-			updateActiveNavLink();
-
 		});
 	</script>
 
-	<!-- Preloader Styles -->
-	<style>
-		.preloader {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: #fff;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			z-index: 9999;
-			transition: opacity 0.3s ease, visibility 0.3s ease;
-		}
-
-		.preloader.hidden {
-			display: none;
-		}
-
-		.preloader .spinner {
-			width: 50px;
-			height: 50px;
-			border: 5px solid #0f918f;
-			border-top: 5px solid #e26410;
-			border-radius: 50%;
-			animation: spin 1s ease-in-out infinite;
-		}
-
-		@keyframes spin {
-			0% {
-				transform: rotate(0deg);
-			}
-
-			100% {
-				transform: rotate(360deg);
-			}
-		}
-
-		/* Ensure body takes full height and hides overflow during preload */
-		body.preloader-active {
-			overflow: hidden;
-			height: 100%;
-		}
-
-		body.preloader-hidden {
-			overflow: auto;
-		}
-	</style>
-
-	<!-- Preloader -->
-	<div id="loading" class="preloader">
-		<div class="spinner"></div>
-	</div>
-
-	<!-- Main Scripts -->
-	<script>
-		// Preloader Functionality
-		function hidePreloader() {
-			try {
-				const preloader = document.getElementById('loading');
-				if (!preloader) return;
-
-				// Hide preloader with fade out effect
-				preloader.style.opacity = '0';
-				setTimeout(() => {
-					preloader.style.display = 'none';
-					document.body.classList.remove('preloader-active');
-					document.body.classList.add('preloader-hidden');
-
-					// Clean up event listeners
-					window.removeEventListener('load', hidePreloader);
-				}, 300);
-			} catch (error) {
-				console.error('Error in hidePreloader:', error);
-				// Force hide on error
-				const preloader = document.getElementById('loading');
-				if (preloader) {
-					preloader.style.display = 'none';
-					document.body.classList.remove('preloader-active');
-					document.body.classList.add('preloader-hidden');
-				}
-			}
-		}
-
-		// Initialize page components
-		document.addEventListener('DOMContentLoaded', function () {
-			try {
-				// Show body with fade in effect
-				document.body.style.opacity = '1';
-				document.body.style.transition = 'opacity 0.3s ease-in-out';
-
-				// Check if page is already loaded (from cache)
-				if (document.readyState === 'complete') {
-					hidePreloader();
-				} else {
-					// Hide preloader when everything is loaded
-					window.addEventListener('load', hidePreloader);
-
-					// Fallback: Hide preloader after max 4 seconds
-					const preloaderTimeout = setTimeout(hidePreloader, 4000);
-
-					// Clean up timeout if page loads before timeout
-					window.addEventListener('load', function () {
-						clearTimeout(preloaderTimeout);
-					});
-				}
-
-			} catch (error) {
-				console.error('Error initializing components:', error);
-				hidePreloader();
-			}
-		});
-	</script>
-
-	<!-- Initialize CSRF Token for Forms (if needed) -->
-	<script>
-		// Add CSRF token to all AJAX requests if using a CSRF token
-		document.addEventListener('DOMContentLoaded', function () {
-			try {
-				const csrfToken = document.querySelector('meta[name="csrf-token"]');
-				if (csrfToken && typeof $ !== 'undefined') {
-					$.ajaxSetup({
-						headers: {
-							'X-CSRF-TOKEN': csrfToken.getAttribute('content')
-						}
-					});
-				}
-			} catch (error) {
-				console.error('Error initializing CSRF token:', error);
-			}
-		});
-	</script>
-
-	<!-- Contact Form JavaScript -->
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			const contactForm = document.getElementById('contactForm');
-			const loadingSpinner = document.getElementById('loadingSpinner');
-			const contactAlert = document.getElementById('contactAlert');
-
-			if (contactForm) {
-				contactForm.addEventListener('submit', async function (e) {
-					e.preventDefault();
-
-					// Show loading spinner
-					loadingSpinner.classList.remove('d-none');
-					contactForm.classList.add('d-none');
-					contactAlert.classList.add('d-none');
-
-					try {
-						// Get form data
-						const formData = new FormData(contactForm);
-						const formProps = Object.fromEntries(formData);
-
-						// Here you would typically send the data to your server
-						// For now, we'll simulate a successful submission
-						await new Promise(resolve => setTimeout(resolve, 1500));
-
-						// Show success message
-						showAlert('Message sent successfully! We\'ll get back to you soon.', 'success');
-
-						// Reset form
-						contactForm.reset();
-					} catch (error) {
-						console.error('Error submitting form:', error);
-						showAlert('Failed to send message. Please try again later.', 'danger');
-					} finally {
-						// Hide loading spinner
-						loadingSpinner.classList.add('d-none');
-						contactForm.classList.remove('d-none');
-					}
-				});
-			}
-
-			function showAlert(message, type) {
-				if (!contactAlert) return;
-
-				// Set alert content and styling
-				contactAlert.textContent = message;
-				contactAlert.className = '';
-				contactAlert.classList.add('alert', `alert-${type}`);
-				contactAlert.classList.remove('d-none');
-
-				// Scroll to alert
-				contactAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-				// Auto-hide after 5 seconds
-				setTimeout(() => {
-					contactAlert.classList.add('fade-out');
-					setTimeout(() => {
-						contactAlert.classList.add('d-none');
-						contactAlert.classList.remove('fade-out');
-					}, 500);
-				}, 5000);
-			}
-		});
-	</script>
 </body>
 
 </html>

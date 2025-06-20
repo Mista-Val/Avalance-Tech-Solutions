@@ -11,7 +11,7 @@ const urlsToCache = [
   '/assets/css/modal-styles.css',
   '/assets/js/contact.js',
   '/assets/images/favicon.ico',
-  '/assets/images/site.webmanifest',
+  '/site.webmanifest',
   '/assets/images/pwa-icon-192.png',
   '/assets/images/pwa-icon-512.png'
 ];

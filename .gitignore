@@ -6,6 +6,7 @@ yarn.lock
 # Environment variables
 .env
 .env.*
+sendgrid.env
 
 # Build output
 /dist
@@ -37,3 +38,6 @@ yarn-error.log*
 k8s/*
 config/*
 credentials/*
+
+# Twilio 2FA recovery code
+twilio_2FA_recovery_code.txt
