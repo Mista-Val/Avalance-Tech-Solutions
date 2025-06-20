@@ -1396,8 +1396,6 @@ footer {
     overflow: hidden;
 }
 
-/* Footer social link styles have been moved to _social-links.css */
-
 footer .copyright {
     color: rgba(255, 255, 255, 0.7);
     margin-top: 2rem;

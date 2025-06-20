@@ -1,0 +1,168 @@
+/* Tech Stack Section */
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.5rem 0.5rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tech-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--tech-color, #2563eb);
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.tech-item:hover::before {
+  height: 6px;
+}
+
+.tech-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.tech-item:hover .tech-icon {
+  transform: scale(1.1);
+}
+
+.tech-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+  margin-top: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+/* Ensure proper spacing between tech stack and footer */
+.bg-primary + footer {
+  padding-top: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .tech-icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 992px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+  
+  .tech-item {
+    padding: 1.25rem 0.5rem;
+  }
+  
+  .tech-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .tech-name {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.875rem;
+  }
+  
+  .tech-item {
+    padding: 1rem 0.5rem;
+  }
+  
+  .tech-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .tech-name {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .tech-item {
+    padding: 0.875rem 0.25rem;
+  }
+  
+  .tech-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .tech-name {
+    font-size: 0.65rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animation */
+.tech-stack-category {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.tech-stack-category:nth-child(1) { animation-delay: 0.1s; }
+.tech-stack-category:nth-child(2) { animation-delay: 0.2s; }
+.tech-stack-category:nth-child(3) { animation-delay: 0.3s; }
+.tech-stack-category:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
