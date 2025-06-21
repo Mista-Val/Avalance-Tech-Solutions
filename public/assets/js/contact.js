@@ -164,11 +164,23 @@ document.addEventListener("DOMContentLoaded", function() {
             let isValid = true;
             const requiredFields = form.querySelectorAll('[required]');
             
+            // First validate all fields except checkboxes
             requiredFields.forEach(field => {
-                if (!validateField(field)) {
+                if (field.type !== 'checkbox' && !validateField(field)) {
                     isValid = false;
                 }
             });
+            
+            // Special handling for required checkboxes
+            const requiredCheckboxes = form.querySelectorAll('input[type="checkbox"][required]');
+            if (requiredCheckboxes.length > 0) {
+                const checkedBoxes = form.querySelectorAll('input[type="checkbox"]:checked');
+                if (checkedBoxes.length === 0) {
+                    // Show error for the first required checkbox
+                    showFieldError(requiredCheckboxes[0], 'Please select at least one service');
+                    isValid = false;
+                }
+            }
             
             if (!isValid) {
                 // Show general error message
@@ -212,6 +224,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     formObject[key] = value;
                 }
             });
+
+            // Map Business IT form fields to match server expectations
+            if (form.id === 'businessItForm') {
+                formObject.name = formObject.contactName || formObject.name || '';
+                formObject.message = formObject.challenges || formObject.message || '';
+                // Map other fields if needed
+            }
             
             // Get form type based on form ID
             let formType = 'contact';

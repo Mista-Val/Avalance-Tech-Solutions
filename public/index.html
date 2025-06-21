@@ -73,19 +73,14 @@
 
 <body data-offset="50" data-spy="scroll" data-target=".navbar-collapse">
 	<!-- Page Loader -->
-	<div class="page-loader" id="page-loader">
+	<div class="page-loader" id="page-loader" role="status" aria-label="Loading page">
 		<div class="loader-container">
 			<div class="loader">
-				<div class="loader-layer loader-layer-1">
-				</div>
-				<div class="loader-layer loader-layer-2">
-				</div>
-				<div class="loader-layer loader-layer-3">
-				</div>
+				<div class="loader-layer loader-layer-1"></div>
+				<div class="loader-layer loader-layer-2"></div>
+				<div class="loader-layer loader-layer-3"></div>
 			</div>
-			<div class="loader-text">
-				Loading...
-			</div>
+			<div class="loader-text">Loading Avalance Tech Solutions</div>
 		</div>
 	</div>
 
@@ -754,7 +749,7 @@
 							</ul>
 						</div>
 						<div class="pricing-footer p-4 mt-auto text-center">
-							<button class="btn btn-primary-custom w-100" data-bs-target="#businessItModal"
+							<button type="button" class="btn btn-primary-custom w-100" data-bs-target="#businessItModal"
 								data-bs-toggle="modal">
 								Get Started Now
 								<i class="fas fa-arrow-right ms-2">
@@ -819,7 +814,7 @@
 							</ul>
 						</div>
 						<div class="pricing-footer p-4 mt-auto text-center">
-							<button class="btn btn-primary w-100" data-bs-target="#cloudInfraModal"
+							<button type="button" class="btn btn-primary w-100" data-bs-target="#cloudInfraModal"
 								data-bs-toggle="modal">
 								Get Started Now
 								<i class="fas fa-arrow-right ms-2">
@@ -878,7 +873,7 @@
 							</ul>
 						</div>
 						<div class="pricing-footer p-4 mt-auto text-center">
-							<button class="btn btn-primary-custom w-100" data-bs-target="#customDevModal"
+							<button type="button" class="btn btn-primary-custom w-100" data-bs-target="#customDevModal"
 								data-bs-toggle="modal">
 								Request a Quote
 								<i class="fas fa-arrow-right ms-2">
@@ -1212,260 +1207,234 @@
 		</div>
 	</div>
 	<!-- Modal for Cloud & Infrastructure -->
-	<div aria-hidden="true" aria-labelledby="cloudInfraModalLabel" class="modal fade" id="cloudInfraModal"
-		tabindex="-1">
-		<div class="modal-dialog modal-lg modal-dialog-centered">
-			<div class="modal-content bg-dark text-light">
-				<div class="modal-header border-secondary">
-					<h3 class="modal-title text-primary" id="cloudInfraModalLabel">
-						Cloud & Infrastructure Services
+	<div aria-hidden="true" aria-labelledby="cloudInfraModalLabel" class="modal fade" id="cloudInfraModal" tabindex="-1">
+		<div class="modal-dialog modal-xl modal-dialog-centered">
+			<div class="modal-content bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-light border-0 shadow-lg" style="border: 1px solid rgba(0, 180, 216, 0.3) !important;">
+				<div class="modal-header border-bottom border-info" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+					<h3 class="modal-title text-white fw-bold" id="cloudInfraModalLabel" style="text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);">
+						<i class="fas fa-cloud me-2 text-info"></i>Cloud & Infrastructure Services
 					</h3>
-					<button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button">
-					</button>
+					<button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button" style="filter: invert(1);"></button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body p-4">
 					<form id="cloudInfraForm">
-						<div class="row g-3">
-							<!-- Company Information -->
-							<div class="col-md-6">
-								<div class="mt-4">
-									<h5 class="text-primary mb-3">
-										Current Infrastructure
-									</h5>
-									<div class="row g-3">
-										<div class="col-md-6">
-											<label class="form-label" for="infraType">
-												Current Infrastructure
-												<span class="text-danger">
-													*
-												</span>
-											</label>
-											<select class="form-select bg-dark text-light border-secondary"
-												id="infraType" name="infrastructureType" required>
-												<option disabled selected value>
-													Select current infrastructure
-												</option>
-												<option value="onprem">
-													On-premises servers
-												</option>
-												<option value="cloud">
-													Cloud-based
-												</option>
-												<option value="hybrid">
-													Hybrid (on-premises and cloud)
-												</option>
-												<option value="none">
-													No existing infrastructure
-												</option>
-											</select>
-										</div>
-										<div class="col-md-6">
-											<label class="form-label" for="currentCloud">
-												Current Cloud Provider (if
-												any)
-											</label>
-											<select class="form-select bg-dark text-light border-secondary"
-												id="currentCloud" name="currentCloud">
-												<option selected value="none">
-													None
-												</option>
-												<option value="aws">
-													Amazon Web Services (AWS)
-												</option>
-												<option value="azure">
-													Microsoft Azure
-												</option>
-												<option value="gcp">
-													Google Cloud Platform
-												</option>
-												<option value="other">
-													Other
-												</option>
-											</select>
+						<div class="row g-4">
+							<!-- Left Column -->
+							<div class="col-lg-6">
+								<!-- Contact Information -->
+								<div class="card mb-4" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+									<div class="card-header bg-transparent border-bottom" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+										<h5 class="text-info mb-0" style="text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);">
+											<i class="fas fa-user-circle me-2"></i>Contact Information
+										</h5>
+									</div>
+									<div class="card-body">
+										<div class="row g-3">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label" for="cloudInfraName">
+														Full Name <span class="text-danger">*</span>
+													</label>
+													<input type="text" class="form-control" id="cloudInfraName" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="name" required>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label" for="cloudInfraEmail">
+														Email <span class="text-danger">*</span>
+													</label>
+													<input type="email" class="form-control" id="cloudInfraEmail" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="email" required>
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="form-group">
+													<label class="form-label" for="cloudInfraCompany">
+														Company Name
+													</label>
+													<input type="text" class="form-control" id="cloudInfraCompany" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="company">
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="form-group">
+													<label class="form-label" for="cloudInfraMessage">
+														How can we help? <span class="text-danger">*</span>
+													</label>
+													<textarea class="form-control" id="cloudInfraMessage" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="message" rows="3" placeholder="Tell us about your project..." required></textarea>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
+
+								<!-- Current Infrastructure -->
+								<div class="card mb-4" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+									<div class="card-header bg-transparent border-bottom" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+										<h5 class="text-info mb-0" style="text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);">
+											<i class="fas fa-server me-2"></i>Current Infrastructure
+										</h5>
+									</div>
+									<div class="card-body">
+										<div class="row g-3">
+											<div class="col-md-12">
+												<label class="form-label" for="infraType">
+													Current Infrastructure <span class="text-danger">*</span>
+												</label>
+												<select class="form-select" id="infraType" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="infrastructureType" required>
+													<option disabled selected value>Select current infrastructure</option>
+													<option value="onprem">On-premises servers</option>
+													<option value="cloud">Cloud-based</option>
+													<option value="hybrid">Hybrid (on-premises and cloud)</option>
+													<option value="none">No existing infrastructure</option>
+												</select>
+											</div>
+											<div class="col-md-12">
+												<label class="form-label" for="currentCloud">
+													Current Cloud Provider (if any)
+												</label>
+												<select class="form-select" id="currentCloud" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="currentCloud">
+													<option selected value="none">None</option>
+													<option value="aws">Amazon Web Services (AWS)</option>
+													<option value="azure">Microsoft Azure</option>
+													<option value="gcp">Google Cloud Platform</option>
+													<option value="other">Other</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Right Column -->
+							<div class="col-lg-6">
 								<!-- Cloud Services Needed -->
-								<div class="mt-4">
-									<h5 class="text-primary mb-3">
-										Cloud Services Needed
-									</h5>
-									<div class="mb-3">
-										<label class="form-label">
-											Select services you're interested in:
-											<span class="text-danger">
-												*
-											</span>
-										</label>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-check">
-													<input class="form-check-input" id="cloudService1" name="services[]"
-														type="checkbox" value="migration">
-													<label class="form-check-label" for="cloudService1">
-														Cloud Migration
-													</label>
+								<div class="card mb-4" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+									<div class="card-header bg-transparent border-bottom" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+										<h5 class="text-info mb-0" style="text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);">
+											<i class="fas fa-cloud-upload-alt me-2"></i>Cloud Services Needed
+										</h5>
+									</div>
+									<div class="card-body">
+										<div class="mb-4">
+											<label class="form-label d-block">
+												Select services you're interested in:
+												<span class="text-danger">*</span>
+											</label>
+											<div class="row g-3">
+												<div class="col-md-6">
+													<div class="form-check">
+														<input class="form-check-input" id="cloudService1" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
+															type="checkbox" value="migration">
+														<label class="form-check-label" for="cloudService1">
+															<i class="fas fa-cloud-upload-alt me-2"></i>Cloud Migration
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" id="cloudService2" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
+															type="checkbox" value="hybrid">
+														<label class="form-check-label" for="cloudService2">
+															<i class="fas fa-network-wired me-2"></i>Hybrid Cloud
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" id="cloudService3" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
+															type="checkbox" value="devops">
+														<label class="form-check-label" for="cloudService3">
+															<i class="fas fa-code-branch me-2"></i>CI/CD Automation
+														</label>
+													</div>
 												</div>
-												<div class="form-check">
-													<input class="form-check-input" id="cloudService2" name="services[]"
-														type="checkbox" value="hybrid">
-													<label class="form-check-label" for="cloudService2">
-														Hybrid Cloud Solutions
-													</label>
-												</div>
-												<div class="form-check">
-													<input class="form-check-input" id="cloudService3" name="services[]"
-														type="checkbox" value="devops">
-													<label class="form-check-label" for="cloudService3">
-														CI/CD Automation
-													</label>
+												<div class="col-md-6">
+													<div class="form-check">
+														<input class="form-check-input" id="cloudService4" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
+															type="checkbox" value="monitoring">
+														<label class="form-check-label" for="cloudService4">
+															<i class="fas fa-tv me-2"></i>24/7 Monitoring
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" id="cloudService5" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
+															type="checkbox" value="support">
+														<label class="form-check-label" for="cloudService5">
+															<i class="fas fa-headset me-2"></i>Dedicated Support
+														</label>
+													</div>
+													<div class="form-check">
+														<input class="form-check-input" id="cloudService6" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
+															type="checkbox" value="other">
+														<label class="form-check-label" for="cloudService6">
+															<i class="fas fa-ellipsis-h me-2"></i>Other
+														</label>
+													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
-												<div class="form-check">
-													<input class="form-check-input" id="cloudService4" name="services[]"
-														type="checkbox" value="monitoring">
-													<label class="form-check-label" for="cloudService4">
-														24/7 Monitoring
-													</label>
+										</div>
+
+										<div class="mb-4">
+											<label class="form-label d-block">
+												<i class="far fa-calendar-alt me-2"></i>Project Timeline & Budget
+											</label>
+											<div class="row g-3">
+												<div class="col-md-6">
+													<select class="form-select bg-dark text-light border-secondary"
+														id="cloudTimeline" name="timeline" required>
+														<option disabled selected value>Select timeline</option>
+														<option value="immediate">Immediately</option>
+														<option value="1-3months">1-3 months</option>
+														<option value="3-6months">3-6 months</option>
+														<option value="6-12months">6-12 months</option>
+														<option value="planning">Just planning/exploring</option>
+													</select>
 												</div>
-												<div class="form-check">
-													<input class="form-check-input" id="cloudService5" name="services[]"
-														type="checkbox" value="support">
-													<label class="form-check-label" for="cloudService5">
-														Dedicated Support Team
-													</label>
-												</div>
-												<div class="form-check">
-													<input class="form-check-input" id="cloudService6" name="services[]"
-														type="checkbox" value="other">
-													<label class="form-check-label" for="cloudService6">
-														Other (please specify)
-													</label>
+												<div class="col-md-6">
+													<select class="form-select bg-dark text-light border-secondary"
+														id="cloudBudget" name="budget" required>
+														<option disabled selected value>Select budget range</option>
+														<option value="5-10k">$5,000 - $10,000</option>
+														<option value="10-25k">$10,001 - $25,000</option>
+														<option value="25-50k">$25,001 - $50,000</option>
+														<option value="50-100k">$50,001 - $100,000</option>
+														<option value="100k+">$100,000+</option>
+														<option value="tbd">To be determined</option>
+													</select>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="mb-3">
-										<label class="form-label" for="cloudChallenges">
-											What challenges are you facing with
-											your current infrastructure?
-											<span class="text-danger">
-												*
-											</span>
-										</label>
-										<textarea class="form-control bg-dark text-light border-secondary"
-											id="cloudChallenges" name="challenges" required rows="2"></textarea>
-									</div>
-									<div class="mb-3">
-										<label class="form-label" for="cloudGoals">
-											What are your primary goals for cloud
-											adoption?
-											<span class="text-danger">
-												*
-											</span>
-										</label>
-										<textarea class="form-control bg-dark text-light border-secondary"
-											id="cloudGoals" name="goals" required rows="2"></textarea>
-									</div>
-									<div class="row g-3">
-										<div class="col-md-6">
-											<label class="form-label" for="cloudTimeline">
-												Project Timeline
-												<span class="text-danger">
-													*
-												</span>
+
+										<div class="mb-4">
+											<label class="form-label" for="cloudAdditionalInfo">
+												<i class="fas fa-info-circle me-2"></i>Additional Information
 											</label>
-											<select class="form-select bg-dark text-light border-secondary"
-												id="cloudTimeline" name="timeline" required>
-												<option disabled selected value>
-													Select timeline
-												</option>
-												<option value="immediate">
-													Immediately
-												</option>
-												<option value="1-3months">
-													1-3 months
-												</option>
-												<option value="3-6months">
-													3-6 months
-												</option>
-												<option value="6-12months">
-													6-12 months
-												</option>
-												<option value="planning">
-													Just planning/exploring
-												</option>
-											</select>
+											<textarea class="form-control bg-dark text-light border-secondary"
+												id="cloudAdditionalInfo" name="additionalInfo"
+												placeholder="Any other details about your project..."
+												rows="3"></textarea>
 										</div>
-										<div class="col-md-6">
-											<label class="form-label" for="cloudBudget">
-												Estimated Budget Range
-												<span class="text-danger">
-													*
-												</span>
+
+										<div class="form-check form-switch mb-4">
+											<input class="form-check-input" type="checkbox" id="cloudNewsletter" name="newsletter" checked>
+											<label class="form-check-label" for="cloudNewsletter">
+												<i class="fas fa-envelope me-2"></i>Subscribe to cloud insights and updates
 											</label>
-											<select class="form-select bg-dark text-light border-secondary"
-												id="cloudBudget" name="budget" required>
-												<option disabled selected value>
-													Select budget range
-												</option>
-												<option value="5-10k">
-													$5,000 - $10,000
-												</option>
-												<option value="10-25k">
-													$10,001 - $25,000
-												</option>
-												<option value="25-50k">
-													$25,001 - $50,000
-												</option>
-												<option value="50-100k">
-													$50,001 - $100,000
-												</option>
-												<option value="100k+">
-													$100,000+
-												</option>
-												<option value="tbd">
-													To be determined
-												</option>
-											</select>
 										</div>
-									</div>
-									<div class="mb-3 mt-3">
-										<label class="form-label" for="cloudAdditionalInfo">
-											Additional Information
-										</label>
-										<textarea class="form-control bg-dark text-light border-secondary"
-											id="cloudAdditionalInfo" name="additionalInfo"
-											placeholder="Please provide any additional details about your cloud infrastructure needs..."
-											rows="3"></textarea>
-									</div>
-									<div class="form-check mb-4">
-										<input checked class="form-check-input" id="cloudNewsletter" name="newsletter"
-											type="checkbox">
-										<label class="form-check-label" for="cloudNewsletter">
-											Subscribe to our cloud insights and updates
-										</label>
-									</div>
-									<div class="alert alert-secondary" role="alert">
-										<small>
-											We respect your data. By submitting this form, you agree that we will
-											contact
-											you in relation to our cloud services, in accordance with our
-											<a class="text-primary" href="#">
-												privacy policy
-											</a>
-											.
-										</small>
-									</div>
-									<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-										<button class="btn btn-outline-secondary me-md-2" data-bs-dismiss="modal"
-											type="button">
-											Cancel
-										</button>
-										<button class="btn btn-primary-custom" type="submit">
-											Request Cloud Consultation
-										</button>
+
+										<div class="alert bg-transparent border-info mb-4" role="alert" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important;">
+											<small class="d-flex align-items-center">
+												<i class="fas fa-shield-alt me-2 text-primary"></i>
+												<span>We respect your privacy. By submitting this form, you agree to our 
+												<a href="#" class="text-primary text-decoration-underline" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">
+													privacy policy
+												</a>.</span>
+											</small>
+										</div>
+
+										<div class="d-grid gap-2 d-md-flex justify-content-between">
+											<button type="button" class="btn btn-outline-info flex-grow-1 me-2" data-bs-dismiss="modal" style="border-color: rgba(0, 180, 216, 0.5) !important; color: #00b4d8 !important;">
+												<i class="fas fa-times me-2"></i>Cancel
+											</button>
+											<button type="submit" class="btn flex-grow-1" style="background: linear-gradient(135deg, #0077b6, #00b4d8) !important; border: none !important; color: white !important; text-shadow: 0 1px 2px rgba(0,0,0,0.2); box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3) !important;">
+												<i class="fas fa-paper-plane me-2"></i>Request Consultation
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1864,15 +1833,16 @@
 								</div>
 								<div class="col-12 text-center">
 									<button class="btn btn-primary btn-lg w-100" type="submit">
-										<span aria-hidden="true" class="spinner-border spinner-border-sm d-none" role="status"></span>
+										<span aria-hidden="true" class="spinner-border spinner-border-sm d-none"
+											role="status"></span>
 										<span class="btn-text">Send Message</span>
 									</button>
 								</div>
 								<!-- DevOps Image -->
-								<div class="d-flex justify-content-center align-items-center mt-4 mb-5" style="min-height: 200px;">
+								<div class="d-flex justify-content-center align-items-center mt-4 mb-5"
+									style="min-height: 200px;">
 									<div class="devops-image-container w-100">
-										<img src="/assets/images/devops.jpg" 
-											alt="DevOps Infinity" 
+										<img src="/assets/images/devops.jpg" alt="DevOps Infinity"
 											class="devops-image img-fluid rounded shadow">
 									</div>
 								</div>
@@ -1884,17 +1854,20 @@
 										height: auto;
 										object-fit: contain;
 									}
+
 									@media (min-width: 768px) {
 										.devops-image {
 											max-height: 400px;
 										}
 									}
+
 									@media (min-width: 992px) {
 										.devops-image {
 											max-width: 90%;
 											max-height: 500px;
 										}
 									}
+
 									@media (min-width: 1200px) {
 										.devops-image {
 											max-width: 80%;
@@ -1960,8 +1933,8 @@
 				<a href="https://rancher.com/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #0075A8">
 					<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rancher/rancher-original-wordmark.svg"
-							alt="Rancher" class="tech-icon">
-						<span class="tech-name">Rancher</span>
+						alt="Rancher" class="tech-icon">
+					<span class="tech-name">Rancher</span>
 				</a>
 				<a href="https://helm.sh/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #0F1689">
@@ -2018,14 +1991,17 @@
 				<!-- Security & DevSecOps -->
 				<a href="https://anchore.com/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #10B981">
-					<img src="https://www.anchore.com/wp-content/uploads/2022/10/anchore-logo-1.png"
-						alt="Anchore" class="tech-icon" style="background: white; border-radius: 4px; padding: 5px; object-fit: contain; height: 40px; width: auto;" onerror="this.onerror=null; this.src='https://www.anchore.com/wp-content/uploads/2022/10/anchore-logo-1.png';">
+					<img src="https://www.anchore.com/wp-content/uploads/2022/10/anchore-logo-1.png" alt="Anchore"
+						class="tech-icon"
+						style="background: white; border-radius: 4px; padding: 5px; object-fit: contain; height: 40px; width: auto;"
+						onerror="this.onerror=null; this.src='https://www.anchore.com/wp-content/uploads/2022/10/anchore-logo-1.png';">
 					<span class="tech-name">Anchore</span>
 				</a>
 				<a href="https://aquasecurity.github.io/trivy/" target="_blank" rel="noopener noreferrer"
 					class="tech-item" style="--tech-color: #1904DA">
-					<img src="https://trivy.dev/img/trivy-logo.png"
-						alt="Trivy" class="tech-icon" style="background: white; border-radius: 4px; padding: 5px; object-fit: contain; height: 40px; width: auto;" onerror="this.onerror=null; this.src='https://trivy.dev/img/trivy-logo.png';">
+					<img src="https://trivy.dev/img/trivy-logo.png" alt="Trivy" class="tech-icon"
+						style="background: white; border-radius: 4px; padding: 5px; object-fit: contain; height: 40px; width: auto;"
+						onerror="this.onerror=null; this.src='https://trivy.dev/img/trivy-logo.png';">
 					<span class="tech-name">Trivy</span>
 				</a>
 				<a href="https://www.vaultproject.io/" target="_blank" rel="noopener noreferrer" class="tech-item"
@@ -2196,10 +2172,9 @@
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js">
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+		</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js">
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js">
@@ -2222,18 +2197,113 @@
 				return new bootstrap.Popover(popoverTriggerEl);
 			});
 
-			// Initialize all modals
-			var modalTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="modal"]'));
-			modalTriggerList.forEach(function (modalTriggerEl) {
-				modalTriggerEl.addEventListener('click', function (e) {
-					e.preventDefault();
-					var target = modalTriggerEl.getAttribute('data-bs-target');
-					if (target) {
-						var modal = document.querySelector(target);
-						if (modal) {
-							var bsModal = new bootstrap.Modal(modal);
-							bsModal.show();
+			// Initialize all modals - Bootstrap handles the toggling automatically
+			// We just need to ensure our modals are properly initialized
+			console.log('Initializing modals...');
+
+			// Store modal instances for later use
+			const modals = {};
+
+			// Function to initialize a single modal
+			function initializeModal(modalEl) {
+				try {
+					// Skip if already initialized
+					if (modalEl._modalInitialized) return;
+
+					// Create modal instance
+					const modal = new bootstrap.Modal(modalEl, {
+						backdrop: true,
+						keyboard: true,
+						focus: true
+					});
+
+					// Store references
+					modalEl._modal = modal;
+					modalEl._modalInitialized = true;
+					modals[modalEl.id] = modal;
+
+					// Debug: Log modal initialization
+					console.log('Initialized modal:', modalEl.id);
+
+					// Event listeners for modal lifecycle
+					const handleShow = () => {
+						console.log('Modal shown:', modalEl.id);
+						document.body.classList.add('modal-open');
+						// Ensure proper z-index for backdrop
+						const backdrop = document.querySelector('.modal-backdrop');
+						if (backdrop) {
+							backdrop.style.zIndex = '1040';
 						}
+					};
+
+					const handleShown = () => {
+						console.log('Modal shown (complete):', modalEl.id);
+					};
+
+					const handleHide = () => {
+						console.log('Modal hidden:', modalEl.id);
+					};
+
+					const handleHidden = () => {
+						console.log('Modal hidden (complete):', modalEl.id);
+						document.body.classList.remove('modal-open');
+					};
+
+					// Add event listeners
+					modalEl.addEventListener('show.bs.modal', handleShow);
+					modalEl.addEventListener('shown.bs.modal', handleShown);
+					modalEl.addEventListener('hide.bs.modal', handleHide);
+					modalEl.addEventListener('hidden.bs.modal', handleHidden);
+
+					// Store cleanup function
+					modalEl._cleanupModal = () => {
+						modalEl.removeEventListener('show.bs.modal', handleShow);
+						modalEl.removeEventListener('shown.bs.modal', handleShown);
+						modalEl.removeEventListener('hide.bs.modal', handleHide);
+						modalEl.removeEventListener('hidden.bs.modal', handleHidden);
+						delete modalEl._modal;
+						delete modalEl._modalInitialized;
+						delete modals[modalEl.id];
+					};
+
+					return modal;
+				} catch (error) {
+					console.error('Error initializing modal ' + (modalEl.id || 'unknown') + ':', error);
+					return null;
+				}
+			}
+
+			// Initialize all modals on the page
+			document.querySelectorAll('.modal').forEach(modalEl => {
+				initializeModal(modalEl);
+			});
+
+			// Handle dynamically added modals
+			const modalObserver = new MutationObserver(mutations => {
+				mutations.forEach(mutation => {
+					mutation.addedNodes.forEach(node => {
+						if (node.nodeType === 1 && node.classList.contains('modal')) {
+							initializeModal(node);
+						} else if (node.nodeType === 1 && node.querySelector) {
+							const modals = node.querySelectorAll('.modal');
+							modals.forEach(modalEl => initializeModal(modalEl));
+						}
+					});
+				});
+			});
+
+			// Start observing the document with the configured parameters
+			modalObserver.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+
+			// Cleanup on page unload
+			window.addEventListener('unload', () => {
+				modalObserver.disconnect();
+				Object.values(modals).forEach(modal => {
+					if (modal._element && modal._element._cleanupModal) {
+						modal._element._cleanupModal();
 					}
 				});
 			});
@@ -2241,41 +2311,129 @@
 			// Function to show modal by ID (for URL hash handling)
 			function showModal(modalId) {
 				const modalElement = document.getElementById(modalId);
-				if (modalElement) {
-					try {
-						const modal = new bootstrap.Modal(modalElement);
-						modal.show();
-						// Update URL hash
-						history.pushState(null, '', '#' + Object.entries({
-							'privacyPolicyModal': 'privacy-policy',
-							'termsModal': 'terms-of-service',
-							'sitemapModal': 'sitemap'
-						})[modalId] || '');
-					} catch (error) {
-						console.error('Error showing modal:', error);
+				if (!modalElement) {
+					console.warn('Modal element not found:', modalId);
+					return;
+				}
+
+				try {
+					// Ensure modal is initialized
+					if (!modalElement._modalInitialized) {
+						initializeModal(modalElement);
 					}
+
+					// Get the modal instance
+					const modal = modalElement._modal;
+					if (!modal) {
+						throw new Error('Modal instance not found');
+					}
+
+					// Hide any currently open modals
+					document.querySelectorAll('.modal.show').forEach(openModal => {
+						if (openModal !== modalElement && openModal._modal) {
+							openModal._modal.hide();
+						}
+					});
+
+					// Show the requested modal
+					modal.show();
+
+					// Update URL hash
+					const hashMap = {
+						'privacyPolicyModal': 'privacy-policy',
+						'termsModal': 'terms-of-service',
+						'sitemapModal': 'sitemap',
+						'businessItModal': 'business-it',
+						'cloudInfraModal': 'cloud-infra',
+						'customDevModal': 'custom-dev'
+					};
+
+					const hash = hashMap[modalId] || '';
+					history.pushState(null, '', hash ? `#${hash}` : window.location.pathname + window.location.search);
+
+				} catch (error) {
+					console.error('Error showing modal:', error);
 				}
 			}
 
 			// Handle URL hash changes
-			function handleHash() {
+			function handleHash(initialLoad = false) {
 				const hash = window.location.hash.substring(1);
 				if (!hash) return;
 
 				const modalMap = {
 					'privacy-policy': 'privacyPolicyModal',
 					'terms-of-service': 'termsModal',
-					'sitemap': 'sitemapModal'
+					'sitemap': 'sitemapModal',
+					'business-it': 'businessItModal',
+					'cloud-infra': 'cloudInfraModal',
+					'custom-dev': 'customDevModal'
 				};
 
 				const modalId = modalMap[hash];
-				if (modalId) {
-					showModal(modalId);
+				if (!modalId) return;
+				
+				// Don't show modal on initial page load
+				if (initialLoad) return;
+
+				// Function to attempt showing the modal
+				const tryShowModal = () => {
+					try {
+						const modalElement = document.getElementById(modalId);
+						if (!modalElement) {
+							console.warn('Modal element not found:', modalId);
+							return false;
+						}
+
+						// Ensure modal is initialized
+						if (!modalElement._modalInitialized) {
+							initializeModal(modalElement);
+						}
+
+						// Get the modal instance
+						const modal = modalElement._modal;
+						if (!modal) {
+							console.warn('Modal instance not found for:', modalId);
+							return false;
+						}
+
+						// Hide any currently open modals
+						document.querySelectorAll('.modal.show').forEach(openModal => {
+							if (openModal !== modalElement && openModal._modal) {
+								openModal._modal.hide();
+							}
+						});
+
+						// Show the modal
+						modal.show();
+						return true;
+					} catch (error) {
+						console.error('Error showing modal from hash:', error);
+						return false;
+					}
+				};
+
+				// Try to show the modal immediately
+				if (tryShowModal()) return;
+
+				// If not successful, wait for DOM to be ready
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', () => {
+						setTimeout(tryShowModal, 100);
+					});
+				} else {
+					// Wait a bit and try again
+					setTimeout(tryShowModal, 100);
 				}
+
+				// Final fallback
+				setTimeout(() => {
+					tryShowModal();
+				}, 1000);
 			}
 
-			// Handle initial page load with hash
-			handleHash();
+			// Handle initial page load with hash (pass true to indicate initial load)
+			handleHash(true);
 
 			// Handle back/forward navigation
 			window.addEventListener('popstate', handleHash);
@@ -2285,16 +2443,20 @@
 				const trigger = e.target.closest('[data-bs-toggle="modal"]');
 				if (!trigger) return;
 
-				e.preventDefault();
-				e.stopPropagation();
+				// Don't prevent default for anchor tags with href="#"
+				if (trigger.tagName === 'A' && trigger.getAttribute('href') === '#') {
+					e.preventDefault();
+				}
 
 				const target = trigger.getAttribute('data-bs-target');
 				if (target && target.startsWith('#')) {
 					const modalId = target.substring(1);
-					showModal(modalId);
+					// Small delay to ensure any previous modal is properly hidden
+					setTimeout(() => {
+						showModal(modalId);
+					}, 50);
 				}
-				return false;
-			}, true);
+			}, { passive: true });
 		}); 
 	</script>
 	<script src="assets/js/navigation.js">
@@ -2305,6 +2467,8 @@
 	</script>
 	<script src="assets/js/contact.js">
 	</script>
+	<!-- Preloader Script -->
+	<script src="assets/js/preloader.js"></script>
 	<!-- Initialize AOS and Scroll Button -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
@@ -2554,59 +2718,134 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-6">
-							<h4 class="text-primary">Main Pages</h4>
+						<!-- Main Navigation -->
+						<div class="col-md-4">
+							<h4 class="text-primary mb-3">Main Pages</h4>
 							<ul class="list-unstyled">
-								<li class="mb-2"><a href="#home" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Home</a></li>
-								<li class="mb-2"><a href="#about" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">About Us</a></li>
-								<li class="mb-2"><a href="#services" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Services</a></li>
-								<li class="mb-2"><a href="#portfolio" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Portfolio</a></li>
-								<li class="mb-2"><a href="#team" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Our Team</a></li>
-								<li class="mb-2"><a href="#contact" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Contact</a></li>
-							</ul>
-						</div>
-						<div class="col-md-6">
-							<h4 class="text-primary">Services</h4>
-							<ul class="list-unstyled">
-								<li class="mb-2"><a href="#" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Cloud Solutions</a></li>
-								<li class="mb-2"><a href="#" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">DevOps Consulting</a></li>
-								<li class="mb-2"><a href="#" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Cybersecurity</a></li>
-								<li class="mb-2"><a href="#" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Web Development</a></li>
-								<li class="mb-2"><a href="#" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">Mobile Apps</a></li>
-								<li class="mb-2"><a href="#" class="text-decoration-none text-light"
-										data-bs-dismiss="modal">IT Consulting</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="row mt-4">
-						<div class="col-md-6">
-							<h4 class="text-primary">Legal</h4>
-							<ul class="list-unstyled">
-								<li class="mb-2"><a href="#privacy-policy" class="text-decoration-none text-light"
-										data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a>
+								<li class="mb-2">
+									<a href="#home" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal">
+										<i class="fas fa-home me-2"></i> Home
+									</a>
 								</li>
-								<li class="mb-2"><a href="#terms-of-service" class="text-decoration-none text-light"
-										data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a></li>
-								<li class="mb-2"><a href="#sitemap" class="text-decoration-none text-light"
-										data-bs-toggle="modal" data-bs-target="#sitemapModal">Sitemap</a>
+								<li class="mb-2">
+									<a href="#pricing" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal">
+										<i class="fas fa-tags me-2"></i> Packages
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#about" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal">
+										<i class="fas fa-images me-2"></i> Portfolio
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#work" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal">
+										<i class="fas fa-briefcase me-2"></i> Our Work
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#contact" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal">
+										<i class="fas fa-envelope me-2"></i> Contact
+									</a>
 								</li>
 							</ul>
 						</div>
-						<div class="modal-footer border-secondary">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+						<!-- Service Packages -->
+						<div class="col-md-4">
+							<h4 class="text-primary mb-3">Service Packages</h4>
+							<ul class="list-unstyled">
+								<li class="mb-2">
+									<a href="#pricing" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal" data-bs-toggle="modal"
+										data-bs-target="#businessItModal">
+										<i class="fas fa-briefcase me-2"></i> Business IT Solutions
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#pricing" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal" data-bs-toggle="modal"
+										data-bs-target="#cloudInfraModal">
+										<i class="fas fa-cloud me-2"></i> Cloud & Infrastructure
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#pricing" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#customDevModal">
+										<i class="fas fa-code me-2"></i> Custom Development
+									</a>
+								</li>
+							</ul>
+
+							<h4 class="text-primary mt-4 mb-3">Legal</h4>
+							<ul class="list-unstyled">
+								<li class="mb-2">
+									<a href="#privacy-policy"
+										class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">
+										<i class="fas fa-shield-alt me-2"></i> Privacy Policy
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#terms-of-service"
+										class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-toggle="modal" data-bs-target="#termsModal">
+										<i class="fas fa-file-contract me-2"></i> Terms of Service
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- Quick Links -->
+						<div class="col-md-4">
+							<h4 class="text-primary mb-3">Quick Links</h4>
+							<ul class="list-unstyled">
+								<li class="mb-2">
+									<a href="tel:+2348029819798"
+										class="text-decoration-none text-light d-flex align-items-center">
+										<i class="fas fa-phone-alt me-2"></i> +234 802 981 9798
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="mailto:info@avalance-resources.online"
+										class="text-decoration-none text-light d-flex align-items-center">
+										<i class="fas fa-envelope me-2"></i> info@avalance-resources.online
+									</a>
+								</li>
+								<li class="mb-2">
+									<a href="#contact" class="text-decoration-none text-light d-flex align-items-center"
+										data-bs-dismiss="modal">
+										<i class="fas fa-paper-plane me-2"></i> Send us a Message
+									</a>
+								</li>
+							</ul>
+
+							<div class="mt-4">
+								<h4 class="text-primary mb-3">Follow Us</h4>
+								<div class="d-flex">
+									<a href="#" class="text-decoration-none text-light me-3" aria-label="Facebook">
+										<i class="fab fa-facebook-f fa-lg"></i>
+									</a>
+									<a href="#" class="text-decoration-none text-light me-3" aria-label="Twitter">
+										<i class="fab fa-twitter fa-lg"></i>
+									</a>
+									<a href="#" class="text-decoration-none text-light me-3" aria-label="LinkedIn">
+										<i class="fab fa-linkedin-in fa-lg"></i>
+									</a>
+									<a href="#" class="text-decoration-none text-light" aria-label="Instagram">
+										<i class="fab fa-instagram fa-lg"></i>
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
+				</div>
+				<div class="modal-footer border-secondary">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
