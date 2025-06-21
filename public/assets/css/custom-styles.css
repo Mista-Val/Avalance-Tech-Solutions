@@ -1,9 +1,26 @@
-/* Prevent horizontal scrollbar */
+/* Prevent horizontal scrollbar and ensure full width */
 html, body {
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+}
+
+/* Ensure all containers respect the viewport width */
+body > * {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Fix for footer container */
+#footer .container,
+#footer .footer-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
 }
 
 :root {

@@ -247,14 +247,14 @@
 				<div class="col-md-12">
 					<div class="section-title">
 						<div class="title-container text-center">
-    <h1 class="text-uppercase mb-3">
-        <span class="text-primary fw-bold">
-            OUR SERVICES
-        </span>
-    </h1>
-    <div class="star-container">
-        <i class="fas fa-star animated-star"></i>
-    </div>
+							<h1 class="text-uppercase mb-3">
+								<span class="text-primary fw-bold">
+									OUR SERVICES
+								</span>
+							</h1>
+							<div class="star-container">
+								<i class="fas fa-star animated-star"></i>
+							</div>
 						</div>
 						<h4 class="lead mt-3 text-white text-center">
 							Transforming Ideas into Digital Reality
@@ -1821,7 +1821,7 @@
 							<div class="row g-3">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="form-label visually-hidden" for="contactName">Your Name</label>
+										<label class="form-label" for="contactName">Your Name</label>
 										<input autocomplete="name" class="form-control form-control-lg" id="contactName"
 											name="name" placeholder="Your Name" required type="text">
 										<div class="invalid-feedback">
@@ -1831,7 +1831,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="form-label visually-hidden" for="contactEmail">Your Email</label>
+										<label class="form-label" for="contactEmail">Your Email</label>
 										<input autocomplete="email" class="form-control form-control-lg"
 											id="contactEmail" name="email" placeholder="Your Email" required
 											type="email">
@@ -1842,7 +1842,7 @@
 								</div>
 								<div class="col-12">
 									<div class="form-group">
-										<label class="form-label visually-hidden" for="contactSubject">Subject</label>
+										<label class="form-label" for="contactSubject">Subject</label>
 										<input autocomplete="off" class="form-control form-control-lg"
 											id="contactSubject" name="subject" placeholder="Subject" required
 											type="text">
@@ -1853,8 +1853,7 @@
 								</div>
 								<div class="col-12">
 									<div class="form-group">
-										<label class="form-label visually-hidden" for="contactMessage">Your
-											Message</label>
+										<label class="form-label" for="contactMessage">Your Message</label>
 										<textarea autocomplete="off" class="form-control form-control-lg"
 											id="contactMessage" name="message" placeholder="Your Message" required
 											rows="5"></textarea>
@@ -1865,11 +1864,44 @@
 								</div>
 								<div class="col-12 text-center">
 									<button class="btn btn-primary btn-lg w-100" type="submit">
-										<span aria-hidden="true" class="spinner-border spinner-border-sm d-none"
-											role="status"></span>
+										<span aria-hidden="true" class="spinner-border spinner-border-sm d-none" role="status"></span>
 										<span class="btn-text">Send Message</span>
 									</button>
 								</div>
+								<!-- DevOps Image -->
+								<div class="d-flex justify-content-center align-items-center mt-4 mb-5" style="min-height: 200px;">
+									<div class="devops-image-container w-100">
+										<img src="/assets/images/devops.jpg" 
+											alt="DevOps Infinity" 
+											class="devops-image img-fluid rounded shadow">
+									</div>
+								</div>
+								<style>
+									.devops-image {
+										display: block;
+										margin: 0 auto;
+										max-width: 100%;
+										height: auto;
+										object-fit: contain;
+									}
+									@media (min-width: 768px) {
+										.devops-image {
+											max-height: 400px;
+										}
+									}
+									@media (min-width: 992px) {
+										.devops-image {
+											max-width: 90%;
+											max-height: 500px;
+										}
+									}
+									@media (min-width: 1200px) {
+										.devops-image {
+											max-width: 80%;
+											max-height: 600px;
+										}
+									}
+								</style>
 							</div>
 						</form>
 					</div>
@@ -1928,13 +1960,12 @@
 				<a href="https://rancher.com/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #0075A8">
 					<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rancher/rancher-original-wordmark.svg"
-						alt="Rancher" class="tech-icon">
-					<span class="tech-name">Rancher</span>
+							alt="Rancher" class="tech-icon">
+						<span class="tech-name">Rancher</span>
 				</a>
 				<a href="https://helm.sh/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #0F1689">
-					<img src="https://raw.githubusercontent.com/helm/helm/main/logo/helm.svg" alt="Helm"
-						class="tech-icon">
+					<img src="https://helm.sh/img/helm.svg" alt="Helm" class="tech-icon">
 					<span class="tech-name">Helm</span>
 				</a>
 
@@ -1987,20 +2018,20 @@
 				<!-- Security & DevSecOps -->
 				<a href="https://anchore.com/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #10B981">
-					<img src="https://www.vectorlogo.zone/logos/anchore/anchore-icon.svg" alt="Anchore"
-						class="tech-icon">
+					<img src="https://www.anchore.com/wp-content/uploads/2022/10/anchore-logo-1.png"
+						alt="Anchore" class="tech-icon" style="background: white; border-radius: 4px; padding: 5px; object-fit: contain; height: 40px; width: auto;" onerror="this.onerror=null; this.src='https://www.anchore.com/wp-content/uploads/2022/10/anchore-logo-1.png';">
 					<span class="tech-name">Anchore</span>
 				</a>
 				<a href="https://aquasecurity.github.io/trivy/" target="_blank" rel="noopener noreferrer"
 					class="tech-item" style="--tech-color: #1904DA">
-					<img src="https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/logo/trivy-logo.png"
-						alt="Trivy" class="tech-icon">
+					<img src="https://trivy.dev/img/trivy-logo.png"
+						alt="Trivy" class="tech-icon" style="background: white; border-radius: 4px; padding: 5px; object-fit: contain; height: 40px; width: auto;" onerror="this.onerror=null; this.src='https://trivy.dev/img/trivy-logo.png';">
 					<span class="tech-name">Trivy</span>
 				</a>
 				<a href="https://www.vaultproject.io/" target="_blank" rel="noopener noreferrer" class="tech-item"
 					style="--tech-color: #000000">
 					<img src="https://www.vectorlogo.zone/logos/hashicorp/hashicorp-icon.svg" alt="Vault"
-						class="tech-icon">
+						class="tech-icon" style="background: white; border-radius: 4px; padding: 5px;">
 					<span class="tech-name">Vault</span>
 				</a>
 
@@ -2072,9 +2103,10 @@
 	</section>
 
 	<!-- Footer Section -->
-	<footer id="footer" class="footer" tabindex="-1" style="overflow: hidden;">
-		<div class="container" style="max-width: 100%; padding: 0 15px;">
-			<div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 0 -15px;">
+	<footer id="footer" class="footer" tabindex="-1" style="overflow: hidden; width: 100%;">
+		<div class="container" style="max-width: 100%; padding: 0; overflow: hidden;">
+			<div class="footer-content"
+				style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 0; padding: 0 15px;">
 				<div class="footer-section">
 					<h3 class="footer-company-name"><span class="text-gradient">Avalance Tech Solutions</span></h3>
 					<p class="footer-about">
@@ -2158,7 +2190,7 @@
 		</div>
 	</footer>
 
-	
+
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js">
 	</script>
@@ -2172,12 +2204,12 @@
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js">
 	</script>
-	
-	
+
+
 	<!-- Custom Scripts -->
 	<script src="assets/js/overlay-manager.js"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
+		document.addEventListener('DOMContentLoaded', function () {
 			// Initialize all Bootstrap tooltips
 			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -2333,23 +2365,23 @@
 			// Handle scroll events with debounce and track direction
 			let scrollTimeout;
 			let lastScrollTime = 0;
-			
+
 			function handleScroll() {
 				const now = Date.now();
-				
+
 				// Only update if it's been at least 50ms since last update
 				if (now - lastScrollTime > 50) {
 					updateButtonState();
 					lastScrollTime = now;
 				}
-				
+
 				// Still use timeout for final state update
 				clearTimeout(scrollTimeout);
 				scrollTimeout = setTimeout(updateButtonState, 100);
 			}
 
 			// Handle button click
-			scrollButton.addEventListener('click', function(e) {
+			scrollButton.addEventListener('click', function (e) {
 				e.preventDefault();
 				if (isScrolling) return;
 
@@ -2581,10 +2613,10 @@
 	</div>
 
 
-    <!-- Scroll to Top/Bottom Button -->
-    <button id="scrollButton" class="scroll-to-top" aria-label="Scroll to bottom">
-        <i class="fas fa-arrow-down"></i>
-    </button>
+	<!-- Scroll to Top/Bottom Button -->
+	<button id="scrollButton" class="scroll-to-top" aria-label="Scroll to bottom">
+		<i class="fas fa-arrow-down"></i>
+	</button>
 </body>
 
 </html>
