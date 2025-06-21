@@ -11,13 +11,11 @@
     --background-light: #f8f9fa14;
 }
 
-/* Base Styles */
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.8;
     color: var(--text-primary);
     overflow-x: hidden;
-    /* Padding is now handled by modern-header.css */
 }
 
 /* Typography */

@@ -182,8 +182,43 @@
         window.addEventListener('unload', cleanup);
     }
     
+    // Initialize back to top button
+    const initBackToTop = safeInit(function() {
+        const backToTop = document.getElementById('backToTop');
+        if (!backToTop) return;
+
+        // Show/hide button on scroll
+        function toggleBackToTop() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        }
+
+        // Smooth scroll to top
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initial check
+        toggleBackToTop();
+
+        // Check on scroll
+        window.addEventListener('scroll', toggleBackToTop, { passive: true });
+
+        return true;
+    }, 'Back to Top');
+
     // Start the application
     start();
+    
+    // Initialize back to top
+    initBackToTop();
     
     // Expose public API
     window.app = {

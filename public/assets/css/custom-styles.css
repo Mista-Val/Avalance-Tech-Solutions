@@ -54,6 +54,14 @@
     --space-2xl: 4rem;
 }
 
+/* Hide scroll button */
+.scroll-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* Base Styles */
 *,
 *::before,
@@ -333,7 +341,8 @@ section {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 50px;
     height: 3px;
     background: #00e5ff;
@@ -1001,15 +1010,7 @@ section {
     transform: translateY(-2px);
 }
 
-/* Footer */
-footer {
-    background: #0f172a;
-    color: #fff;
-    padding: 3rem 0 0;
-    position: relative;
-    z-index: 3;
-    clear: both;
-}
+/* Footer styles are in footer.css */
 
 #core-values .section-title h1 {
     color: var(--text-primary);
@@ -1387,21 +1388,7 @@ footer {
 }
 
 
-/* Footer */
-footer {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: rgba(255, 255, 255, 0.097);
-    padding: 4rem 0 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-footer .copyright {
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-}
+/* Footer styles are in footer.css */
 
 /* Responsive Adjustments */
 @media (max-width: 991.98px) {
@@ -1825,19 +1812,11 @@ footer .copyright {
 /* Contact section styles moved to theme-styles.css for better organization */
 
 #contact .contact-info {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: all 0.3s ease;
+    background: transparent;
+    border: none;
+    padding: 0;
     height: 100%;
-}
-
-#contact .contact-info:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
 }
 
 #contact .contact-icon {

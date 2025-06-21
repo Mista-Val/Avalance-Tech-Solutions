@@ -8,40 +8,20 @@
     --text-light: #f8fafc;
     --bg-light: #f8fafc;
     --bg-dark: #0f172a;
-    --header-height: 80px;
-    --top-bar-height: 0px;
+    --header-height: 88px; /* Increased by 10% from 80px */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Z-index layers */
-    --z-top-bar: 1000;
     --z-header: 1001;
     --z-mobile-menu: 1002;
     --z-mobile-menu-toggle: 1003;
     --z-mobile-menu-backdrop: 1001;
 }
 
-/* Body padding to account for fixed header - important to override theme styles */
 body {
     padding-top: var(--header-height) !important;
     scroll-padding-top: var(--header-height) !important;
 }
-
-/* Top Bar */
-.top-bar {
-    display: none; /* Hide the top bar as we've moved its content to the main header */
-}
-
-.top-bar a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.top-bar a:hover {
-    color: var(--primary-light);
-}
-
-/* Social link styles have been moved to _social-links.css for better organization */
 
 /* Main Header - Increased specificity and added !important */
 header.main-header {
@@ -61,7 +41,7 @@ header.main-header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 0 15px !important; /* Add horizontal padding */
+    padding: 0 15px !important;
 }
 
 header.main-header.scrolled {
@@ -124,11 +104,13 @@ header.main-header.scrolled {
 }
 
 /* Main Navigation */
-.nav-container {
+.navbar {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Push nav to the right */
-    position: relative;
+    justify-content: flex-end;
+    flex-grow: 1;
+    height: 100%;
+    margin-left: 1.1rem; /* Increased by 10% from 1rem */
 }
 
 .nav-list {
@@ -201,9 +183,9 @@ header.main-header.scrolled {
 /* Mobile Toggle */
 .navbar-toggler {
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    padding: 0.5rem;
+    border: 2.2px solid rgba(255, 255, 255, 0.4); /* Increased by 10% from 2px */
+    border-radius: 8.8px; /* Increased by 10% from 8px */
+    padding: 0.55rem; /* Increased by 10% from 0.5rem */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 44px;
@@ -344,8 +326,8 @@ header.main-header.scrolled {
     
     /* Adjust body padding for top bar only */
     body {
-        padding-top: var(--top-bar-height);
-        scroll-padding-top: var(--top-bar-height);
+        padding-top: 0;
+        scroll-padding-top: 0;
     }
     
     /* Smooth scrolling for anchor links */
@@ -581,14 +563,14 @@ body.no-scroll {
     }
     
     .main-header {
-        top: var(--top-bar-height);
+        top: 0;
         position: fixed;
         width: 100%;
     }
     
     body {
-        padding-top: calc(var(--header-height) + var(--top-bar-height));
-        scroll-padding-top: calc(var(--header-height) + var(--top-bar-height));
+        padding-top: var(--header-height);
+        scroll-padding-top: var(--header-height);
     }
     
     /* Ensure content is not hidden behind fixed header */
@@ -602,7 +584,7 @@ body.no-scroll {
     
     /* Fix for mobile menu toggle alignment */
     .header-content {
-        padding: 0 1.5rem;
+        padding: 0 1.1rem; /* Increased by 10% from 1rem */
     }
 }
 
@@ -704,11 +686,11 @@ body.no-scroll {
 
 @media (max-width: 1199.98px) {
     .brand-name {
-        font-size: 2rem; /* Slightly smaller for large tablets */
+        font-size: 2.2rem; /* Increased by 10% from 2rem */
     }
     
     .logo-img {
-        height: 56px;
+        height: 61px; /* Increased by 10% from 56px */
     }
 }
 

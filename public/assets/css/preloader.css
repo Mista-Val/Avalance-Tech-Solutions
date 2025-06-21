@@ -90,25 +90,16 @@
     opacity: 0.8;
 }
 
-/* Hide elements when they're not needed */
 .hidden {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
 }
 
-/* Smooth transitions */
-#page-loader,
-#initial-fade {
-    /* Initial fade styles have been removed */
-}
-
-/* Body styles */
 body:not(.loading) {
     overflow: auto !important;
 }
 
-/* Modal overrides */
 .modal-backdrop {
     display: none !important;
 }
@@ -122,7 +113,6 @@ body.modal-open {
     padding-right: 0 !important;
 }
 
-/* Animation keyframes */
 @keyframes spin {
     from {
         transform: rotate(0deg);
