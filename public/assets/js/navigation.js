@@ -35,15 +35,39 @@ class NavigationManager {
                 // Close mobile menu if open
                 this.closeMobileMenu();
 
-                // Smooth scroll to target
+                // Calculate header offset considering fixed header
                 const headerOffset = 120;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                // Check if we're at the bottom of the page
+                const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+                
+                // If at bottom, scroll up a bit first to ensure smooth scrolling works
+                if (isAtBottom) {
+                    window.scrollTo({
+                        top: document.body.scrollHeight - window.innerHeight - 50,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Wait for the scroll to complete, then scroll to target
+                    setTimeout(() => {
+                        const newElementPosition = targetElement.getBoundingClientRect().top;
+                        const newOffsetPosition = newElementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: newOffsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                } else {
+                    // Normal smooth scroll
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
 
                 // Update URL without page jump
                 if (history.pushState) {
@@ -67,44 +91,76 @@ class NavigationManager {
     }
     
     setupScrollSpy() {
-        if (typeof bootstrap !== 'undefined' && bootstrap.ScrollSpy) {
-            new bootstrap.ScrollSpy(document.body, {
-                target: '#mainNav',
-                offset: 100
-            });
-        }
+        // Initial check
+        this.updateActiveNavLink();
         
+        // Throttle scroll events for better performance
+        let isScrolling;
         window.addEventListener('scroll', () => {
-            if (!this.ticking) {
-                window.requestAnimationFrame(() => {
-                    this.updateActiveNavLink();
-                    this.ticking = false;
-                });
-                this.ticking = true;
-            }
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                this.updateActiveNavLink();
+            }, 50);
         }, { passive: true });
+        
+        // Also check on window resize as section positions might change
+        window.addEventListener('resize', () => {
+            this.updateActiveNavLink();
+        });
     }
     
     updateActiveNavLink() {
-        try {
-            let current = '';
-            const scrollPosition = window.scrollY + 100;
-
-            this.sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    current = '#' + section.id;
-                }
-            });
-
-            this.navLinks.forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === current);
-            });
-        } catch (error) {
-            // Silently fail
+        const scrollPosition = window.scrollY + 100; // Slight offset to activate sections a bit earlier
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Check if we're at the bottom of the page
+        const isAtBottom = window.scrollY + windowHeight >= documentHeight - 50;
+        
+        // If at bottom, activate the last section
+        if (isAtBottom && this.sections.length > 0) {
+            const lastSection = this.sections[this.sections.length - 1];
+            const lastSectionId = lastSection.getAttribute('id');
+            this.setActiveLink(lastSectionId);
+            return;
         }
+        
+        // Normal scroll position handling
+        let currentSectionId = '';
+        
+        this.sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSectionId = sectionId;
+            }
+        });
+        
+        if (currentSectionId) {
+            this.setActiveLink(currentSectionId);
+        }
+    }
+    
+    setActiveLink(sectionId) {
+        this.navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            const isActive = href === `#${sectionId}` || 
+                           (href.includes('#') && href.split('#')[1] === sectionId);
+            
+            if (isActive) {
+                link.classList.add('active');
+                // Also update mobile menu active state
+                const mobileLink = document.querySelector(`.mobile-nav-link[href="#${sectionId}"]`);
+                if (mobileLink) {
+                    document.querySelectorAll('.mobile-nav-link').forEach(link => link.classList.remove('active'));
+                    mobileLink.classList.add('active');
+                }
+            } else {
+                link.classList.remove('active');
+            }
+        });
     }
     
     setupNavbarScroll() {

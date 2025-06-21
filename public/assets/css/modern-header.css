@@ -8,8 +8,8 @@
     --text-light: #f8fafc;
     --bg-light: #f8fafc;
     --bg-dark: #0f172a;
-    --header-height: 70px;
-    --top-bar-height: 40px;
+    --header-height: 80px;
+    --top-bar-height: 0px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Z-index layers */
@@ -20,25 +20,15 @@
     --z-mobile-menu-backdrop: 1001;
 }
 
-/* Body padding to account for top bar and fixed header - important to override theme styles */
+/* Body padding to account for fixed header - important to override theme styles */
 body {
-    padding-top: calc(var(--top-bar-height) + var(--header-height)) !important;
-    scroll-padding-top: calc(var(--top-bar-height) + var(--header-height)) !important;
+    padding-top: var(--header-height) !important;
+    scroll-padding-top: var(--header-height) !important;
 }
 
 /* Top Bar */
 .top-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: var(--z-top-bar);
-    background: #0d1829;
-    color: white;
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide the top bar as we've moved its content to the main header */
 }
 
 .top-bar a {
@@ -56,18 +46,19 @@ body {
 /* Main Header - Increased specificity and added !important */
 header.main-header {
     position: fixed !important;
-    top: var(--top-bar-height) !important;
+    top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    background: rgba(13, 24, 41, 0.95) !important;
+    background: rgba(13, 24, 41, 0.98) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
     height: var(--header-height) !important;
     display: flex !important;
     align-items: center !important;
     transition: var(--transition) !important;
     z-index: var(--z-header) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 0 15px !important; /* Add horizontal padding */

@@ -90,20 +90,6 @@
     opacity: 0.8;
 }
 
-/* Initial Fade */
-.initial-fade {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    pointer-events: none;
-}
-
 /* Hide elements when they're not needed */
 .hidden {
     display: none !important;
@@ -114,7 +100,7 @@
 /* Smooth transitions */
 #page-loader,
 #initial-fade {
-    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    /* Initial fade styles have been removed */
 }
 
 /* Body styles */

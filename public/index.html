@@ -50,6 +50,8 @@
   <link href="assets/css/about-section.css" rel="stylesheet">
   <link href="assets/css/clients.css" rel="stylesheet">
   <link href="assets/css/team-section.css" rel="stylesheet">
+  <!-- Footer CSS -->
+  <link href="assets/css/footer.css" rel="stylesheet">
   <!-- Override Styles -->
   <link href="assets/css/custom-styles.css?v=1.0.1" rel="stylesheet">
   <!-- Favicon -->
@@ -74,35 +76,7 @@
     </div>
    </div>
   </div>
-  <!-- Initial Fade -->
-  <div class="initial-fade" id="initial-fade">
-  </div>
-  <div class="top-bar py-2">
-   <div class="container d-flex justify-content-between align-items-center">
-    <div class="contact-info d-none d-md-flex align-items-center">
-     <a class="text-white me-4" href="tel:+234 802 981 9798">
-     </a>
-    </div>
-    <div class="social-links social-links--header">
-     <a aria-label="Facebook" class="social-link" href="#">
-      <i class="fab fa-facebook-f">
-      </i>
-     </a>
-     <a aria-label="Twitter" class="social-link" href="#">
-      <i class="fab fa-twitter">
-      </i>
-     </a>
-     <a aria-label="LinkedIn" class="social-link" href="#">
-      <i class="fab fa-linkedin-in">
-      </i>
-     </a>
-     <a aria-label="Instagram" class="social-link" href="#">
-      <i class="fab fa-instagram">
-      </i>
-     </a>
-    </div>
-   </div>
-  </div>
+  
   <!-- Main Header -->
   <header class="main-header">
    <div class="container">
@@ -137,7 +111,7 @@
         </li>
         <li class="nav-item">
          <a class="nav-link" data-scroll href="#about">
-          About
+			Portfolio
          </a>
         </li>
         <li class="nav-item">
@@ -186,7 +160,7 @@
       <a class="nav-link mobile-nav-link" href="#about">
        <i class="fas fa-info-circle">
        </i>
-       About
+       Portfolio
       </a>
      </li>
      <li class="nav-item">
@@ -1858,266 +1832,237 @@
 
       <div class="tech-stack-grid">
         <!-- Cloud Platforms -->
-        <div class="tech-item" style="--tech-color: #FF9900">
+        <a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #FF9900">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="tech-icon">
           <span class="tech-name">AWS</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #0089D6">
+        </a>
+        <a href="https://azure.microsoft.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #0089D6">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original-wordmark.svg" alt="Azure" class="tech-icon">
           <span class="tech-name">Azure</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #4285F4">
+        </a>
+        <a href="https://cloud.google.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #4285F4">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg" alt="GCP" class="tech-icon">
           <span class="tech-name">Google Cloud</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #F80000">
+        </a>
+        <a href="https://www.oracle.com/cloud/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #F80000">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle Cloud" class="tech-icon">
           <span class="tech-name">Oracle Cloud</span>
-        </div>
+        </a>
 
         <!-- Containers & Orchestration -->
-        <div class="tech-item" style="--tech-color: #326CE5">
+        <a href="https://kubernetes.io/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #326CE5">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain-wordmark.svg" alt="Kubernetes" class="tech-icon">
           <span class="tech-name">Kubernetes</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #2496ED">
+        </a>
+        <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #2496ED">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.svg" alt="Docker" class="tech-icon">
           <span class="tech-name">Docker</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #0075A8">
+        </a>
+        <a href="https://rancher.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #0075A8">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rancher/rancher-original-wordmark.svg" alt="Rancher" class="tech-icon">
           <span class="tech-name">Rancher</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #0F1689">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/helm/helm-original-wordmark.svg" alt="Helm" class="tech-icon">
+        </a>
+        <a href="https://helm.sh/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #0F1689">
+          <img src="https://raw.githubusercontent.com/helm/helm/main/logo/helm.svg" alt="Helm" class="tech-icon">
           <span class="tech-name">Helm</span>
-        </div>
+        </a>
 
         <!-- Infrastructure as Code -->
-        <div class="tech-item" style="--tech-color: #7B42BC">
+        <a href="https://www.terraform.io/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #7B42BC">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original-wordmark.svg" alt="Terraform" class="tech-icon">
           <span class="tech-name">Terraform</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #000000">
+        </a>
+        <a href="https://www.ansible.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #000000">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original-wordmark.svg" alt="Ansible" class="tech-icon">
           <span class="tech-name">Ansible</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #02A8EF">
+        </a>
+        <a href="https://www.packer.io/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #02A8EF">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/packer/packer-original-wordmark.svg" alt="Packer" class="tech-icon">
           <span class="tech-name">Packer</span>
-        </div>
+        </a>
 
         <!-- CI/CD & DevOps -->
-        <div class="tech-item" style="--tech-color: #D24939">
+        <a href="https://www.jenkins.io/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #D24939">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" class="tech-icon">
           <span class="tech-name">Jenkins</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #181717">
+        </a>
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #181717">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" alt="GitHub" class="tech-icon">
           <span class="tech-name">GitHub</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #FCA121">
+        </a>
+        <a href="https://about.gitlab.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #FCA121">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original-wordmark.svg" alt="GitLab" class="tech-icon">
           <span class="tech-name">GitLab</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #2088FF">
+        </a>
+        <a href="https://argoproj.github.io/cd/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #2088FF">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/argocd/argocd-original-wordmark.svg" alt="ArgoCD" class="tech-icon">
           <span class="tech-name">ArgoCD</span>
-        </div>
+        </a>
 
         <!-- Security & DevSecOps -->
-        <div class="tech-item" style="--tech-color: #10B981">
-          <img src="https://www.anchore.com/wp-content/uploads/2021/05/anchore-logo-1.svg" alt="Anchore" class="tech-icon">
+        <a href="https://anchore.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #10B981">
+          <img src="https://www.vectorlogo.zone/logos/anchore/anchore-icon.svg" alt="Anchore" class="tech-icon">
           <span class="tech-name">Anchore</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #1904DA">
-          <img src="https://aquasecurity.github.io/trivy/dev/img/logo/trivy-logo.svg" alt="Trivy" class="tech-icon">
+        </a>
+        <a href="https://aquasecurity.github.io/trivy/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #1904DA">
+          <img src="https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/logo/trivy-logo.png" alt="Trivy" class="tech-icon">
           <span class="tech-name">Trivy</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #000000">
+        </a>
+        <a href="https://www.vaultproject.io/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #000000">
           <img src="https://www.vectorlogo.zone/logos/hashicorp/hashicorp-icon.svg" alt="Vault" class="tech-icon">
           <span class="tech-name">Vault</span>
-        </div>
+        </a>
 
         <!-- Monitoring & Logging -->
-        <div class="tech-item" style="--tech-color: #E6522C">
+        <a href="https://prometheus.io/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #E6522C">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original-wordmark.svg" alt="Prometheus" class="tech-icon">
           <span class="tech-name">Prometheus</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #F46800">
+        </a>
+        <a href="https://grafana.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #F46800">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original-wordmark.svg" alt="Grafana" class="tech-icon">
           <span class="tech-name">Grafana</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #005571">
+        </a>
+        <a href="https://www.elastic.co/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #005571">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original-wordmark.svg" alt="Elasticsearch" class="tech-icon">
           <span class="tech-name">Elasticsearch</span>
-        </div>
+        </a>
 
         <!-- App Design & Development -->
-        <div class="tech-item" style="--tech-color: #61DAFB">
+        <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #61DAFB">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" alt="React" class="tech-icon">
           <span class="tech-name">React</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #4FC08D">
+        </a>
+        <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #4FC08D">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original-wordmark.svg" alt="Vue.js" class="tech-icon">
           <span class="tech-name">Vue.js</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #000000">
+        </a>
+        <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #000000">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" alt="Next.js" class="tech-icon">
           <span class="tech-name">Next.js</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #339933">
+        </a>
+        <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #339933">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" class="tech-icon">
           <span class="tech-name">Node.js</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #3776AB">
+        </a>
+        <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #3776AB">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" alt="Python" class="tech-icon">
           <span class="tech-name">Python</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #092E20">
+        </a>
+        <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #092E20">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg" alt="Django" class="tech-icon">
           <span class="tech-name">Django</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #F7DF1E">
+        </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="tech-item" style="--tech-color: #F7DF1E">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tech-icon">
           <span class="tech-name">JavaScript</span>
-        </div>
-        <div class="tech-item" style="--tech-color: #3178C6">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="tech-icon">
-          <span class="tech-name">TypeScript</span>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer Section -->
-  <footer class="bg-dark text-white py-5">
-   <div class="container">
-    <div class="row g-4">
-     <div class="col-lg-4">
-      <h5 class="text-uppercase mb-4">
-       Avalance Tech Solutions
-      </h5>
-      <p>
-       Transforming businesses through innovative technology solutions. We help companies of all sizes achieve their digital transformation goals.
-      </p>
-      <div class="social-links mt-3">
-       <a aria-label="Facebook" class="text-white me-2" href="#">
-        <i class="fab fa-facebook-f">
-        </i>
-       </a>
-       <a aria-label="Twitter" class="text-white me-2" href="#">
-        <i class="fab fa-twitter">
-        </i>
-       </a>
-       <a aria-label="LinkedIn" class="text-white me-2" href="#">
-        <i class="fab fa-linkedin-in">
-        </i>
-       </a>
-       <a aria-label="GitHub" class="text-white" href="#">
-        <i class="fab fa-github">
-        </i>
-       </a>
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <!-- About Column -->
+        <div class="col-lg-3 col-md-6 footer-col">
+          <img src="assets/images/logo-white.png" alt="Avalance Tech Solutions" class="footer-logo">
+          <p class="footer-about">
+            We deliver cutting-edge technology solutions that drive business growth and digital transformation. 
+            Our expertise spans cloud computing, DevOps, cybersecurity, and custom software development.
+          </p>
+          <div class="social-links">
+            <a href="https://facebook.com" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://linkedin.com" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://youtube.com" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-title">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#home">Home <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#pricing">Pricing <i class="fas fa-chevron-right"></i></a></li>
+			<li><a href="#about">Portfolio <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#work">Our Work <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#contact">Contact <i class="fas fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+
+        <!-- Services Column -->
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-title">Our Services</h5>
+          <ul class="footer-links">
+            <li><a href="#pricing-cloud">Cloud Solutions <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#pricing-devops">DevOps Consulting <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#pricing-security">Cybersecurity <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#pricing-web">Web Development <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#pricing-mobile">Mobile Apps <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#pricing-consulting">IT Consulting <i class="fas fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="col-lg-3 col-md-6 footer-col">
+          <h5 class="footer-title">Contact Us</h5>
+          <ul class="contact-info">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>18313 FM 1093 Rd Apt 6210<br>Richmond Texas, 77407, USA</span>
+            </li>
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span>+1 (832) 812-2402</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@avalance-resources.online</span>
+            </li>
+            <li>
+              <i class="fas fa-clock"></i>
+              <span>Mon - Fri: 9:00 - 18:00</span>
+            </li>
+          </ul>
+        </div>
       </div>
-     </div>
-     <div class="col-lg-2 col-md-4">
-      <h5 class="text-uppercase mb-4">
-       Quick Links
-      </h5>
-      <ul class="list-unstyled">
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#">
-         Home
-        </a>
-       </li>
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#about">
-         About Us
-        </a>
-       </li>
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#services">
-         Services
-        </a>
-       </li>
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#portfolio">
-         Portfolio
-        </a>
-       </li>
-       <li>
-        <a class="text-white text-decoration-none" href="#contact">
-         Contact
-        </a>
-       </li>
-      </ul>
-     </div>
-     <div class="col-lg-3 col-md-4">
-      <h5 class="text-uppercase mb-4">
-       Our Services
-      </h5>
-      <ul class="list-unstyled">
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#">
-         Web Development
-        </a>
-       </li>
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#">
-         Mobile App Development
-        </a>
-       </li>
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#">
-         UI/UX Design
-        </a>
-       </li>
-       <li class="mb-2">
-        <a class="text-white text-decoration-none" href="#">
-         Cloud Solutions
-        </a>
-       </li>
-       <li>
-        <a class="text-white text-decoration-none" href="#">
-         IT Consulting
-        </a>
-       </li>
-      </ul>
-     </div>
-    <hr class="mt-4 mb-4">
-    <div class="row">
-     <div class="col-md-6 text-center text-md-start">
-      <p class="mb-0">
-       &copy; 2025 Avalance Tech Solutions. All rights reserved.
-      </p>
-     </div>
-     <div class="col-md-6 text-center text-md-end">
-      <ul class="list-inline mb-0">
-       <li class="list-inline-item">
-        <a class="text-white text-decoration-none" href="#">
-         Privacy Policy
-        </a>
-       </li>
-       <li class="list-inline-item">
-        <span class="mx-2">
-         |
-        </span>
-       </li>
-       <li class="list-inline-item">
-        <a class="text-white text-decoration-none" href="#">
-         Terms of Service
-        </a>
-       </li>
-      </ul>
-     </div>
+      
+      <!-- Copyright -->
+      <div class="copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <p class="mb-0">
+                &copy; 2025 Avalance Tech Solutions. All Rights Reserved. 
+                <span class="d-block d-sm-inline-block mt-2 mt-sm-0">
+                  <a href="#privacy-policy" class="text-white-50 mx-2" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a> | 
+                  <a href="#terms-of-service" class="text-white-50 mx-2" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a> | 
+                  <a href="#sitemap" class="text-white-50 mx-2" data-bs-toggle="modal" data-bs-target="#sitemapModal">Sitemap</a>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
    </div>
   </footer>
   <!-- Scroll to Top Button -->
-  <button aria-label="Scroll to top" class="scroll-btn" id="scrollBtn">
-   <i class="fas fa-arrow-up">
-   </i>
-  </button>
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
   <!-- JavaScript Libraries -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js">
   </script>
@@ -2132,7 +2077,56 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js">
   </script>
   <!-- Custom Scripts -->
-  <script src="assets/js/overlay-manager.js">
+  <script src="assets/js/overlay-manager.js"></script>
+  <script>
+    // Initialize modals when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Function to show modal by ID
+      function showModal(modalId) {
+        const modalElement = document.getElementById(modalId);
+        if (modalElement) {
+          // Initialize modal if not already initialized
+          const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+          modal.show();
+        }
+      }
+
+      // Handle URL hash changes
+      function handleHash() {
+        const hash = window.location.hash.substring(1);
+        if (!hash) return;
+        
+        const modalMap = {
+          'privacy-policy': 'privacyPolicyModal',
+          'terms-of-service': 'termsModal',
+          'sitemap': 'sitemapModal'
+        };
+        
+        const modalId = modalMap[hash];
+        if (modalId) {
+          showModal(modalId);
+        }
+      }
+
+      // Handle initial page load with hash
+      handleHash();
+      
+      // Handle back/forward navigation
+      window.addEventListener('popstate', handleHash);
+      
+      // Handle modal trigger clicks
+      document.addEventListener('click', function(e) {
+        const trigger = e.target.closest('[data-bs-toggle="modal"]');
+        if (!trigger) return;
+        
+        e.preventDefault();
+        const target = trigger.getAttribute('data-bs-target');
+        if (target && target.startsWith('#')) {
+          const modalId = target.substring(1);
+          showModal(modalId);
+        }
+      });
+    });
   </script>
   <script src="assets/js/navigation.js">
   </script>
@@ -2154,52 +2148,196 @@
 				});
 			}
 
-			// Scroll Button Functionality
-			const scrollBtn = document.getElementById('scrollBtn');
-			const footer = document.querySelector('footer');
-			let isAtBottom = false;
+			// Back to top button functionality
+                        const backToTopButton = document.getElementById('backToTop');
+                        
+                        // Show/hide the button based on scroll position
+                        function updateBackToTopButton() {
+                          if (window.pageYOffset > 300) {
+                            backToTopButton.classList.add('active');
+                          } else {
+                            backToTopButton.classList.remove('active');
+                          }
+                        }
+                        
+                        // Initial check
+                        updateBackToTopButton();
+                        
+                        // Add scroll event listener
+                        window.addEventListener('scroll', updateBackToTopButton, { passive: true });
+                        
+                        // Smooth scroll to top when clicked
+                        backToTopButton.addEventListener('click', (e) => {
+                          e.preventDefault();
+                          window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                          });
+                        });
 
-			function updateScrollButton() {
-				const scrollPosition = window.innerHeight + window.scrollY;
-				const pageHeight = document.documentElement.scrollHeight - 10;
-				isAtBottom = scrollPosition >= pageHeight;
-
-				if (window.scrollY > 300) {
-					scrollBtn.classList.add('visible');
-				} else {
-					scrollBtn.classList.remove('visible');
-				}
-
-				const icon = scrollBtn.querySelector('i');
-				icon.className = isAtBottom ? 'fas fa-arrow-up' : 'fas fa-arrow-down';
-				scrollBtn.setAttribute('aria-label', isAtBottom ? 'Scroll to top' : 'Scroll to footer');
-			}
-
-			// Initial check
-			updateScrollButton();
-
-			// Add scroll event listener
-			window.addEventListener('scroll', updateScrollButton, { passive: true });
-
-			// Scroll to top or footer on button click
-			scrollBtn.addEventListener('click', function(e) {
-				e.preventDefault();
-				
-				if (isAtBottom) {
-					// Scroll to top
-					window.scrollTo({
-						top: 0,
-						behavior: 'smooth'
-					});
-				} else {
-					// Scroll to footer
-					footer.scrollIntoView({
-						behavior: 'smooth',
-						block: 'end'
-					});
-				}
-			});
+                        // Smooth scroll for anchor links with offset for fixed header
+                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                          anchor.addEventListener('click', function (e) {
+                            const targetId = this.getAttribute('href');
+                            if (targetId === '#' || targetId === '#!') return;
+                            
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                              e.preventDefault();
+                              window.scrollTo({
+                                top: targetElement.offsetTop - 80, // Adjust for fixed header
+                                behavior: 'smooth'
+                              });
+                              
+                              // Update URL without adding to history
+                              if (history.pushState) {
+                                history.pushState(null, null, targetId);
+                              } else {
+                                window.location.hash = targetId;
+                              }
+                            }
+                          });
+                        });
 		});
   </script>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal fade" id="privacyPolicyModal" tabindex="-1" aria-labelledby="privacyPolicyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-secondary">
+          <h3 class="modal-title text-primary" id="privacyPolicyModalLabel">Privacy Policy</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>1. Information We Collect</h4>
+          <p>We collect information that you provide directly to us, such as when you fill out a contact form, request information, or communicate with us. This may include your name, email address, phone number, and any other information you choose to provide.</p>
+          
+          <h4>2. How We Use Your Information</h4>
+          <p>We may use the information we collect to:</p>
+          <ul>
+            <li>Provide, maintain, and improve our services</li>
+            <li>Respond to your comments, questions, and requests</li>
+            <li>Send you technical notices, updates, and support messages</li>
+            <li>Communicate with you about products, services, and events</li>
+            <li>Monitor and analyze trends, usage, and activities</li>
+          </ul>
+          
+          <h4>3. Information Sharing</h4>
+          <p>We do not share your personal information with third parties except as described in this Privacy Policy or with your consent.</p>
+          
+          <h4>4. Data Security</h4>
+          <p>We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access, disclosure, alteration, and destruction.</p>
+          
+          <h4>5. Your Choices</h4>
+          <p>You may update or correct your account information at any time by contacting us. You can also opt-out of receiving promotional communications from us.</p>
+          
+          <h4>6. Changes to This Policy</h4>
+          <p>We may change this Privacy Policy from time to time. If we make changes, we will notify you by revising the date at the top of the policy.</p>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms of Service Modal -->
+  <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-secondary">
+          <h3 class="modal-title text-primary" id="termsModalLabel">Terms of Service</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>1. Acceptance of Terms</h4>
+          <p>By accessing or using our services, you agree to be bound by these Terms of Service.</p>
+          
+          <h4>2. Description of Service</h4>
+          <p>We provide technology solutions including but not limited to cloud services, software development, and IT consulting.</p>
+          
+          <h4>3. User Responsibilities</h4>
+          <p>You agree to use our services only for lawful purposes and in accordance with all applicable laws and regulations.</p>
+          
+          <h4>4. Intellectual Property</h4>
+          <p>All content and materials available on our website and through our services are our property or the property of our licensors.</p>
+          
+          <h4>5. Limitation of Liability</h4>
+          <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages.</p>
+          
+          <h4>6. Governing Law</h4>
+          <p>These Terms shall be governed by and construed in accordance with the laws of the State of Texas.</p>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sitemap Modal -->
+  <div class="modal fade" id="sitemapModal" tabindex="-1" aria-labelledby="sitemapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-secondary">
+          <h3 class="modal-title text-primary" id="sitemapModalLabel">Sitemap</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h4 class="text-primary">Main Pages</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#home" class="text-decoration-none text-light" data-bs-dismiss="modal">Home</a></li>
+                <li class="mb-2"><a href="#about" class="text-decoration-none text-light" data-bs-dismiss="modal">About Us</a></li>
+                <li class="mb-2"><a href="#services" class="text-decoration-none text-light" data-bs-dismiss="modal">Services</a></li>
+                <li class="mb-2"><a href="#portfolio" class="text-decoration-none text-light" data-bs-dismiss="modal">Portfolio</a></li>
+                <li class="mb-2"><a href="#team" class="text-decoration-none text-light" data-bs-dismiss="modal">Our Team</a></li>
+                <li class="mb-2"><a href="#contact" class="text-decoration-none text-light" data-bs-dismiss="modal">Contact</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4 class="text-primary">Services</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#" class="text-decoration-none text-light" data-bs-dismiss="modal">Cloud Solutions</a></li>
+                <li class="mb-2"><a href="#" class="text-decoration-none text-light" data-bs-dismiss="modal">DevOps Consulting</a></li>
+                <li class="mb-2"><a href="#" class="text-decoration-none text-light" data-bs-dismiss="modal">Cybersecurity</a></li>
+                <li class="mb-2"><a href="#" class="text-decoration-none text-light" data-bs-dismiss="modal">Web Development</a></li>
+                <li class="mb-2"><a href="#" class="text-decoration-none text-light" data-bs-dismiss="modal">Mobile Apps</a></li>
+                <li class="mb-2"><a href="#" class="text-decoration-none text-light" data-bs-dismiss="modal">IT Consulting</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <h4 class="text-primary">Legal</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="#privacy-policy" class="text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a></li>
+                <li class="mb-2"><a href="#terms-of-service" class="text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a></li>
+                <li class="mb-2"><a href="#sitemap" class="text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#sitemapModal">Sitemap</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4 class="text-primary">Contact</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> 18313 FM 1093 Rd Apt 6210, Richmond, TX 77407</li>
+                <li class="mb-2"><i class="fas fa-phone-alt text-primary me-2"></i> +1 (832) 812-2402</li>
+                <li class="mb-2"><i class="fas fa-envelope text-primary me-2"></i> info@avalance-tech.online</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
  </body>
 </html>
