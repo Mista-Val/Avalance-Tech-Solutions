@@ -96,7 +96,7 @@
 
 @media (min-width: 768px) {
   .footer-company-name {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     text-align: left;
   }
   
@@ -117,7 +117,7 @@
 
 @media (min-width: 1024px) {
   .footer-company-name {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .footer-content {
@@ -146,32 +146,63 @@
 /* Center align on mobile */
 @media (max-width: 767.98px) {
   #footer .container {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
+    max-width: 100%;
   }
   
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     text-align: center;
-    padding: 2rem 0;
+    padding: 1.5rem 0 2rem;
+    width: 100%;
   }
   
   .footer-section {
     align-items: center;
     text-align: center;
-    padding: 0 0.5rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .footer-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
   }
   
   .footer-title::after {
     left: 50%;
     transform: translateX(-50%);
+    bottom: -8px;
+    height: 2px;
   }
   
-  .footer-links,
-  /* Contact info styles moved to responsive-sections.css */
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .footer-links li {
+    max-width: 100%;
+    margin: 0;
+  }
   
   .footer-links a {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    margin: 0.15rem 0;
     justify-content: center;
+    text-align: center;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
   }
   
   .footer-links a i {
@@ -180,7 +211,21 @@
   
   .footer-about {
     max-width: 100% !important;
-    padding: 0 !important;
+    padding: 0 0.5rem !important;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .social-links {
+    margin: 1rem auto 0;
+    gap: 0.75rem;
+  }
+  
+  .social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 }
 
@@ -268,9 +313,10 @@
 
 .footer-links li {
   width: 100%;
-  max-width: 180px;
+  max-width: 200px;
   text-align: center;
   transition: all 0.2s ease;
+  margin: 0.15rem 0;
 }
 
 .footer-links a {
@@ -283,12 +329,15 @@
   transition: all 0.2s ease;
   font-size: 0.9rem;
   font-weight: 400;
-  padding: 0.35rem 1rem;
-  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
   width: 100%;
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  min-height: 44px; /* Better touch target size */
+  box-sizing: border-box;
 }
 
 .footer-links a::before {

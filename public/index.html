@@ -2072,9 +2072,9 @@
 	</section>
 
 	<!-- Footer Section -->
-	<footer id="footer" class="footer" tabindex="-1">
-		<div class="container">
-			<div class="footer-content" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+	<footer id="footer" class="footer" tabindex="-1" style="overflow: hidden;">
+		<div class="container" style="max-width: 100%; padding: 0 15px;">
+			<div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 0 -15px;">
 				<div class="footer-section">
 					<h3 class="footer-company-name"><span class="text-gradient">Avalance Tech Solutions</span></h3>
 					<p class="footer-about">
@@ -2106,13 +2106,25 @@
 				</div>
 
 				<div class="footer-section">
-					<h5 class="footer-title" style="--after-display: none">Quick Links</h5>
+					<h4 class="footer-title" style="--after-display: none">Quick Links</h4>
 					<ul class="footer-links">
 						<li><a href="#home">Home <i class="fas fa-chevron-right"></i></a></li>
 						<li><a href="#pricing">Packages <i class="fas fa-chevron-right"></i></a></li>
 						<li><a href="#about">Portfolio <i class="fas fa-chevron-right"></i></a></li>
 						<li><a href="#work">Our Work <i class="fas fa-chevron-right"></i></a></li>
 						<li><a href="#contact">Contact <i class="fas fa-chevron-right"></i></a></li>
+					</ul>
+				</div>
+
+				<div class="footer-section">
+					<h4 class="footer-title" style="--after-display: none">FAQs</h4>
+					<ul class="footer-links">
+						<li><a href="faq.html#infrastructure">IT Infrastructure</a></li>
+						<li><a href="faq.html#devops">DevOps Practices</a></li>
+						<li><a href="faq.html#automation">Automation</a></li>
+						<li><a href="faq.html#security">Cybersecurity</a></li>
+						<li><a href="faq.html#cloud">Cloud Services</a></li>
+						<li><a href="faq.html#compliance">Compliance</a></li>
 					</ul>
 				</div>
 

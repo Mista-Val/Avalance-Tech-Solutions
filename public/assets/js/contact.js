@@ -199,6 +199,8 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Convert FormData to object
             const formData = new FormData(form);
+            const formObject = {}; // Initialize formObject
+            
             formData.forEach((value, key) => {
                 if (key.endsWith('[]')) {
                     const cleanKey = key.replace('[]', '');
@@ -223,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Show loading state
             const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonHTML = submitButton?.innerHTML || '';
+            let error = null; // Initialize error variable
             
             if (submitButton) {
                 // Disable all form elements to prevent multiple submissions
@@ -299,24 +302,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Reset form
                 form.reset();
                 
-                // Close modal if this is a modal form
-                const modal = form.closest('.modal');
-                if (modal) {
-                    const modalInstance = bootstrap.Modal.getInstance(modal);
-                    if (modalInstance) {
-                        // Delay hiding to show success message
-                        setTimeout(() => {
-                            modalInstance.hide();
-                            // Reset form after modal is hidden
-                            setTimeout(() => form.reset(), 300);
-                        }, 1500);
+                // Close modal if this is a modal form and Bootstrap is available
+                if (typeof bootstrap !== 'undefined') {
+                    const modal = form.closest('.modal');
+                    if (modal) {
+                        const modalInstance = bootstrap.Modal.getInstance(modal);
+                        if (modalInstance) {
+                            // Delay hiding to show success message
+                            setTimeout(() => {
+                                modalInstance.hide();
+                                // Reset form after modal is hidden
+                                setTimeout(() => form.reset(), 300);
+                            }, 1500);
+                            return; // Skip the form reset below since we're handling it in the modal
+                        }
                     }
                 }
+                
+                // Reset form if not in a modal or if modal handling failed
+                form.reset();
                 
                 // Dispatch custom event for form success
                 form.dispatchEvent(new CustomEvent('form:success', { bubbles: true }));
                 
-            } catch (error) {
+            } catch (err) {
+                error = err; // Store the error for use in finally block
                 console.error('Error submitting form:', error);
                 
                 // Create error alert

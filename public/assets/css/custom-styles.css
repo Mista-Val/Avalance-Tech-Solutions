@@ -1,3 +1,11 @@
+/* Prevent horizontal scrollbar */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     /* Scroll to Top/Bottom Button */
 .scroll-to-top {
@@ -1524,6 +1532,40 @@ section {
 
 
 /* Footer styles are in footer.css */
+
+/* Prevent horizontal scrollbar */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure all elements stay within viewport */
+* {
+    box-sizing: border-box;
+}
+
+/* Fix for container and row elements */
+.container, 
+.container-fluid {
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+[class*="col-"] {
+    padding-right: 15px;
+    padding-left: 15px;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 991.98px) {
