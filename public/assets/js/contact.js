@@ -198,8 +198,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             // Convert FormData to object
+            const formData = new FormData(form);
             formData.forEach((value, key) => {
-                // Handle checkboxes (services array)
                 if (key.endsWith('[]')) {
                     const cleanKey = key.replace('[]', '');
                     if (!formObject[cleanKey]) {

@@ -2145,6 +2145,8 @@
 			</div>
 		</div>
 	</footer>
+
+	
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js">
 	</script>
@@ -2158,17 +2160,46 @@
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js">
 	</script>
+	
+	
 	<!-- Custom Scripts -->
 	<script src="assets/js/overlay-manager.js"></script>
 	<script>
-		// Wait for all scripts to load
-		window.addEventListener('load', function () {
-			// Function to show modal by ID
+		document.addEventListener('DOMContentLoaded', function() {
+			// Initialize all Bootstrap tooltips
+			var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+				return new bootstrap.Tooltip(tooltipTriggerEl);
+			});
+
+			// Initialize all Bootstrap popovers
+			var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+			var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+				return new bootstrap.Popover(popoverTriggerEl);
+			});
+
+			// Initialize all modals
+			var modalTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="modal"]'));
+			modalTriggerList.forEach(function (modalTriggerEl) {
+				modalTriggerEl.addEventListener('click', function (e) {
+					e.preventDefault();
+					var target = modalTriggerEl.getAttribute('data-bs-target');
+					if (target) {
+						var modal = document.querySelector(target);
+						if (modal) {
+							var bsModal = new bootstrap.Modal(modal);
+							bsModal.show();
+						}
+					}
+				});
+			});
+
+			// Function to show modal by ID (for URL hash handling)
 			function showModal(modalId) {
 				const modalElement = document.getElementById(modalId);
 				if (modalElement) {
 					try {
-						const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+						const modal = new bootstrap.Modal(modalElement);
 						modal.show();
 						// Update URL hash
 						history.pushState(null, '', '#' + Object.entries({
@@ -2244,60 +2275,102 @@
 
 			// Single scroll button functionality
 			const scrollButton = document.getElementById('scrollButton');
+			if (!scrollButton) return;
+
 			const scrollIcon = scrollButton.querySelector('i');
-			const footer = document.getElementById('footer');
+			if (!scrollIcon) return;
 
-			// Function to update button icon based on scroll position
-			function updateScrollButton() {
-				const scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
-				const scrolledToTop = window.scrollY < 100;
+			let isScrolling = false;
+			let lastScrollTop = 0;
+			let isScrollingDown = false;
+			const scrollThreshold = 100; // pixels from top/bottom
 
-				// Show/hide button based on scroll position
-				if (window.scrollY > 300) {
-					scrollButton.classList.add('active');
-				} else {
-					scrollButton.classList.remove('active');
-				}
+			// Function to check if we're near the bottom of the page
+			function isNearBottom() {
+				return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - scrollThreshold);
+			}
 
-				// Update icon and label based on scroll position
-				if (scrolledToBottom) {
-					scrollIcon.className = 'fas fa-arrow-up';
-					scrollButton.setAttribute('aria-label', 'Back to top');
-				} else if (scrolledToTop) {
+			// Function to check if we're near the top of the page
+			function isNearTop() {
+				return window.scrollY <= scrollThreshold;
+			}
+
+			// Function to update button state based on scroll direction
+			function updateButtonState() {
+				if (isScrolling) return;
+
+				scrollButton.classList.add('active');
+
+				// Determine scroll direction
+				const currentScroll = window.scrollY || document.documentElement.scrollTop;
+				isScrollingDown = currentScroll > lastScrollTop;
+				lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+
+				// Update button based on scroll direction and position
+				if (isScrollingDown) {
+					// If scrolling down, show down arrow (to go to bottom)
 					scrollIcon.className = 'fas fa-arrow-down';
 					scrollButton.setAttribute('aria-label', 'Scroll to bottom');
 				} else {
-					// When in the middle, maintain the last direction
-					if (!scrollIcon.className.includes('fa-arrow')) {
-						scrollIcon.className = 'fas fa-arrow-down';
-						scrollButton.setAttribute('aria-label', 'Scroll to bottom');
-					}
+					// If scrolling up, show up arrow (to go to top)
+					scrollIcon.className = 'fas fa-arrow-up';
+					scrollButton.setAttribute('aria-label', 'Back to top');
 				}
 			}
 
-			// Initial update
-			updateScrollButton();
-
-			// Update on scroll
-			window.addEventListener('scroll', updateScrollButton, { passive: true });
+			// Handle scroll events with debounce and track direction
+			let scrollTimeout;
+			let lastScrollTime = 0;
+			
+			function handleScroll() {
+				const now = Date.now();
+				
+				// Only update if it's been at least 50ms since last update
+				if (now - lastScrollTime > 50) {
+					updateButtonState();
+					lastScrollTime = now;
+				}
+				
+				// Still use timeout for final state update
+				clearTimeout(scrollTimeout);
+				scrollTimeout = setTimeout(updateButtonState, 100);
+			}
 
 			// Handle button click
-			scrollButton.addEventListener('click', function (e) {
+			scrollButton.addEventListener('click', function(e) {
 				e.preventDefault();
+				if (isScrolling) return;
 
-				if (scrollIcon.className.includes('up')) {
-					// Scroll to top
-					window.scrollTo({
-						top: 0,
-						behavior: 'smooth'
-					});
-				} else {
-					// Scroll to bottom
-					footer.scrollIntoView({ behavior: 'smooth' });
-					// Focus on footer for better accessibility
-					setTimeout(() => footer.focus(), 500);
-				}
+				isScrolling = true;
+				scrollButton.classList.add('scrolling');
+
+				// Determine scroll direction based on current scroll direction
+				const currentScroll = window.scrollY || document.documentElement.scrollTop;
+				const scrollToTop = isScrollingDown;
+
+				// Scroll to the appropriate position
+				window.scrollTo({
+					top: scrollToTop ? document.body.scrollHeight : 0,
+					behavior: 'smooth'
+				});
+
+				// Invert the scroll direction for next time
+				isScrollingDown = !isScrollingDown;
+
+				// Update button state after scroll completes
+				setTimeout(() => {
+					isScrolling = false;
+					scrollButton.classList.remove('scrolling');
+					// Update the button state based on new scroll position
+					updateButtonState();
+				}, 1000);
 			});
+
+			// Initial setup
+			updateButtonState();
+
+			// Add scroll event listener
+			window.addEventListener('scroll', handleScroll, { passive: true });
 
 			// Smooth scroll for anchor links with offset for fixed header
 			// Only apply to non-modal anchor links
@@ -2496,6 +2569,10 @@
 	</div>
 
 
+    <!-- Scroll to Top/Bottom Button -->
+    <button id="scrollButton" class="scroll-to-top" aria-label="Scroll to bottom">
+        <i class="fas fa-arrow-down"></i>
+    </button>
 </body>
 
 </html>
