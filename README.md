@@ -1,118 +1,160 @@
 # Avalance Tech Solutions
 
-Backend API and frontend for Avalance Tech Solutions IT consultation website.
+A modern IT consultation and cloud services platform built with Node.js, Express, and MongoDB. The application features a responsive frontend with interactive modals for service inquiries and a robust backend API.
 
-## Project Structure
+## ✨ Features
+
+- Responsive web design with Bootstrap 5
+- Interactive service inquiry modals
+- Contact form with email notifications via SendGrid
+- Secure authentication with JWT
+- Rate limiting for API endpoints
+- Containerized with Docker
+- Health check endpoints
+- Environment-based configuration
+
+## 🏗️ Project Structure
 
 ```
 .
-├── public/           # Publicly accessible files
-│   ├── assets/      # Static assets
-│   │   ├── css/     # Stylesheets
-│   │   ├── js/      # JavaScript files
-│   │   ├── images/  # Images
-│   │   └── fonts/   # Font files
+├── public/           # Static files served by Express
+│   ├── assets/      # Static assets (CSS, JS, images, fonts)
 │   ├── index.html   # Main HTML file
-│   └── sw.js        # Service Worker
-├── scripts/         # Build and utility scripts
-├── routes/          # API routes
-├── models/          # Database models
-├── config/          # Configuration files
-├── server.js        # Main server file
-├── Dockerfile       # Docker configuration
-└── .env             # Environment variables
+│   └── ...
+├── routes/          # API route handlers
+├── models/          # MongoDB models
+├── utils/           # Utility functions
+├── server.js        # Express server
+├── Dockerfile       # Container configuration
+├── .env.example     # Environment variables template
+└── package.json     # Project metadata and dependencies
 ```
 
-## Prerequisites
+## 🚀 Prerequisites
 
-- Node.js 18+
-- MongoDB 6.0+
-- Docker (for containerized deployment)
-- X.509 certificate for MongoDB authentication
+- Node.js 20+ (LTS recommended)
+- MongoDB 6.0+ (Atlas or local)
+- Docker 20.10+
+- SendGrid API key (for email notifications)
 
-## Setup
+## 🛠️ Setup
 
-1. Clone the repository:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/avalance-tech-solutions.git
+   cd avalance-tech-solutions
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment**
+   ```bash
+   cp .env.example .env
+   ```
+   Update the `.env` file with your configuration:
+   ```env
+   # Server
+   PORT=3000
+   NODE_ENV=development
+   
+   # MongoDB
+   MONGODB_URI=mongodb://localhost:27017/avalance
+   
+   # JWT
+   JWT_SECRET=your_jwt_secret
+   JWT_EXPIRES_IN=30d
+   
+   # SendGrid
+   SENDGRID_API_KEY=your_sendgrid_key
+   FROM_EMAIL=info@avalance-resources.online
+   TO_EMAIL=avalancetechpartner@gmail.com
+   
+   # Rate Limiting
+   RATE_LIMIT_WINDOW=15m
+   RATE_LIMIT_MAX_REQUESTS=100
+   ```
+
+## 🐳 Docker Setup
+
+Build and run using Docker:
+
 ```bash
-git clone <repository-url>
-cd avalance-tech
+# Build the Docker image
+docker build -t avalance-tech .
+
+# Run the container
+docker run -d \
+  -p 3000:3000 \
+  --name avalance-app \
+  --env-file .env \
+  avalance-tech
 ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+## 🏃‍♂️ Development
 
-3. Set up environment variables:
-```bash
-cp .env.example .env
-```
-
-4. Configure your environment variables in `.env`:
-   - `MONGODB_URI`: MongoDB connection string
-   - `MONGODB_CERT_PATH`: Path to X.509 certificate
-   - `JWT_SECRET`: Secret for JWT token generation
-   - `NODE_ENV`: Environment (development/production)
-   - `PORT`: Server port (default: 3000)
-
-5. Build the frontend assets:
-```bash
-npm run build
-```
-
-## Development
-
-Start the development server with hot-reload:
+Start the development server:
 ```bash
 npm run dev
 ```
 
-## Build Process
+The application will be available at `http://localhost:3000`
 
-The build process includes:
-- Minification of CSS and JavaScript files
-- Asset optimization
-- Service worker generation
-- Static file serving with proper caching headers
+## 🧪 Testing
 
-## Docker Deployment
-
-1. Build the Docker image:
+Run tests:
 ```bash
-docker build -t avalance-tech:latest .
+npm test
 ```
 
-2. Run the container:
-```bash
-docker run -p 3000:3000 -e NODE_ENV=development avalance-tech:latest
-```
+## 🌐 Production Deployment
 
+For production deployment, consider:
+- Using a process manager like PM2
+- Setting up Nginx as a reverse proxy
+- Configuring SSL/TLS certificates
+- Setting up monitoring and logging
+- Using environment variables for sensitive data
+- Implementing proper backup strategies
 
-## Environment Variables
+## 🔒 Environment Variables
 
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
-| `NODE_ENV` | Application environment | No | `development` |
 | `PORT` | Server port | No | `3000` |
+| `NODE_ENV` | Application environment | No | `development` |
 | `MONGODB_URI` | MongoDB connection string | Yes | - |
-| `MONGODB_CERT_PATH` | Path to X.509 certificate | Yes | - |
-| `JWT_SECRET` | Secret for JWT tokens | Yes | - |
-| `JWT_EXPIRES_IN` | JWT expiration time | No | `7d` |
-| `RATE_LIMIT_WINDOW_MS` | Rate limit window in ms | No | `900000` (15 min) |
-| `RATE_LIMIT_MAX` | Max requests per window | No | `100` |
+| `JWT_SECRET` | Secret for JWT signing | Yes | - |
+| `JWT_EXPIRES_IN` | JWT expiration time | No | `30d` |
+| `SENDGRID_API_KEY` | SendGrid API key | Yes | - |
+| `FROM_EMAIL` | Sender email address | Yes | - |
+| `TO_EMAIL` | Recipient email address | Yes | - |
+| `RATE_LIMIT_WINDOW` | Rate limiting window | No | `15m` |
+| `RATE_LIMIT_MAX_REQUESTS` | Max requests per window | No | `100` |
 
-## API Endpoints
+## 🔄 API Endpoints
 
-- `GET /health` - Health check
+- `GET /` - Main application
+- `GET /health` - Health check endpoint
 - `POST /api/contact` - Submit contact form
 - `GET /api/projects` - List all projects
 - `GET /api/team` - Get team members
 
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📬 Contact
+
+For inquiries, please contact [Avalance Tech Solutions](mailto:avalancetechpartner@gmail.com)
+
 ## Security Features
 
-- X.509 Certificate Authentication for MongoDB
+- Secure MongoDB authentication with username/password
 - JWT for API authentication
-- Rate limiting
+- Rate limiting to prevent abuse
 - CORS protection
 - Secure HTTP headers
 - Request validation
@@ -121,8 +163,12 @@ docker run -p 3000:3000 -e NODE_ENV=development avalance-tech:latest
 ## Troubleshooting
 
 ### MongoDB Connection Issues
-- Verify X.509 certificate path and permissions
-- Check MongoDB connection string format
+- Verify your MongoDB connection string format:
+  ```
+  mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
+  ```
+- Ensure your MongoDB user has the correct permissions
+- Check if your IP is whitelisted in MongoDB Atlas (if using Atlas)
 - Ensure MongoDB is running and accessible
 
 ### Static Assets Not Loading

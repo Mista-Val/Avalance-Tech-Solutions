@@ -30,14 +30,38 @@ RUN groupadd -r nodejs && useradd -r -g nodejs nodejs
 ENV NODE_ENV=production
 ENV PORT=3000
 
+# Application environment variables
+ENV MONGODB_URI="" \
+    JWT_SECRET="" \
+    JWT_EXPIRES_IN="30d" \
+    SMTP_HOST="smtp.sendgrid.net" \
+    SMTP_PORT=587 \
+    SMTP_USER="apikey" \
+    SMTP_PASS="" \
+    SENDGRID_API_KEY="" \
+    FROM_EMAIL="info@avalance-resources.online" \
+    TO_EMAIL="avalancetechpartner@gmail.com" \
+    RATE_LIMIT_WINDOW="1hr" \
+    RATE_LIMIT_MAX_REQUESTS=100 \
+    NODE_OPTIONS="--max-http-header-size=16384"
+
 # Copy necessary files with proper permissions
-COPY --from=deps --chown=nodejs:nodejs /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules/ ./node_modules/
+RUN chown -R nodejs:nodejs /app/node_modules
 COPY --chown=nodejs:nodejs package*.json ./
+# Create and set permissions for .env file
+RUN mkdir -p /app && \
+    touch /app/.env && \
+    chown -R nodejs:nodejs /app/.env
+
+# Copy .env file if it exists in the build context
+COPY --chown=nodejs:nodejs .env* /app/
+# The above will fail if no .env file exists, but that's okay as we already created an empty one
 COPY --chown=nodejs:nodejs server.js .
-COPY --chown=nodejs:nodejs routes ./routes
-COPY --chown=nodejs:nodejs models ./models
-COPY --chown=nodejs:nodejs utils ./utils
-COPY --chown=nodejs:nodejs public ./public
+COPY --chown=nodejs:nodejs routes/ ./routes/
+COPY --chown=nodejs:nodejs models/ ./models/
+COPY --chown=nodejs:nodejs utils/ ./utils/
+COPY --chown=nodejs:nodejs public/ ./public/
 
 # Create necessary directories
 RUN mkdir -p /app/logs \
