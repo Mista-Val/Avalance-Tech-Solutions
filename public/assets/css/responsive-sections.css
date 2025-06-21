@@ -1,0 +1,394 @@
+/* Responsive Styles for Contact, Tech Stack, and Footer Sections */
+
+/* ============================================
+   CONTACT SECTION STYLES
+   ============================================ */
+
+/* Base Contact Section */
+#contact {
+    position: relative;
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    overflow: hidden;
+}
+
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cmVjdCB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMikiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.contact-info {
+    position: relative;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+.contact-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+    opacity: 0.8;
+    transition: all 0.4s ease;
+}
+
+.contact-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 180, 216, 0.2);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.contact-info:hover::before {
+    opacity: 1;
+    height: 6px;
+}
+
+/* Base section title style with gradient (can be overridden) */
+.section-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(56, 189, 248, 0.15);
+}
+
+/* Solid color override for tech stack section */
+.tech-stack-section .section-title {
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tech-stack-section .section-title::after {
+    display: none;
+}
+
+.section-title::after {
+  display: none;
+  content: none;
+}
+
+.contact-info-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+}
+
+.contact-info-title::after {
+  display: none;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 2px;
+}
+
+.contact-info-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    font-weight: 400;
+    max-width: 90%;
+}
+
+.text-muted {
+    color: #f9fbfc !important;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-color);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.contact-item:hover::before {
+  width: 6px;
+  opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1199.98px) {
+  .contact-info {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 1.25rem;
+  }
+  
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  /* Contact Section */
+  #contact {
+    padding: 4rem 0;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .contact-info {
+    padding: 2.5rem 2rem;
+  }
+  
+  .contact-info-title {
+    font-size: 1.6rem;
+  }
+  
+  .contact-info-subtitle,
+  .text-muted {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  .contact-info {
+    margin-bottom: 2rem;
+    padding: 1.75rem;
+  }
+  
+  .contact-form {
+    padding: 1.5rem;
+  }
+  
+  .contact-item {
+    padding: 1rem;
+  }
+  
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .contact-item h4 {
+    font-size: 1rem;
+  }
+  
+  .contact-item p,
+  .contact-item a {
+    font-size: 0.95rem;
+  }
+  
+  /* Tech Stack Section */
+  .tech-stack-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  .tech-item {
+    padding: 1.25rem 0.5rem;
+  }
+  
+  .tech-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .tech-name {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Contact Section */
+  #contact {
+    padding: 3rem 0;
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .contact-info {
+    padding: 2rem 1.5rem;
+    margin: 0 -15px 2rem;
+    border-radius: 12px;
+  }
+  
+  .contact-info-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .contact-info-subtitle,
+  .text-muted {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 100%;
+  }
+  
+  .contact-info-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .contact-info-subtitle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-item {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    background: rgba(27, 77, 133, 0.4);
+  }
+  
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 1rem 0 0;
+    flex-shrink: 0;
+  }
+  
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .contact-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-item p,
+  .contact-item a {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .contact-form {
+    padding: 1.25rem;
+    margin: 0 -15px;
+    border-radius: 0;
+  }
+  
+  /* Tech Stack Section */
+  .tech-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .tech-item {
+    padding: 1rem 0.5rem;
+  }
+  
+  .tech-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .tech-name {
+    font-size: 0.65rem;
+  }
+  
+  /* Footer */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .footer-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-links {
+    align-items: center;
+  }
+  
+  .footer-links a {
+    justify-content: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 479.98px) {
+  /* Tech Stack Section */
+  .tech-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .tech-item {
+    padding: 0.75rem 0.25rem;
+  }
+  
+  .tech-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .tech-name {
+    font-size: 0.6rem;
+  }
+}

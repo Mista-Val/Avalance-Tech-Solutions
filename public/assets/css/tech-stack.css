@@ -1,34 +1,23 @@
-/* Tech Stack Section */
+/* Tech Stack Section - Base Styles */
 .tech-stack-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 1.25rem;
-  justify-content: center;
-  align-items: stretch;
   padding: 1.5rem 0.5rem;
-  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  box-sizing: border-box;
 }
 
 .tech-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
   padding: 1.5rem 0.5rem;
   border-radius: 12px;
   background: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
 }
 
 .tech-item::before {
@@ -45,12 +34,6 @@
 .tech-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  color: inherit;
-}
-
-.tech-item:hover::before {
-  height: 6px;
 }
 
 .tech-icon {
@@ -65,10 +48,6 @@
   transform: scale(1.1);
 }
 
-.tech-item:hover .tech-name {
-  color: #1f2937;
-}
-
 .tech-name {
   font-size: 0.8rem;
   font-weight: 600;
@@ -76,14 +55,10 @@
   text-align: center;
   margin-top: 0.5rem;
   transition: color 0.2s ease;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
-.bg-primary + footer {
-  padding-top: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
+/* Large Desktop */
 @media (min-width: 1600px) {
   .tech-stack-grid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
