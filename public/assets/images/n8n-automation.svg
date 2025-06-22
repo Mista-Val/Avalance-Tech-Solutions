@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="600px" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>n8n Workflow Automation</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="gradient">
+            <stop stop-color="#4F46E5" offset="0%"></stop>
+            <stop stop-color="#7C3AED" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-5.0%" y="-5.0%" width="110.0%" height="110.0%" filterUnits="objectBoundingBox" id="drop-shadow">
+            <feOffset dx="0" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.2   0 0 0 0 0.2   0 0 0 0 0.2  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    
+    <!-- Background -->
+    <rect fill="#F8FAFC" width="800" height="600"></rect>
+    
+    <!-- Main Container -->
+    <g transform="translate(40, 40)">
+        <!-- Workflow Background -->
+        <rect fill="#FFFFFF" x="0" y="0" width="720" height="520" rx="16" filter="url(#drop-shadow)"></rect>
+        
+        <!-- Header -->
+        <rect fill="url(#gradient)" x="0" y="0" width="720" height="80" rx="16 16 0 0"></rect>
+        <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" x="30" y="52">n8n Workflow Automation</text>
+        
+        <!-- Workflow Nodes -->
+        <!-- Trigger Node -->
+        <g class="node" transform="translate(60, 140)">
+            <rect fill="#4F46E5" x="0" y="0" width="160" height="80" rx="8"></rect>
+            <circle cx="160" cy="40" r="10" fill="#4F46E5"></circle>
+            <circle cx="160" cy="40" r="6" fill="#FFFFFF"></circle>
+            <text font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" x="20" y="48">Webhook Trigger</text>
+        </g>
+        
+        <!-- First Action Node -->
+        <g class="node" transform="translate(280, 100)">
+            <rect fill="#7C3AED" x="0" y="0" width="160" height="80" rx="8"></rect>
+            <circle cx="0" cy="40" r="10" fill="#7C3AED"></circle>
+            <circle cx="0" cy="40" r="6" fill="#FFFFFF"></circle>
+            <circle cx="160" cy="40" r="10" fill="#7C3AED"></circle>
+            <circle cx="160" cy="40" r="6" fill="#FFFFFF"></circle>
+            <text font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" x="40" y="48">Get Data</text>
+        </g>
+        
+        <!-- Second Action Node -->
+        <g class="node" transform="translate(280, 220)">
+            <rect fill="#8B5CF6" x="0" y="0" width="160" height="80" rx="8"></rect>
+            <circle cx="0" cy="40" r="10" fill="#8B5CF6"></circle>
+            <circle cx="0" cy="40" r="6" fill="#FFFFFF"></circle>
+            <circle cx="160" cy="40" r="10" fill="#8B5CF6"></circle>
+            <circle cx="160" cy="40" r="6" fill="#FFFFFF"></circle>
+            <text font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" x="20" y="48">Process Data</text>
+        </g>
+        
+        <!-- Third Action Node -->
+        <g class="node" transform="translate(500, 160)">
+            <rect fill="#A78BFA" x="0" y="0" width="160" height="80" rx="8"></rect>
+            <circle cx="0" cy="40" r="10" fill="#A78BFA"></circle>
+            <circle cx="0" cy="40" r="6" fill="#FFFFFF"></circle>
+            <text font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" x="30" y="48">Send Email</text>
+        </g>
+        
+        <!-- Connection Lines -->
+        <path d="M220 180 Q 270 140 280 140" stroke="#CBD5E1" stroke-width="4" fill="none" stroke-dasharray="8,4"></path>
+        <path d="M280 220 Q 270 180 240 220" stroke="#CBD5E1" stroke-width="4" fill="none" stroke-dasharray="8,4"></path>
+        <path d="M440 180 Q 470 170 500 180" stroke="#CBD5E1" stroke-width="4" fill="none" stroke-dasharray="8,4"></path>
+        
+        <!-- Legend -->
+        <g transform="translate(60, 360)">
+            <text font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E293B" x="0" y="0">How It Works</text>
+            
+            <g transform="translate(0, 40)">
+                <circle cx="10" cy="5" r="5" fill="#4F46E5"></circle>
+                <text font-family="Arial, sans-serif" font-size="14" fill="#475569" x="25" y="10">Trigger: Start the workflow with an event</text>
+            </g>
+            
+            <g transform="translate(0, 70)">
+                <circle cx="10" cy="5" r="5" fill="#7C3AED"></circle>
+                <text font-family="Arial, sans-serif" font-size="14" fill="#475569" x="25" y="10">Actions: Perform tasks and process data</text>
+            </g>
+            
+            <g transform="translate(0, 100)">
+                <path d="M5 0 L15 10 L5 20" stroke="#94A3B8" stroke-width="2" fill="none"></path>
+                <text font-family="Arial, sans-serif" font-size="14" fill="#475569" x="25" y="12">Data flows between nodes automatically</text>
+            </g>
+        </g>
+        
+        <!-- Footer -->
+        <g transform="translate(400, 480)">
+            <rect fill="url(#gradient)" x="0" y="0" width="300" height="40" rx="20"></rect>
+            <text font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" x="80" y="25">Automate Your Workflows Today</text>
+        </g>
+    </g>
+</svg>

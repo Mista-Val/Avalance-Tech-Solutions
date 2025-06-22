@@ -5,25 +5,31 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: rgba(12, 81, 124, 0.051);
     text-align: center;
     position: relative;
+    padding: 4rem 0;
+    box-sizing: border-box;
 }
 
 .clients-container {
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 2rem;
     position: relative;
     z-index: 2;
     border-radius: 10px;
     box-shadow: var(--shadow);
     background: rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
 }
 
 .section-header h2 {
@@ -42,10 +48,11 @@
 
 .clients-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
     width: 100%;
     margin: 0 auto;
+    align-items: stretch;
 }
 
 .client-card {
@@ -61,8 +68,8 @@
 .client-btn {
     width: 100%;
     height: 100%;
-    min-height: 220px;
-    padding: 2rem;
+    min-height: 280px;
+    padding: 2rem 1.5rem;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 15px;
     background: rgba(168, 185, 228, 0.403);
@@ -71,11 +78,12 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow);
+    box-sizing: border-box;
 }
 
 .client-btn:hover {
