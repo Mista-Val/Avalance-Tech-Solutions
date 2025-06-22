@@ -2,11 +2,13 @@ version: '3.8'
 
 services:
   app:
+    image: avalance-tech:latest
     build:
       context: .
       dockerfile: Dockerfile
     container_name: avalance-app
     restart: unless-stopped
+    user: "nodejs"
     ports:
       - "3000:3000"
     environment:
@@ -19,6 +21,11 @@ services:
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=587
       - SMTP_USER=info@avalance-resources.online
+      - EMAIL_FROM=info@avalance-resources.online
+      - ADMIN_EMAIL=admin@avalance-resources.online
+      - PM2_HOME=/home/nodejs/.pm2
+      - NPM_CONFIG_PREFIX=/home/nodejs/.npm
+      - NODE_CONFIG_DIR=/app/config
     secrets:
       - jwt_secret
       - sendgrid_api_key
@@ -32,14 +39,21 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./public/uploads:/app/public/uploads
+      - pm2-data:/home/nodejs/.pm2
+    tmpfs:
+      - /tmp
+      - /run
     networks:
       - app-network
-    entrypoint: ["/app/load-secrets.sh"]
-    command: ["pm2-runtime", "server.js"]
+    entrypoint: ["/app/load-secrets.sh", "/app/start.sh"]
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  pm2-data:
+    driver: local
 
 secrets:
   jwt_secret:
