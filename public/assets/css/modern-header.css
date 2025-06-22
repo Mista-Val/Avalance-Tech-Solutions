@@ -19,7 +19,8 @@
 }
 
 body {
-    padding-top: var(--header-height) !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
     scroll-padding-top: var(--header-height) !important;
 }
 
@@ -42,6 +43,8 @@ header.main-header {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 15px !important;
+    /* Ensure no gap at the top */
+    margin-top: 0 !important;
 }
 
 header.main-header.scrolled {

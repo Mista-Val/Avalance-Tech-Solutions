@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+// Create a connection to the Avalance database
+const db = mongoose.connection.useDb('Avalance');
+
 const pricingRequestSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -120,5 +123,5 @@ pricingRequestSchema.pre('save', function(next) {
     next();
 });
 
-const PricingRequest = mongoose.model('PricingRequest', pricingRequestSchema, 'pricingrequests');
+const PricingRequest = db.model('PricingRequest', pricingRequestSchema, 'pricingrequests');
 module.exports = PricingRequest;

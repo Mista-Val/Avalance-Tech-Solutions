@@ -19,11 +19,26 @@ if (!MONGODB_URI) {
 }
 
 console.log('Connecting to MongoDB...');
-mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+// Connect to MongoDB
+mongoose.connect(MONGODB_URI)
+.then(() => {
+    console.log('✅ Connected to MongoDB');
+    // Verify the database name
+    const dbName = mongoose.connection.db.databaseName;
+    console.log(`📊 Using database: ${dbName}`);
+    
+    // Verify collections
+    mongoose.connection.db.listCollections().toArray((err, collections) => {
+        if (err) {
+            console.error('❌ Error listing collections:', err);
+            return;
+        }
+        console.log('📋 Available collections:');
+        collections.forEach(collection => {
+            console.log(`   - ${collection.name}`);
+        });
+    });
 })
-.then(() => console.log('✅ Connected to MongoDB'))
 .catch(err => {
     console.error('❌ MongoDB connection error:', err.message);
     process.exit(1);

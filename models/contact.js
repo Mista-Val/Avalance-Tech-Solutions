@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+// Create a connection to the Avalance database
+const db = mongoose.connection.useDb('Avalance');
+
 const contactSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -57,5 +60,5 @@ contactSchema.pre('save', function(next) {
     next();
 });
 
-const Contact = mongoose.model('Contact', contactSchema);
-module.exports = Contact;
+// Export model with the explicit database connection
+module.exports = db.model('Contact', contactSchema, 'contacts');
