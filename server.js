@@ -92,8 +92,12 @@ try {
     const contactRoutes = require('./routes/contact');
     app.use('/api/contacts', contactRoutes);
     console.log('Contact routes mounted at /api/contacts');
+    
+    const pricingRequestRoutes = require('./routes/pricingRequest');
+    app.use('/api/pricing-requests', pricingRequestRoutes);
+    console.log('Pricing request routes mounted at /api/pricing-requests');
 } catch (error) {
-    console.error('Failed to load contact routes:', error);
+    console.error('Failed to load routes:', error);
 }
 
 // Serve static files from public directory with cache control

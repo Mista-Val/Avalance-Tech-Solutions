@@ -232,11 +232,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Map other fields if needed
             }
             
-            // Get form type based on form ID
+            // Get form type based on form ID and determine if it's a pricing request
             let formType = 'contact';
-            if (form.id === 'businessItForm') formType = 'business_it_solutions';
-            else if (form.id === 'cloudInfraForm') formType = 'cloud_infrastructure';
-            else if (form.id === 'customDevForm') formType = 'custom_development';
+            let isPricingRequest = false;
+            
+            if (['businessItForm', 'cloudInfraForm', 'customDevForm'].includes(form.id)) {
+                isPricingRequest = true;
+                if (form.id === 'businessItForm') formType = 'business_it_solutions';
+                else if (form.id === 'cloudInfraForm') formType = 'cloud_infrastructure';
+                else if (form.id === 'customDevForm') formType = 'custom_development';
+            }
             
             // Add form type to data
             formObject.formType = formType;
@@ -281,8 +286,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             try {
+                // Determine the API endpoint based on form type
+                const apiEndpoint = isPricingRequest ? '/api/pricing-requests' : '/api/contacts';
+                
                 // Send data to server
-                const response = await fetch('/api/contacts', {
+                const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -294,11 +302,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 const data = await response.json();
                 
                 if (!response.ok) {
-                    throw new Error(data.message || 'Failed to submit form');
+                    const errorMessage = isPricingRequest 
+                        ? data.message || 'Failed to submit pricing request. Please try again.'
+                        : data.message || 'Failed to submit form';
+                    throw new Error(errorMessage);
                 }
                 
                 // Show success message
-                const successMessage = form.dataset.successMessage || 'Your request has been submitted successfully! We will get back to you soon.';
+                let successMessage = form.dataset.successMessage;
+                if (!successMessage) {
+                    successMessage = isPricingRequest 
+                        ? 'Your pricing request has been submitted successfully! Our team will review your details and provide a customized quote soon.'
+                        : 'Your request has been submitted successfully! We will get back to you soon.';
+                }
                 
                 // Create success alert
                 const successAlert = document.createElement('div');
@@ -312,31 +328,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 `;
                 
-                // Insert success message at the top of the form
-                form.prepend(successAlert);
-                
-                // Scroll to top of form to show success message
-                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Reset form
-                form.reset();
-                
-                // Close modal if this is a modal form and Bootstrap is available
-                if (typeof bootstrap !== 'undefined') {
-                    const modal = form.closest('.modal');
-                    if (modal) {
-                        const modalInstance = bootstrap.Modal.getInstance(modal);
-                        if (modalInstance) {
-                            // Delay hiding to show success message
-                            setTimeout(() => {
-                                modalInstance.hide();
-                                // Reset form after modal is hidden
-                                setTimeout(() => form.reset(), 300);
-                            }, 1500);
-                            return; // Skip the form reset below since we're handling it in the modal
-                        }
-                    }
-                }
                 
                 // Reset form if not in a modal or if modal handling failed
                 form.reset();
