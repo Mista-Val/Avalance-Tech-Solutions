@@ -14,19 +14,82 @@ const pricingRequestSchema = new mongoose.Schema({
     },
     company: {
         type: String,
-        trim: true
+        trim: true,
+        default: ''
     },
     phone: {
         type: String,
-        trim: true
+        trim: true,
+        default: ''
+    },
+    jobTitle: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    industry: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    employees: {
+        type: String,
+        trim: true,
+        default: ''
     },
     service: {
         type: String,
         default: ''
     },
+    services: [{
+        type: String,
+        trim: true
+    }],
     message: {
         type: String,
-        required: true
+        required: true,
+        trim: true
+    },
+    challenges: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    timeline: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    budget: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    additionalInfo: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    infrastructureType: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    currentCloud: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    projectType: {
+        type: String,
+        trim: true,
+        default: ''
+    },
+    formType: {
+        type: String,
+        trim: true,
+        default: 'general',
+        enum: ['business_it_solutions', 'cloud_infrastructure', 'custom_development', 'general']
     },
     status: {
         type: String,

@@ -329,11 +329,37 @@ document.addEventListener("DOMContentLoaded", function() {
                 `;
                 
                 
-                // Reset form if not in a modal or if modal handling failed
+                // Remove any existing error messages
+                const existingErrorAlerts = form.querySelectorAll('.alert.alert-danger');
+                existingErrorAlerts.forEach(alert => alert.remove());
+                
+                // Reset form
                 form.reset();
                 
                 // Dispatch custom event for form success
                 form.dispatchEvent(new CustomEvent('form:success', { bubbles: true }));
+                
+                // Check if this is a modal form
+                const modal = form.closest('.modal');
+                if (modal) {
+                    // Save scroll position before refreshing
+                    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+                    sessionStorage.setItem('scrollPosition', scrollPosition);
+                    
+                    // Close the modal after a short delay to show success message
+                    setTimeout(() => {
+                        const modalInstance = bootstrap.Modal.getInstance(modal);
+                        if (modalInstance) {
+                            modalInstance.hide();
+                        }
+                        
+                        // Refresh the page after modal is hidden
+                        modal.addEventListener('hidden.bs.modal', function handler() {
+                            modal.removeEventListener('hidden.bs.modal', handler);
+                            window.location.reload();
+                        }, { once: true });
+                    }, 1500); // 1.5 seconds delay before closing modal
+                }
                 
             } catch (err) {
                 error = err; // Store the error for use in finally block
@@ -426,6 +452,21 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+    
+    // Restore scroll position if it was saved
+    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+    if (savedScrollPosition !== null) {
+        // Remove the saved position so it doesn't affect future page loads
+        sessionStorage.removeItem('scrollPosition');
+        
+        // Scroll to the saved position after a short delay to ensure the page is fully loaded
+        setTimeout(() => {
+            window.scrollTo({
+                top: parseInt(savedScrollPosition, 10),
+                behavior: 'auto'
+            });
+        }, 50);
+    }
     
     // Initialize tooltips
     if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
