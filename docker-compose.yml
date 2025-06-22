@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: avalance-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=${MONGODB_URI}
+      - FROM_EMAIL=info@avalance-resources.online
+      - TO_EMAIL=avalancetechpartner@gmail.com
+      - JWT_EXPIRES_IN=30d
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=info@avalance-resources.online
+    secrets:
+      - jwt_secret
+      - sendgrid_api_key
+      - smtp_pass
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./logs:/app/logs
+      - ./public/uploads:/app/public/uploads
+    networks:
+      - app-network
+    entrypoint: ["/app/load-secrets.sh"]
+    command: ["pm2-runtime", "server.js"]
+
+networks:
+  app-network:
+    driver: bridge
+
+secrets:
+  jwt_secret:
+    file: ./secrets/jwt_secret.txt
+  sendgrid_api_key:
+    file: ./secrets/sendgrid_api_key.txt
+  smtp_pass:
+    file: ./secrets/smtp_pass.txt
+
+# To use this configuration:
+# 1. Create a .env file in the project root with required variables
+# 2. Run: docker-compose up -d
+# 3. Access the app at http://localhost:3000
+# 4. Access MongoDB Express at http://localhost:8081

@@ -3,9 +3,11 @@ node_modules/
 package-lock.json
 yarn.lock
 
-# Environment variables
-
-sendgrid.env
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+secrets/
 
 # Build output
 /dist
@@ -35,6 +37,9 @@ yarn-error.log*
 *.log
 
 .env
-
+secrets/
+setup-secrets.sh
+.dockerignore
+.dockerfile
 # Twilio 2FA recovery code
 twilio_2FA_recovery_code.txt

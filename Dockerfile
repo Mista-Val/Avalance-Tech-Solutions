@@ -1,5 +1,10 @@
 # Use Node.js 20 LTS as the base image
-FROM node:20-slim AS base
+FROM node:20.13.1-slim AS base
+
+# Install curl and other required packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
@@ -9,63 +14,59 @@ FROM base AS deps
 COPY package*.json ./
 RUN npm ci --only=production
 
-# Build stage (if needed)
-FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-# If you have any build steps, uncomment the following line
-# RUN npm run build
-
 # Production stage
 FROM base AS runner
 
-# Install curl for health checks
-RUN apt-get update && apt-get install -y --no-install-recommends curl \
-    && rm -rf /var/lib/apt/lists/*
+# Install PM2 process manager
+RUN npm install -g pm2
 
 # Create a non-root user and switch to it
 RUN groupadd -r nodejs && useradd -r -g nodejs nodejs
 
-# Set environment variables
+# Set non-sensitive environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
+ENV NPM_CONFIG_LOGLEVEL=warn
+ENV NODE_OPTIONS="--max-http-header-size=16384"
 
-# Application environment variables
+# Set default environment variables (sensitive ones will be overridden at runtime)
 ENV MONGODB_URI="" \
-    JWT_SECRET="" \
     JWT_EXPIRES_IN="30d" \
     SMTP_HOST="smtp.sendgrid.net" \
     SMTP_PORT=587 \
     SMTP_USER="apikey" \
-    SMTP_PASS="" \
-    SENDGRID_API_KEY="" \
     FROM_EMAIL="info@avalance-resources.online" \
     TO_EMAIL="avalancetechpartner@gmail.com" \
     RATE_LIMIT_WINDOW="1hr" \
-    RATE_LIMIT_MAX_REQUESTS=100 \
-    NODE_OPTIONS="--max-http-header-size=16384"
+    RATE_LIMIT_MAX_REQUESTS=100
+
+# Create a directory for runtime secrets
+RUN mkdir -p /run/secrets
+
+# Create a script to load secrets from files if they exist
+RUN echo '#!/bin/sh\n\
+# Load secrets from files if they exist\n\
+if [ -f /run/secrets/jwt_secret ]; then\n  export JWT_SECRET=$(cat /run/secrets/jwt_secret)\nfi\n\nif [ -f /run/secrets/sendgrid_api_key ]; then\n  export SENDGRID_API_KEY=$(cat /run/secrets/sendgrid_api_key)\nfi\n\nif [ -f /run/secrets/smtp_pass ]; then\n  export SMTP_PASS=$(cat /run/secrets/smtp_pass)\nfi\n\n# Start the main process\nexec "$@"' > /app/load-secrets.sh \
+    && chmod +x /app/load-secrets.sh
+
+# Create necessary directories with proper permissions
+RUN mkdir -p /app/logs \
+    && touch /app/.env \
+    && chown -R nodejs:nodejs /app
 
 # Copy necessary files with proper permissions
 COPY --from=deps /app/node_modules/ ./node_modules/
-RUN chown -R nodejs:nodejs /app/node_modules
 COPY --chown=nodejs:nodejs package*.json ./
-# Create and set permissions for .env file
-RUN mkdir -p /app && \
-    touch /app/.env && \
-    chown -R nodejs:nodejs /app/.env
-
-# Copy .env file if it exists in the build context
-COPY --chown=nodejs:nodejs .env* /app/
-# The above will fail if no .env file exists, but that's okay as we already created an empty one
 COPY --chown=nodejs:nodejs server.js .
 COPY --chown=nodejs:nodejs routes/ ./routes/
 COPY --chown=nodejs:nodejs models/ ./models/
 COPY --chown=nodejs:nodejs utils/ ./utils/
 COPY --chown=nodejs:nodejs public/ ./public/
 
-# Create necessary directories
-RUN mkdir -p /app/logs \
-    && chown -R nodejs:nodejs /app
+# Create a script to handle .env file copying
+RUN echo '#!/bin/sh\n\
+if [ -f .env ]; then\n  cp .env /app/\nfi\n\n# Start the main process\nexec "$@"' > /app/entrypoint.sh \
+    && chmod +x /app/entrypoint.sh
 
 # Switch to non-root user
 USER nodejs
@@ -73,9 +74,10 @@ USER nodejs
 # Expose the application port
 EXPOSE 3000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+# Health check (checks both HTTP server and MongoDB connection)
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD curl -f http://localhost:3000/health || exit 1
 
-# Start the application
-CMD ["node", "server.js"]
+# Start the application using the entrypoint script with PM2
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["pm2-runtime", "server.js"]
