@@ -22,36 +22,24 @@
 body {
     padding-top: 0 !important;
     margin-top: 0 !important;
-    scroll-padding-top: var(--header-height) !important;
 }
 
 /* Main Header - Increased specificity and added !important */
 header.main-header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    background: rgba(13, 24, 41, 0.98) !important;
+    position: static !important;
+    background: rgba(13, 24, 41, 1) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
     height: var(--header-height-mobile) !important;
     display: flex !important;
     align-items: center !important;
-    transition: var(--transition) !important;
     z-index: var(--z-header) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 0 15px !important;
-    /* Ensure no gap at the top */
     margin-top: 0 !important;
-}
-
-header.main-header.scrolled {
-    top: 0 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
-    background: rgba(13, 24, 41, 0.98) !important;
 }
 
 /* Header Content */
