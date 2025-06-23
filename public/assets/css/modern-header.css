@@ -109,16 +109,16 @@ header.main-header.scrolled {
     transition: transform 0.3s ease;
 }
 
-.brand-name {
-    font-size: 1.8rem; /* Further reduced for better fit */
+/* .brand-name {
+    font-size: 1.8rem; 
     font-weight: 700;
     color: var(--text-dark);
     letter-spacing: -0.4px;
     white-space: nowrap;
     transition: color 0.3s ease;
     line-height: 1.1;
-    margin: 0; /* Reset any default margins */
-}
+    margin: 0; 
+} */
 
 .text-gradient {
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));

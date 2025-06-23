@@ -1,10 +1,22 @@
 /**
- * Services Data and Dynamic Loading for Avalance Tech Solutions
- * This file handles the dynamic loading and display of services
+ * Services Page Enhancements for Avalance Tech Solutions
+ * Handles dynamic content, animations, and interactive elements
  */
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Services data - can be fetched from an API in the future
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Services data
     const services = [
         {
             id: 'it-consulting',
@@ -16,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'IT infrastructure assessment',
                 'Digital transformation strategy',
                 'Vendor selection assistance'
-            ]
+            ],
+            gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)'
         },
         {
             id: 'cloud-solutions',
@@ -28,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Multi-cloud strategy',
                 'Cloud cost optimization',
                 '24/7 monitoring & support'
-            ]
+            ],
+            gradient: 'linear-gradient(135deg, #3b82f6, #60a5fa)'
         },
         {
             id: 'cybersecurity',
@@ -40,7 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Threat detection & response',
                 'Compliance management',
                 'Employee training'
-            ]
+            ],
+            gradient: 'linear-gradient(135deg, #10b981, #34d399)'
         },
         {
             id: 'n8n-automation',
@@ -48,23 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'n8n Automation',
             description: 'Custom workflow automation solutions to streamline your business processes and boost efficiency.',
             features: [
-                'Custom workflow development',
+                'Workflow automation',
                 'API integration',
-                'Process automation',
-                'Ongoing support'
-            ]
-        },
-        {
-            id: 'custom-software',
-            icon: 'fa-code',
-            title: 'Custom Software',
-            description: 'Tailored software solutions designed to meet your specific business requirements.',
-            features: [
-                'Custom application development',
-                'Web & mobile solutions',
-                'Legacy system modernization',
-                'Maintenance & support'
-            ]
+                'Custom node development',
+                'Process optimization'
+            ],
+            gradient: 'linear-gradient(135deg, #8b5cf6, #c084fc)'
         },
         {
             id: 'data-analytics',
@@ -75,78 +79,102 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Business intelligence',
                 'Data visualization',
                 'Predictive analytics',
-                'Custom dashboards'
-            ]
+                'Custom reporting'
+            ],
+            gradient: 'linear-gradient(135deg, #f59e0b, #fbbf24)'
+        },
+        {
+            id: 'custom-software',
+            icon: 'fa-code',
+            title: 'Custom Software',
+            description: 'Tailored software solutions designed specifically for your business needs.',
+            features: [
+                'Web applications',
+                'Mobile apps',
+                'Enterprise software',
+                'UI/UX design'
+            ],
+            gradient: 'linear-gradient(135deg, #ec4899, #f472b6)'
         }
     ];
 
     // Function to create service cards
     function createServiceCard(service) {
-        return `
-            <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                <div class="service-card" id="${service.id}">
-                    <div class="service-icon">
-                        <i class="fas ${service.icon}"></i>
-                    </div>
-                    <h3>${service.title}</h3>
-                    <p>${service.description}</p>
-                    <div class="service-features">
-                        <ul>
-                            ${service.features.map(feature => `<li>${feature}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
+        const card = document.createElement('div');
+        card.className = 'service-card';
+        card.setAttribute('data-aos', 'fade-up');
+        
+        card.innerHTML = `
+            <div class="service-icon" style="background: ${service.gradient}">
+                <i class="fas ${service.icon}"></i>
             </div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+            <ul class="service-features">
+                ${service.features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+            <a href="#contact" class="btn btn-outline-primary mt-auto">Learn More</a>
         `;
+        
+        return card;
     }
 
     // Load services into the container
     function loadServices() {
         const container = document.getElementById('services-container');
-        if (container) {
-            container.innerHTML = services.map(createServiceCard).join('');
-        }
+        if (!container) return;
+        
+        services.forEach(service => {
+            const card = createServiceCard(service);
+            container.appendChild(card);
+        });
     }
 
     // Initialize services when the page loads
     loadServices();
 
-    // Add smooth scrolling for anchor links
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Adjust for fixed header
+                    top: targetElement.offsetTop - 80, // Account for fixed navbar
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Add animation to service cards on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                observer.unobserve(entry.target);
+    // Add animation to cards on scroll
+    const animateOnScroll = () => {
+        const cards = document.querySelectorAll('.service-card, .industry-item');
+        
+        cards.forEach(card => {
+            const cardPosition = card.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (cardPosition < screenPosition) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    };
 
-    // Observe all service cards
-    document.querySelectorAll('.service-card').forEach(card => {
-        observer.observe(card);
-    });
+    // Initial check for elements in viewport
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Initialize AOS (Animate On Scroll) if available
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    }
 });

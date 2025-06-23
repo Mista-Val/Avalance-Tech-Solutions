@@ -15,7 +15,8 @@
 	<meta content="index, follow" name="robots">
 	<meta content="index, follow" name="googlebot">
 	<!-- Favicon -->
-	<link href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" rel="icon" type="image/svg+xml">
+	<link href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" rel="icon"
+		type="image/svg+xml">
 	<link href="/favicon.ico" rel="icon" type="image/x-icon">
 	<link href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.png" rel="apple-touch-icon">
 	<link href="/site.webmanifest" rel="manifest">
@@ -86,18 +87,16 @@
 		<div class="container">
 			<div class="header-content">
 				<!-- Logo -->
-				<a class="logo" href="#home">
-					<div class="logo-content">
-						<img alt="Avalance Tech Solutions" class="logo-img" src="assets/images/avalance-logo.jpeg">
-						<span class="brand-name">
-							<span class="text-gradient">
-								Avalance Tech Solutions
-							</span>
-						</span>
-					</div>
-					<div class="brand-slogan">Innovate. Deploy. Transform. Accelerate</div>
-				</a>
-				
+				<div class="header-left">
+					<a class="logo" href="#home">
+						<div class="logo-content">
+							<img alt="Avalance Tech Solutions" class="logo-img" src="assets/images/avalance.gif">
+							<span class="brand-name"><span class="highlight">Avalance Tech Solutions</span></span>
+						</div>
+						<div class="brand-slogan">Innovate. Deploy. Transform. Accelerate</div>
+					</a>
+				</div>
+
 				<!-- Mobile Toggle -->
 				<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
 					class="navbar-toggler d-lg-none" data-bs-target="#navbarNav" data-bs-toggle="collapse"
@@ -105,33 +104,34 @@
 					<span class="navbar-toggler-icon">
 					</span>
 				</button>
+
 				<!-- Desktop Navigation -->
 				<div class="nav-container">
 					<nav class="main-nav">
 						<ul class="nav-list">
 							<li class="nav-item">
 								<a class="nav-link active" data-scroll href="#home">
-									Home
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" data-scroll href="#pricing">
-									Packages
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" data-scroll href="#about">
-									Portfolio
+									<i class="fas fa-home me-1"></i> Home
 								</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" data-scroll href="#work">
-									Work
+									<i class="fas fa-cogs me-1"></i> Services
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-scroll href="#pricing">
+									<i class="fas fa-tags me-1"></i> Packages
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-scroll href="#about">
+									<i class="fas fa-briefcase me-1"></i> Portfolio
 								</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" data-scroll href="#contact">
-									Contact
+									<i class="fas fa-envelope me-1"></i> Contact
 								</a>
 							</li>
 						</ul>
@@ -177,7 +177,7 @@
 					<a class="nav-link mobile-nav-link" href="#work">
 						<i class="fas fa-briefcase">
 						</i>
-						Our Work
+						Services
 					</a>
 				</li>
 				<li class="nav-item">
@@ -537,6 +537,13 @@
 									your business.
 							</div>
 							</article>
+						</div>
+						<div class="logo-container text-center mt-5">
+							<div class="logo-wrapper position-relative d-inline-block">
+								<img src="assets/images/avalance.gif" alt="Avalance Tech Solutions"
+									class="logo pulse-animation">
+								<div class="logo-glow"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1208,14 +1215,19 @@
 		</div>
 	</div>
 	<!-- Modal for Cloud & Infrastructure -->
-	<div aria-hidden="true" aria-labelledby="cloudInfraModalLabel" class="modal fade" id="cloudInfraModal" tabindex="-1">
+	<div aria-hidden="true" aria-labelledby="cloudInfraModalLabel" class="modal fade" id="cloudInfraModal"
+		tabindex="-1">
 		<div class="modal-dialog modal-xl modal-dialog-centered">
-			<div class="modal-content bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-light border-0 shadow-lg" style="border: 1px solid rgba(0, 180, 216, 0.3) !important;">
-				<div class="modal-header border-bottom border-info" style="border-color: rgba(0, 180, 216, 0.3) !important;">
-					<h3 class="modal-title text-white fw-bold" id="cloudInfraModalLabel" style="text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);">
+			<div class="modal-content bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-light border-0 shadow-lg"
+				style="border: 1px solid rgba(0, 180, 216, 0.3) !important;">
+				<div class="modal-header border-bottom border-info"
+					style="border-color: rgba(0, 180, 216, 0.3) !important;">
+					<h3 class="modal-title text-white fw-bold" id="cloudInfraModalLabel"
+						style="text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);">
 						<i class="fas fa-cloud me-2 text-info"></i>Cloud & Infrastructure Services
 					</h3>
-					<button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button" style="filter: invert(1);"></button>
+					<button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"
+						style="filter: invert(1);"></button>
 				</div>
 				<div class="modal-body p-4">
 					<form id="cloudInfraForm">
@@ -1223,8 +1235,10 @@
 							<!-- Left Column -->
 							<div class="col-lg-6">
 								<!-- Contact Information -->
-								<div class="card mb-4" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-									<div class="card-header bg-transparent border-bottom" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+								<div class="card mb-4"
+									style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+									<div class="card-header bg-transparent border-bottom"
+										style="border-color: rgba(0, 180, 216, 0.3) !important;">
 										<h5 class="text-info mb-0" style="text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);">
 											<i class="fas fa-user-circle me-2"></i>Contact Information
 										</h5>
@@ -1236,7 +1250,9 @@
 													<label class="form-label" for="cloudInfraName">
 														Full Name <span class="text-danger">*</span>
 													</label>
-													<input type="text" class="form-control" id="cloudInfraName" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="name" required>
+													<input type="text" class="form-control" id="cloudInfraName"
+														style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;"
+														name="name" required>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -1244,7 +1260,9 @@
 													<label class="form-label" for="cloudInfraEmail">
 														Email <span class="text-danger">*</span>
 													</label>
-													<input type="email" class="form-control" id="cloudInfraEmail" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="email" required>
+													<input type="email" class="form-control" id="cloudInfraEmail"
+														style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;"
+														name="email" required>
 												</div>
 											</div>
 											<div class="col-12">
@@ -1252,7 +1270,9 @@
 													<label class="form-label" for="cloudInfraCompany">
 														Company Name
 													</label>
-													<input type="text" class="form-control" id="cloudInfraCompany" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="company">
+													<input type="text" class="form-control" id="cloudInfraCompany"
+														style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;"
+														name="company">
 												</div>
 											</div>
 											<div class="col-12">
@@ -1260,7 +1280,10 @@
 													<label class="form-label" for="cloudInfraMessage">
 														How can we help? <span class="text-danger">*</span>
 													</label>
-													<textarea class="form-control" id="cloudInfraMessage" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="message" rows="3" placeholder="Tell us about your project..." required></textarea>
+													<textarea class="form-control" id="cloudInfraMessage"
+														style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;"
+														name="message" rows="3"
+														placeholder="Tell us about your project..." required></textarea>
 												</div>
 											</div>
 										</div>
@@ -1268,8 +1291,10 @@
 								</div>
 
 								<!-- Current Infrastructure -->
-								<div class="card mb-4" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-									<div class="card-header bg-transparent border-bottom" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+								<div class="card mb-4"
+									style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+									<div class="card-header bg-transparent border-bottom"
+										style="border-color: rgba(0, 180, 216, 0.3) !important;">
 										<h5 class="text-info mb-0" style="text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);">
 											<i class="fas fa-server me-2"></i>Current Infrastructure
 										</h5>
@@ -1280,8 +1305,11 @@
 												<label class="form-label" for="infraType">
 													Current Infrastructure <span class="text-danger">*</span>
 												</label>
-												<select class="form-select" id="infraType" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="infrastructureType" required>
-													<option disabled selected value>Select current infrastructure</option>
+												<select class="form-select" id="infraType"
+													style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;"
+													name="infrastructureType" required>
+													<option disabled selected value>Select current infrastructure
+													</option>
 													<option value="onprem">On-premises servers</option>
 													<option value="cloud">Cloud-based</option>
 													<option value="hybrid">Hybrid (on-premises and cloud)</option>
@@ -1292,7 +1320,9 @@
 												<label class="form-label" for="currentCloud">
 													Current Cloud Provider (if any)
 												</label>
-												<select class="form-select" id="currentCloud" style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;" name="currentCloud">
+												<select class="form-select" id="currentCloud"
+													style="background: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; color: #e9ecef !important;"
+													name="currentCloud">
 													<option selected value="none">None</option>
 													<option value="aws">Amazon Web Services (AWS)</option>
 													<option value="azure">Microsoft Azure</option>
@@ -1308,8 +1338,10 @@
 							<!-- Right Column -->
 							<div class="col-lg-6">
 								<!-- Cloud Services Needed -->
-								<div class="card mb-4" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-									<div class="card-header bg-transparent border-bottom" style="border-color: rgba(0, 180, 216, 0.3) !important;">
+								<div class="card mb-4"
+									style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+									<div class="card-header bg-transparent border-bottom"
+										style="border-color: rgba(0, 180, 216, 0.3) !important;">
 										<h5 class="text-info mb-0" style="text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);">
 											<i class="fas fa-cloud-upload-alt me-2"></i>Cloud Services Needed
 										</h5>
@@ -1323,22 +1355,25 @@
 											<div class="row g-3">
 												<div class="col-md-6">
 													<div class="form-check">
-														<input class="form-check-input" id="cloudService1" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
-															type="checkbox" value="migration">
+														<input class="form-check-input" id="cloudService1"
+															style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;"
+															name="services[]" type="checkbox" value="migration">
 														<label class="form-check-label" for="cloudService1">
 															<i class="fas fa-cloud-upload-alt me-2"></i>Cloud Migration
 														</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" id="cloudService2" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
-															type="checkbox" value="hybrid">
+														<input class="form-check-input" id="cloudService2"
+															style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;"
+															name="services[]" type="checkbox" value="hybrid">
 														<label class="form-check-label" for="cloudService2">
 															<i class="fas fa-network-wired me-2"></i>Hybrid Cloud
 														</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" id="cloudService3" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
-															type="checkbox" value="devops">
+														<input class="form-check-input" id="cloudService3"
+															style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;"
+															name="services[]" type="checkbox" value="devops">
 														<label class="form-check-label" for="cloudService3">
 															<i class="fas fa-code-branch me-2"></i>CI/CD Automation
 														</label>
@@ -1346,22 +1381,25 @@
 												</div>
 												<div class="col-md-6">
 													<div class="form-check">
-														<input class="form-check-input" id="cloudService4" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
-															type="checkbox" value="monitoring">
+														<input class="form-check-input" id="cloudService4"
+															style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;"
+															name="services[]" type="checkbox" value="monitoring">
 														<label class="form-check-label" for="cloudService4">
 															<i class="fas fa-tv me-2"></i>24/7 Monitoring
 														</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" id="cloudService5" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
-															type="checkbox" value="support">
+														<input class="form-check-input" id="cloudService5"
+															style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;"
+															name="services[]" type="checkbox" value="support">
 														<label class="form-check-label" for="cloudService5">
 															<i class="fas fa-headset me-2"></i>Dedicated Support
 														</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" id="cloudService6" style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;" name="services[]"
-															type="checkbox" value="other">
+														<input class="form-check-input" id="cloudService6"
+															style="background-color: rgba(0, 0, 0, 0.3) !important; border-color: rgba(0, 180, 216, 0.5) !important;"
+															name="services[]" type="checkbox" value="other">
 														<label class="form-check-label" for="cloudService6">
 															<i class="fas fa-ellipsis-h me-2"></i>Other
 														</label>
@@ -1412,27 +1450,35 @@
 										</div>
 
 										<div class="form-check form-switch mb-4">
-											<input class="form-check-input" type="checkbox" id="cloudNewsletter" name="newsletter" checked>
+											<input class="form-check-input" type="checkbox" id="cloudNewsletter"
+												name="newsletter" checked>
 											<label class="form-check-label" for="cloudNewsletter">
-												<i class="fas fa-envelope me-2"></i>Subscribe to cloud insights and updates
+												<i class="fas fa-envelope me-2"></i>Subscribe to cloud insights and
+												updates
 											</label>
 										</div>
 
-										<div class="alert bg-transparent border-info mb-4" role="alert" style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important;">
+										<div class="alert bg-transparent border-info mb-4" role="alert"
+											style="background: rgba(0, 0, 0, 0.2) !important; border: 1px solid rgba(0, 180, 216, 0.3) !important;">
 											<small class="d-flex align-items-center">
 												<i class="fas fa-shield-alt me-2 text-primary"></i>
-												<span>We respect your privacy. By submitting this form, you agree to our 
-												<a href="#" class="text-primary text-decoration-underline" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">
-													privacy policy
-												</a>.</span>
+												<span>We respect your privacy. By submitting this form, you agree to our
+													<a href="#" class="text-primary text-decoration-underline"
+														data-bs-dismiss="modal" data-bs-toggle="modal"
+														data-bs-target="#privacyPolicyModal">
+														privacy policy
+													</a>.</span>
 											</small>
 										</div>
 
 										<div class="d-grid gap-2 d-md-flex justify-content-between">
-											<button type="button" class="btn btn-outline-info flex-grow-1 me-2" data-bs-dismiss="modal" style="border-color: rgba(0, 180, 216, 0.5) !important; color: #00b4d8 !important;">
+											<button type="button" class="btn btn-outline-info flex-grow-1 me-2"
+												data-bs-dismiss="modal"
+												style="border-color: rgba(0, 180, 216, 0.5) !important; color: #00b4d8 !important;">
 												<i class="fas fa-times me-2"></i>Cancel
 											</button>
-											<button type="submit" class="btn flex-grow-1" style="background: linear-gradient(135deg, #0077b6, #00b4d8) !important; border: none !important; color: white !important; text-shadow: 0 1px 2px rgba(0,0,0,0.2); box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3) !important;">
+											<button type="submit" class="btn flex-grow-1"
+												style="background: linear-gradient(135deg, #0077b6, #00b4d8) !important; border: none !important; color: white !important; text-shadow: 0 1px 2px rgba(0,0,0,0.2); box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3) !important;">
 												<i class="fas fa-paper-plane me-2"></i>Request Consultation
 											</button>
 										</div>
@@ -2373,7 +2419,7 @@
 
 				const modalId = modalMap[hash];
 				if (!modalId) return;
-				
+
 				// Don't show modal on initial page load
 				if (initialLoad) return;
 
@@ -2469,119 +2515,120 @@
 	<button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top" title="Back to top">
 		<i class="fas fa-arrow-up"></i>
 	</button>
-	
+
 	<!-- WhatsApp Floating Button -->
-	<a href="https://wa.me/2348064915895" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+	<a href="https://wa.me/2348064915895" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+		aria-label="Chat on WhatsApp">
 		<i class="fab fa-whatsapp"></i>
 		<span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
 	</a>
-	
+
 	<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const scrollBtn = document.getElementById('scrollToTopBtn');
-		const scrollIcon = scrollBtn.querySelector('i');
-		let isAtBottom = false;
-		let lastScrollTop = 0;
-		let scrollDirection = 'down';
+		document.addEventListener('DOMContentLoaded', function () {
+			const scrollBtn = document.getElementById('scrollToTopBtn');
+			const scrollIcon = scrollBtn.querySelector('i');
+			let isAtBottom = false;
+			let lastScrollTop = 0;
+			let scrollDirection = 'down';
 
-		// Function to check if user is near the bottom of the page
-		function isNearBottom() {
-			return (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
-		}
-
-		// Function to check if user is near the top of the page
-		function isNearTop() {
-			return window.scrollY < 100;
-		}
-
-		// Function to update button position for mobile
-		function updateButtonPosition() {
-			if (window.innerWidth <= 768) {
-				// On mobile, position at bottom with extra space for WhatsApp button
-				scrollBtn.style.bottom = '120px';
-				scrollBtn.style.right = '20px';
-			} else {
-				// On desktop, use the original position
-				scrollBtn.style.bottom = '140px';
-				scrollBtn.style.right = '35px';
-			}
-		}
-
-		// Function to update button state based on scroll position
-		function updateButtonState() {
-			const scrollPosition = window.scrollY;
-			const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-			
-			// Update scroll direction
-			scrollDirection = scrollPosition > lastScrollTop ? 'down' : 'up';
-			
-			// Show/hide button when scrolled
-			if (scrollPosition > 300) {
-				scrollBtn.classList.add('visible');
-			} else {
-				scrollBtn.classList.remove('visible');
+			// Function to check if user is near the bottom of the page
+			function isNearBottom() {
+				return (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
 			}
 
-			// Update button icon and state based on scroll direction and position
-			if (isNearBottom()) {
-				scrollIcon.className = 'fas fa-arrow-up';
-				scrollBtn.setAttribute('title', 'Back to top');
-				isAtBottom = true;
-			} else if (isNearTop()) {
-				scrollIcon.className = 'fas fa-arrow-down';
-				scrollBtn.setAttribute('title', 'Scroll to bottom');
-				isAtBottom = false;
-			} else {
-				// When in the middle, show arrow in scroll direction
-				if (scrollDirection === 'down') {
-					scrollIcon.className = 'fas fa-arrow-down';
-					scrollBtn.setAttribute('title', 'Scroll to bottom');
+			// Function to check if user is near the top of the page
+			function isNearTop() {
+				return window.scrollY < 100;
+			}
+
+			// Function to update button position for mobile
+			function updateButtonPosition() {
+				if (window.innerWidth <= 768) {
+					// On mobile, position at bottom with extra space for WhatsApp button
+					scrollBtn.style.bottom = '120px';
+					scrollBtn.style.right = '20px';
 				} else {
-					scrollIcon.className = 'fas fa-arrow-up';
-					scrollBtn.setAttribute('title', 'Back to top');
+					// On desktop, use the original position
+					scrollBtn.style.bottom = '140px';
+					scrollBtn.style.right = '35px';
 				}
 			}
 
-			lastScrollTop = scrollPosition <= 0 ? 0 : scrollPosition;
-		}
+			// Function to update button state based on scroll position
+			function updateButtonState() {
+				const scrollPosition = window.scrollY;
+				const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-		// Handle scroll events with debounce
-		let isScrolling;
-		window.addEventListener('scroll', function() {
-			window.clearTimeout(isScrolling);
-			isScrolling = setTimeout(updateButtonState, 66); // ~60fps
-		}, false);
+				// Update scroll direction
+				scrollDirection = scrollPosition > lastScrollTop ? 'down' : 'up';
 
-		// Handle window resize
-		window.addEventListener('resize', function() {
+				// Show/hide button when scrolled
+				if (scrollPosition > 300) {
+					scrollBtn.classList.add('visible');
+				} else {
+					scrollBtn.classList.remove('visible');
+				}
+
+				// Update button icon and state based on scroll direction and position
+				if (isNearBottom()) {
+					scrollIcon.className = 'fas fa-arrow-up';
+					scrollBtn.setAttribute('title', 'Back to top');
+					isAtBottom = true;
+				} else if (isNearTop()) {
+					scrollIcon.className = 'fas fa-arrow-down';
+					scrollBtn.setAttribute('title', 'Scroll to bottom');
+					isAtBottom = false;
+				} else {
+					// When in the middle, show arrow in scroll direction
+					if (scrollDirection === 'down') {
+						scrollIcon.className = 'fas fa-arrow-down';
+						scrollBtn.setAttribute('title', 'Scroll to bottom');
+					} else {
+						scrollIcon.className = 'fas fa-arrow-up';
+						scrollBtn.setAttribute('title', 'Back to top');
+					}
+				}
+
+				lastScrollTop = scrollPosition <= 0 ? 0 : scrollPosition;
+			}
+
+			// Handle scroll events with debounce
+			let isScrolling;
+			window.addEventListener('scroll', function () {
+				window.clearTimeout(isScrolling);
+				isScrolling = setTimeout(updateButtonState, 66); // ~60fps
+			}, false);
+
+			// Handle window resize
+			window.addEventListener('resize', function () {
+				updateButtonPosition();
+				updateButtonState();
+			});
+
+			// Initial setup
 			updateButtonPosition();
 			updateButtonState();
-		});
 
-		// Initial setup
-		updateButtonPosition();
-		updateButtonState();
+			// Handle button click
+			scrollBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+				const currentPosition = window.scrollY;
 
-		// Handle button click
-		scrollBtn.addEventListener('click', function(e) {
-			e.preventDefault();
-			const currentPosition = window.scrollY;
-			
-			if (isNearBottom() || (!isNearTop() && scrollDirection === 'up')) {
-				// Scroll to top
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-			} else {
-				// Scroll to bottom
-				window.scrollTo({
-					top: document.documentElement.scrollHeight,
-					behavior: 'smooth'
-				});
-			}
+				if (isNearBottom() || (!isNearTop() && scrollDirection === 'up')) {
+					// Scroll to top
+					window.scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					});
+				} else {
+					// Scroll to bottom
+					window.scrollTo({
+						top: document.documentElement.scrollHeight,
+						behavior: 'smooth'
+					});
+				}
+			});
 		});
-	});
 	</script>
 	<script src="assets/js/contact.js">
 	</script>
