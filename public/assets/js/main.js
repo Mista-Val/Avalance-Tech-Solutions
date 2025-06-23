@@ -185,25 +185,36 @@
     // Initialize back to top button
     const initBackToTop = safeInit(function() {
         const backToTop = document.getElementById('backToTop');
-        if (!backToTop) return;
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        if (!backToTop && !scrollToTopBtn) return;
 
         // Show/hide button on scroll
         function toggleBackToTop() {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('active');
-            } else {
-                backToTop.classList.remove('active');
-            }
+            const show = window.scrollY > 300;
+            if (backToTop) backToTop.classList.toggle('show', show);
+            if (scrollToTopBtn) scrollToTopBtn.classList.toggle('visible', show);
         }
 
-        // Smooth scroll to top
-        backToTop.addEventListener('click', function(e) {
-            e.preventDefault();
+        // Smooth scroll to top function
+        function scrollToTop() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-        });
+        }
+
+        // Add event listeners
+        if (backToTop) {
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                scrollToTop();
+            });
+        }
+        
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener('click', scrollToTop);
+        }
 
         // Initial check
         toggleBackToTop();

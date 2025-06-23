@@ -2,28 +2,35 @@
 .about-section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
         url('../images/about-img.jpg') center/cover no-repeat fixed;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
-    color: rgba(255, 255, 255, 0.006);
+    color: #fff;
     text-align: center;
     position: relative;
-    padding: 8rem 0;
+    padding: 6rem 0;
     overflow: hidden;
+    width: 100%;
+    margin: 0;
 }
 
 .about-section .section-title {
     text-align: center;
-    font-weight: 900;
-    font-size: 5rem;
-    margin-bottom: 4rem;
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
+/* Override theme styles for about section */
 .about-section .section-title h2 {
-    color: var(--text-primary);
-    font-size: 6rem;
+    color: #fff;
+    font-size: 3.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .about-section .section-subtitle {
@@ -85,16 +92,17 @@
     z-index: 2;
 }
 
+/* About content card */
 .about-content {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 3rem;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgba(15, 23, 42, 0.8);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
     height: 100%;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .about-content:hover {
@@ -209,9 +217,33 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
     .about-section {
         padding: 5rem 0;
+    }
+    
+    .about-section .section-title h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .about-section {
+        padding: 4rem 0;
+    }
+    
+    .about-section .section-title h2 {
+        font-size: 2.5rem;
+    }
+    
+    .about-section .section-subtitle {
+        font-size: 1.1rem;
+        max-width: 90%;
+        margin: 0 auto 2rem;
+    }
+    
+    .about-content {
+        padding: 1.5rem;
     }
 
     .about-content,

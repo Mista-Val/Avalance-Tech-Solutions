@@ -87,13 +87,17 @@
 			<div class="header-content">
 				<!-- Logo -->
 				<a class="logo" href="#home">
-					<img alt="Avalance Tech Solutions" class="logo-img" src="assets/images/avalance-logo.jpeg">
-					<span class="brand-name">
-						<span class="text-gradient">
-							Avalance Tech Solutions
+					<div class="logo-content">
+						<img alt="Avalance Tech Solutions" class="logo-img" src="assets/images/avalance-logo.jpeg">
+						<span class="brand-name">
+							<span class="text-gradient">
+								Avalance Tech Solutions
+							</span>
 						</span>
-					</span>
+					</div>
+					<div class="brand-slogan">Innovate. Deploy. Transform. Accelerate</div>
 				</a>
+				
 				<!-- Mobile Toggle -->
 				<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
 					class="navbar-toggler d-lg-none" data-bs-target="#navbarNav" data-bs-toggle="collapse"
@@ -539,18 +543,18 @@
 	</section>
 
 	<!-- Team Section -->
-	<section id="team" class="py-6 bg-light">
-		<div class="container">
-			<div class="text-center mb-6">
+	<section id="team" class="py-5" style="background: #0f172a; position: relative; overflow: hidden;">
+		<div class="container-fluid px-0">
+			<div class="text-center mb-5 px-3">
 				<h2 class="section-title">
 					<span class="text-gradient">Meet Our Team</span>
 				</h2>
-				<div class="section-divider mx-auto my-4"></div>
-				<p class="section-subtitle">
+				<div class="section-divider mx-auto my-3"></div>
+				<p class="section-subtitle text-light mb-4">
 					A team of passionate professionals dedicated to delivering exceptional results
 				</p>
 			</div>
-			<div class="row g-4 justify-content-center">
+			<div class="row g-3 g-md-4 justify-content-center mx-0">
 				<!-- Team Member 1 -->
 				<div class="col-xl-3 col-lg-4 col-md-6">
 					<article class="team-card">
@@ -2460,13 +2464,125 @@
 	</script>
 	<script src="assets/js/header.js">
 	</script>
+	<script src="assets/js/main.js"></script>
+	<!-- Scroll to Top Button -->
+	<button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top" title="Back to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+	
 	<!-- WhatsApp Floating Button -->
 	<a href="https://wa.me/2348064915895" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
 		<i class="fab fa-whatsapp"></i>
 		<span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
 	</a>
+	
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const scrollBtn = document.getElementById('scrollToTopBtn');
+		const scrollIcon = scrollBtn.querySelector('i');
+		let isAtBottom = false;
+		let lastScrollTop = 0;
+		let scrollDirection = 'down';
 
-	<script src="assets/js/main.js"></script>
+		// Function to check if user is near the bottom of the page
+		function isNearBottom() {
+			return (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
+		}
+
+		// Function to check if user is near the top of the page
+		function isNearTop() {
+			return window.scrollY < 100;
+		}
+
+		// Function to update button position for mobile
+		function updateButtonPosition() {
+			if (window.innerWidth <= 768) {
+				// On mobile, position at bottom with extra space for WhatsApp button
+				scrollBtn.style.bottom = '120px';
+				scrollBtn.style.right = '20px';
+			} else {
+				// On desktop, use the original position
+				scrollBtn.style.bottom = '140px';
+				scrollBtn.style.right = '35px';
+			}
+		}
+
+		// Function to update button state based on scroll position
+		function updateButtonState() {
+			const scrollPosition = window.scrollY;
+			const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+			
+			// Update scroll direction
+			scrollDirection = scrollPosition > lastScrollTop ? 'down' : 'up';
+			
+			// Show/hide button when scrolled
+			if (scrollPosition > 300) {
+				scrollBtn.classList.add('visible');
+			} else {
+				scrollBtn.classList.remove('visible');
+			}
+
+			// Update button icon and state based on scroll direction and position
+			if (isNearBottom()) {
+				scrollIcon.className = 'fas fa-arrow-up';
+				scrollBtn.setAttribute('title', 'Back to top');
+				isAtBottom = true;
+			} else if (isNearTop()) {
+				scrollIcon.className = 'fas fa-arrow-down';
+				scrollBtn.setAttribute('title', 'Scroll to bottom');
+				isAtBottom = false;
+			} else {
+				// When in the middle, show arrow in scroll direction
+				if (scrollDirection === 'down') {
+					scrollIcon.className = 'fas fa-arrow-down';
+					scrollBtn.setAttribute('title', 'Scroll to bottom');
+				} else {
+					scrollIcon.className = 'fas fa-arrow-up';
+					scrollBtn.setAttribute('title', 'Back to top');
+				}
+			}
+
+			lastScrollTop = scrollPosition <= 0 ? 0 : scrollPosition;
+		}
+
+		// Handle scroll events with debounce
+		let isScrolling;
+		window.addEventListener('scroll', function() {
+			window.clearTimeout(isScrolling);
+			isScrolling = setTimeout(updateButtonState, 66); // ~60fps
+		}, false);
+
+		// Handle window resize
+		window.addEventListener('resize', function() {
+			updateButtonPosition();
+			updateButtonState();
+		});
+
+		// Initial setup
+		updateButtonPosition();
+		updateButtonState();
+
+		// Handle button click
+		scrollBtn.addEventListener('click', function(e) {
+			e.preventDefault();
+			const currentPosition = window.scrollY;
+			
+			if (isNearBottom() || (!isNearTop() && scrollDirection === 'up')) {
+				// Scroll to top
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			} else {
+				// Scroll to bottom
+				window.scrollTo({
+					top: document.documentElement.scrollHeight,
+					behavior: 'smooth'
+				});
+			}
+		});
+	});
+	</script>
 	<script src="assets/js/contact.js">
 	</script>
 	<!-- Preloader Script -->
@@ -2854,10 +2970,7 @@
 	</div>
 
 
-	<!-- Scroll to Top/Bottom Button -->
-	<button id="scrollButton" class="scroll-to-top" aria-label="Scroll to bottom">
-		<i class="fas fa-arrow-down"></i>
-	</button>
+
 </body>
 
 </html>
