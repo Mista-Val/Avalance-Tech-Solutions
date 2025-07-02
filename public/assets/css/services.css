@@ -125,23 +125,16 @@ a:not(.btn):hover {
 
 /* Header - Clean and Minimal */
 .header-logo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
-    height: 120px;
-    width: 100%;
-    margin: 0;
-    padding: 0 2rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1.5rem;
+    position: relative;
+    z-index: 1000;
+    max-width: 100%;
+    margin: 0 auto;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Header Link */
@@ -178,35 +171,87 @@ a:not(.btn):hover {
 }
 
 /* Responsive Adjustments */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
 @media (max-width: 1200px) {
-    .header-logo {
-        padding: 0 1.5rem;
+    .services-container {
+        max-width: 900px;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .services-section {
+        padding: 4rem 1rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .header-logo {
-        height: 100px;
-        padding: 0 1.25rem;
+    .services-container {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        padding: 0 0.5rem;
     }
     
-    .logo-img {
-        height: 42px;
+    .automation-section .row {
+        flex-direction: column-reverse;
     }
     
-    .brand-name {
+    .automation-section .col-lg-6 {
+        margin-bottom: 2rem;
+    }
+    
+    .footer .col-lg-4 {
+        margin-bottom: 2rem;
+    }
+    
+    .section-title {
         font-size: 2rem;
+        line-height: 1.2;
     }
     
-    .header-logo > a {
-        gap: 1.25rem;
+    .section-subtitle {
+        font-size: 1.05rem;
+        line-height: 1.6;
     }
 }
 
 @media (max-width: 576px) {
     .header-logo {
-        height: 85px;
-        padding: 0 1rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .services-section {
+        padding: 3rem 0.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 1rem;
     }
     
     .logo-img {
@@ -214,17 +259,17 @@ a:not(.btn):hover {
     }
     
     .brand-name {
-        font-size: 1.5rem;
-    }
-    
-    .header-logo > a {
-        gap: 1rem;
+        font-size: 1.3rem;
     }
 }
 
 @media (max-width: 400px) {
-    .header-logo {
-        height: 75px;
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.95rem;
     }
     
     .logo-img {
@@ -232,14 +277,8 @@ a:not(.btn):hover {
     }
     
     .brand-name {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
-}
-
-/* Ensure content starts below the fixed header */
-main {
-    position: relative;
-    z-index: 1;
 }
 
 /* Section Header */
@@ -315,11 +354,12 @@ main {
 /* Cards Grid */
 .services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2.5rem;
-    margin: 4rem 0;
-    position: relative;
-    z-index: 1;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem auto 0;
+    max-width: 1400px;
+    padding: 0 1rem;
+    width: 100%;
 }
 
 /* Card Styles */

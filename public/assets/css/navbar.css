@@ -1,13 +1,4 @@
-.main-header {
-    position: static; /* Let modern-header.css handle positioning */
-    background: transparent;
-    box-shadow: none;
-    z-index: auto;
-}
-
-.header-content {
-    padding: 0 !important;
-}
+/* Header styles moved to modern-header.css for better organization */
 
 .logo {
     display: flex;
@@ -182,6 +173,12 @@
         z-index: 999;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         overflow-y: auto;
+        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+    }
+
+    .nav-container::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari and Opera */
     }
 
     .nav-container.show {

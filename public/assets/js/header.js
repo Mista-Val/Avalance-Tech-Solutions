@@ -144,19 +144,20 @@ class HeaderManager {
     /**
      * Toggle mobile menu
      */
-    toggleMobileMenu(event) {
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            // Let Bootstrap handle the toggle
-            if (this.collapseInstance) {
-                if (this.isMenuOpen) {
-                    this.collapseInstance.hide();
-                } else {
-                    this.collapseInstance.show();
-                }
-            }
+    toggleMobileMenu() {
+        if (this.isMenuOpen) {
+            this.closeMenu();
+        } else {
+            this.openMenu();
+        }
+        // Toggle body class for scroll control
+        document.body.classList.toggle('mobile-menu-open', !this.isMenuOpen);
+        
+        // Prevent scroll when menu is open
+        if (!this.isMenuOpen) {
+            this.scrollPosition = window.pageYOffset;
+        } else {
+            window.scrollTo(0, this.scrollPosition);
         }
     }
     
@@ -171,13 +172,16 @@ class HeaderManager {
         
         // Add classes to show menu and backdrop
         if (this.backdrop) this.backdrop.classList.add('active');
-        document.body.classList.add('menu-open');
+        document.body.classList.add('menu-open', 'mobile-menu-open');
         
         // Prevent body scroll
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollPosition}px`;
         document.body.style.width = '100%';
+        
+        // Update state
+        this.isMenuOpen = true;
         
         // Add click outside handler
         document.addEventListener('click', this.handleOutsideClick);
@@ -225,8 +229,8 @@ class HeaderManager {
             window.scrollTo(0, this.scrollPosition);
         }
         
-        // Remove menu open class from body
-        document.body.classList.remove('menu-open');
+        // Remove menu open classes from body
+        document.body.classList.remove('menu-open', 'mobile-menu-open');
         
         // Remove click outside handler
         document.removeEventListener('click', this.handleOutsideClick);
@@ -300,10 +304,18 @@ class HeaderManager {
     }
 }
 
-// Initialize the header manager when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize the header manager as early as possible
+const initHeaderManager = () => {
     // Check if we're not in an iframe to avoid duplicate initializations
     if (window.self === window.top) {
         new HeaderManager();
     }
-});
+};
+
+// Initialize header manager when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeaderManager);
+} else {
+    // DOM already loaded
+    setTimeout(initHeaderManager, 0);
+}
