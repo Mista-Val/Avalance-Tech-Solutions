@@ -19,11 +19,12 @@ secrets/
 *.swp
 *.swo
 
-# REMOVED: Project gitignore trimmed for Cloudflare Workers deployment.
-# Keep relevant ignore rules as needed locally.
-node_modules/
-dist/
+# OS generated files
 .DS_Store
-.env
-secrets/
 Thumbs.db
+
+# Cloudflare Workers
+.wrangler/
+
+# Backup files
+*.backup

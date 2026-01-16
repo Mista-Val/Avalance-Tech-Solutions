@@ -1,77 +1,49 @@
 # 🚀 Avalance Tech Solutions
 
-A modern IT consultation and cloud services platform built with Node.js, Express, and MongoDB. The application features a responsive frontend with interactive modals for service inquiries and a robust backend API.
+A modern IT consultation and cloud services platform built with Cloudflare Workers. The application features a responsive frontend with dynamic video backgrounds, interactive service inquiries, and a serverless backend API with KV storage.
 
 ## ✨ Features
 
 - 🎨 Responsive web design with Bootstrap 5
+- 🎬 Dynamic video backgrounds on all pages
 - 💬 Interactive service inquiry modals
 - ✉️ Contact form with email notifications via SendGrid
-- 🔒 Secure authentication with JWT
-- ⚡ Rate limiting for API endpoints
-- 🐳 Containerized with Docker & Docker Compose
+- 🌩 Serverless architecture with Cloudflare Workers
+- 💾 KV storage for data persistence
+- ⚡ Global CDN deployment
 - 🩺 Health check endpoints
 - ⚙️ Environment-based configuration
-- 🔄 Process management with PM2
+- 🔒 CORS-enabled API endpoints
 
 ## 🏗️ Project Structure
 
 ```
 .
-├── public/               # Static files served by Express
-│   ├── assets/          # Static assets (CSS, JS, images, fonts)
-│   ├── index.html       # Main HTML file
+├── public/               # Static files served by Cloudflare Workers
+│   ├── assets/          # Static assets (CSS, JS, images, videos, fonts)
+│   ├── index.html       # Main HTML page with video background
+│   ├── services.html    # Services page with video background
+│   ├── faq.html        # FAQ page with video background
 │   └── ...
-├── routes/              # API route handlers
-├── models/              # MongoDB models
-├── utils/               # Utility functions
-├── server.js            # Express server
-├── Dockerfile           # Container configuration
-├── docker-compose.yml   # Multi-container setup
-├── .env.example         # Environment variables template
-└── package.json         # Project metadata and dependencies
+├── src/                # Cloudflare Worker source
+│   └── worker-simple.js # Main worker with routing and API
+├── wrangler.toml       # Cloudflare Workers configuration
+├── .env.example        # Environment variables template
+└── package.json        # Project metadata and dependencies
 ```
 
 ## 🚀 Prerequisites
 
-- Node.js 20.13.1+ (LTS recommended)
-- MongoDB Atlas account (https://cloud.mongodb.com)
-- Docker 20.10+
-- Docker Compose 2.0+
+- Node.js 16.0.0+ (LTS recommended)
+- Cloudflare account (https://cloudflare.com)
+- Wrangler CLI (Cloudflare Workers tool)
 - SendGrid API key (for email notifications)
 
 ## 🛠️ Local Development Setup
 
-### Without Docker
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/avalance-tech-solutions.git
-   cd avalance-tech-solutions
-   ```
-
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    npm install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-### With Docker
-
-1. **Clone the repository** (if not already done)
-   ```bash
-   git clone https://github.com/your-username/avalance-tech-solutions.git
-   cd avalance-tech-solutions
    ```
 
 2. **Set up environment variables**
@@ -80,255 +52,137 @@ A modern IT consultation and cloud services platform built with Node.js, Express
    # Edit .env with your configuration
    ```
 
-3. **Build and start the containers**
+3. **Start the development server**
    ```bash
-   docker-compose up -d
+   npm run dev
    ```
 
 4. **Access the application**
-   - Web application: http://localhost:3000
-   - MongoDB Express: http://localhost:8081 (if enabled in docker-compose.yml)
+   - Web application: http://localhost:8787
+   - API endpoints: http://localhost:8787/api/*
 
 ## 🌍 Environment Variables
 
 Create a `.env` file in the root directory by copying the example file:
 
-```bash
-cp .env.example .env
-```
-
-Then update the following variables in the `.env` file:
-
 ```env
-# Server Configuration
-NODE_ENV=development
-PORT=3000
+# Application Environment
+ENVIRONMENT=development
 
-# MongoDB Atlas
-MONGODB_URI=mongodb+srv://avalanche:avalanche@avalanche.4kq8t.mongodb.net/avalanche?retryWrites=true&w=majority
-
-# JWT
-JWT_SECRET=your_secure_jwt_secret
-JWT_EXPIRES_IN=30d
-
-# Email (SendGrid)
-SENDGRID_API_KEY=your_sendgrid_api_key
+# Email Configuration (SendGrid)
+SENDGRID_API_KEY=your_sendgrid_api_key_here
 FROM_EMAIL=info@avalance-resources.online
-TO_EMAIL=your-email@example.com
+ADMIN_EMAIL=avalancetechpartner@gmail.com
 
-# Rate Limiting
-RATE_LIMIT_WINDOW=1hr
-RATE_LIMIT_MAX_REQUESTS=100
+# KV Namespace IDs (populated after setup)
+CONTACT_KV_ID=contact_kv_namespace
+PRICING_KV_ID=pricing_kv_namespace
 ```
 
-### MongoDB Atlas Setup
+## 🐳 Cloudflare Workers Commands
 
-1. Create a free MongoDB Atlas account at https://cloud.mongodb.com
-2. Create a new project and cluster
-3. Set up database access:
-   - Go to Database Access
-   - Add a new database user
-   - Set username and password
-   - Assign appropriate permissions (e.g., readWrite)
-4. Set up network access:
-   - Go to Network Access
-   - Add your current IP address or allow access from anywhere (0.0.0.0/0) for development
-5. Get your connection string:
-   - Go to Database > Connect > Connect your application
-   - Copy the connection string and update the `MONGODB_URI` in your `.env` file
-
-## 🐳 Docker Commands
-
-### Build the Docker image
+### Development
 ```bash
-docker build -t avalance-app .
-```
-
-### Run a container
-```bash
-docker run -d \
-  --name avalance-app \
-  -p 3000:3000 \
-  --env-file .env \
-  -v $(pwd)/logs:/app/logs \
-  avalance-app
-```
-
-### View logs
-```bash
-docker logs -f avalance-app
-```
-
-### Stop and remove containers
-```bash
-docker-compose down
-```
-
-## 🚀 Deployment
-
-### Prerequisites
-- Docker and Docker Compose installed on your server
-- Domain name with DNS configured
-- SSL certificates (recommended)
-
-### Production Deployment
-
-1. **Clone the repository on your server**
-   ```bash
-   git clone https://github.com/your-username/avalance-tech-solutions.git
-   cd avalance-tech-solutions
-   ```
-
-2. **Set up production environment variables**
-   ```bash
-   cp .env.example .env.production
-   nano .env.production  # Update with production values
-   ```
-
-3. **Start the application**
-   ```bash
-   docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-   ```
-
-4. **Set up Nginx as reverse proxy (recommended)**
-   ```nginx
-   server {
-       listen 80;
-       server_name yourdomain.com www.yourdomain.com;
-       return 301 https://$host$request_uri;
-   }
-
-   server {
-       listen 443 ssl http2;
-       server_name yourdomain.com www.yourdomain.com;
-
-       ssl_certificate /path/to/your/cert.pem;
-       ssl_certificate_key /path/to/your/privkey.pem;
-
-       location / {
-           proxy_pass http://localhost:3000;
-           proxy_http_version 1.1;
-           proxy_set_header Upgrade $http_upgrade;
-           proxy_set_header Connection 'upgrade';
-           proxy_set_header Host $host;
-           proxy_cache_bypass $http_upgrade;
-       }
-   }
-   ```
-
-## 🛡️ Security
-
-- Always use HTTPS in production
-- Keep dependencies updated
-- Use strong, unique passwords
-- Regularly back up your database
-- Implement proper CORS policies
-- Use environment variables for sensitive data
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Express.js](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Bootstrap 5](https://getbootstrap.com/)
-- [SendGrid](https://sendgrid.com/)
-- [Docker](https://www.docker.com/)
-   ```
-
-3. **Configure environment**
-   ```bash
-   cp .env.example .env
-   ```
-   Update the `.env` file with your configuration:
-   ```env
-   # Server
-   PORT=3000
-   NODE_ENV=development
-   
-   # MongoDB
-   MONGODB_URI=mongodb://localhost:27017/avalance
-   
-   # JWT
-   JWT_SECRET=your_jwt_secret
-   JWT_EXPIRES_IN=30d
-   
-   # SendGrid
-   SENDGRID_API_KEY=your_sendgrid_key
-   FROM_EMAIL=info@avalance-resources.online
-   TO_EMAIL=avalancetechpartner@gmail.com
-   
-   # Rate Limiting
-   RATE_LIMIT_WINDOW=15m
-   RATE_LIMIT_MAX_REQUESTS=100
-   ```
-
-## 🐳 Docker Setup
-
-Build and run using Docker:
-
-```bash
-# Build the Docker image
-docker build -t avalance-tech .
-
-# Run the container
-docker run -d \
-  -p 3000:3000 \
-  --name avalance-app \
-  --env-file .env \
-  avalance-tech
-```
-
-## 🏃‍♂️ Development
-
-Start the development server:
-```bash
+# Start local development server
 npm run dev
+
+# Create KV namespaces (one-time setup)
+npm run setup-kv
+npm run setup-kv:preview
 ```
 
-The application will be available at `http://localhost:3000`
-
-## 🧪 Testing
-
-Run tests:
+### Deployment
 ```bash
-npm test
+# Deploy to production
+npm run deploy
+
+# Deploy to production environment
+npm run deploy:prod
 ```
 
-## 🌐 Production Deployment
+### Secrets Management
+```bash
+# Set SendGrid API key as secret
+wrangler secret put SENDGRID_API_KEY
 
-For production deployment, consider:
-- Using a process manager like PM2
-- Setting up Nginx as a reverse proxy
-- Configuring SSL/TLS certificates
-- Setting up monitoring and logging
-- Using environment variables for sensitive data
-- Implementing proper backup strategies
-
-## 🔒 Environment Variables
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `PORT` | Server port | No | `3000` |
-| `NODE_ENV` | Application environment | No | `development` |
-| `MONGODB_URI` | MongoDB connection string | Yes | - |
-| `JWT_SECRET` | Secret for JWT signing | Yes | - |
-| `JWT_EXPIRES_IN` | JWT expiration time | No | `30d` |
-| `SENDGRID_API_KEY` | SendGrid API key | Yes | - |
-| `FROM_EMAIL` | Sender email address | Yes | - |
-| `TO_EMAIL` | Recipient email address | Yes | - |
-| `RATE_LIMIT_WINDOW` | Rate limiting window | No | `15m` |
-| `RATE_LIMIT_MAX_REQUESTS` | Max requests per window | No | `100` |
+# Set other secrets as needed
+wrangler secret put JWT_SECRET
+```
 
 ## 🔄 API Endpoints
 
-- `GET /` - Main application
-- `GET /health` - Health check endpoint
+- `GET /` - Main application page
+- `GET /faq` - FAQ page
+- `GET /services` - Services page
+- `GET /assets/*` - Static assets (CSS, JS, images, videos)
 - `POST /api/contact` - Submit contact form
-- `GET /api/projects` - List all projects
-- `GET /api/team` - Get team members
+- `POST /api/pricing-request` - Submit pricing request
+- `GET /api/health` - Health check endpoint
+- `GET /api/admin/contacts` - Admin endpoint to view contacts
+
+## 📧 Email Integration
+
+The application integrates with SendGrid for email notifications:
+- Contact form submissions
+- Pricing request notifications
+- HTML-formatted email templates
+- Error handling for email failures
+
+## 💾 Data Storage
+
+Uses Cloudflare Workers KV for serverless data persistence:
+- Contact submissions stored with timestamps
+- Pricing requests with metadata
+- Admin access to submission data
+- Automatic cleanup of old entries (configurable)
+
+## 🎬 Video Backgrounds
+
+Dynamic video backgrounds enhance user experience:
+- **Home Page**: 3D AI animation with tech overlay
+- **Services Page**: Animated zoom with professional overlay
+- **FAQ Page**: Subtle animation with light overlay
+- **Fallback**: Static images for unsupported browsers
+- **Optimized**: Multiple video sources for compatibility
+
+## 🔒 Security Features
+
+- CORS protection for API endpoints
+- Request validation and sanitization
+- Rate limiting capabilities
+- Secure secret management
+- HTTPS-only deployment
+- Input validation for all forms
+
+## 🌐 Production Deployment
+
+### Automatic Deployment
+```bash
+# Deploy to Cloudflare Workers global network
+npm run deploy
+```
+
+### Manual Configuration
+1. Configure KV namespaces in Cloudflare Dashboard
+2. Set up SendGrid API key as secret
+3. Update environment variables
+4. Deploy using Wrangler CLI
+
+## 📊 Monitoring and Analytics
+
+- Health check endpoint for monitoring
+- Error logging and tracking
+- Request/response logging
+- Performance metrics collection
+- Uptime monitoring capabilities
+
+## 🛠️ Development Workflow
+
+1. **Local Development**: `npm run dev`
+2. **Testing**: Manual API testing with health endpoint
+3. **KV Setup**: One-time namespace creation
+4. **Secrets Configuration**: Secure API key management
+5. **Deployment**: Global CDN deployment
 
 ## 📝 License
 
@@ -338,32 +192,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For inquiries, please contact [Avalance Tech Solutions](mailto:avalancetechpartner@gmail.com)
 
-## Security Features
+## 🔗 Live Application
 
-- Secure MongoDB authentication with username/password
-- JWT for API authentication
-- Rate limiting to prevent abuse
-- CORS protection
-- Secure HTTP headers
-- Request validation
-- Error handling middleware
+**Production URL**: https://avalance-tech-solutions-worker.valerian-agbata.workers.dev
 
-## Troubleshooting
+---
 
-### MongoDB Connection Issues
-- Verify your MongoDB connection string format:
-  ```
-  mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
-  ```
-- Ensure your MongoDB user has the correct permissions
-- Check if your IP is whitelisted in MongoDB Atlas (if using Atlas)
-- Ensure MongoDB is running and accessible
+### Architecture Notes
 
-### Static Assets Not Loading
-- Verify file paths in HTML/CSS
-- Check file permissions in the container
-- Ensure build process completed successfully
-
-## License
-
-This project is licensed under the MIT License.
+This application demonstrates modern serverless web development with:
+- **Edge Computing**: Global Cloudflare Workers network
+- **Static Site Generation**: Optimized asset delivery
+- **API Integration**: RESTful endpoints with proper HTTP methods
+- **Database-less**: KV storage for simplicity and scalability
+- **Modern Frontend**: Responsive design with video backgrounds
+- **Email Integration**: Transactional email notifications
+- **DevOps Ready**: CI/CD-friendly deployment process
