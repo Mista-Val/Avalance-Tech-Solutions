@@ -2,11 +2,11 @@
     "name": "avalance-tech-solutions",
     "version": "1.0.0",
     "description": "Avalance Tech Solutions IT consultation website",
-    "main": "src/worker-simple.js",
+    "main": "src/api-worker.js",
     "scripts": {
         "start": "wrangler dev",
-        "deploy": "wrangler publish",
-        "deploy:prod": "wrangler publish --env production",
+        "deploy": "wrangler deploy",
+        "deploy:prod": "wrangler deploy --env production",
         "dev": "wrangler dev",
         "setup-kv": "wrangler kv:namespace create CONTACT_KV && wrangler kv:namespace create PRICING_KV",
         "setup-kv:preview": "wrangler kv:namespace create CONTACT_KV --preview && wrangler kv:namespace create PRICING_KV --preview",
@@ -22,7 +22,7 @@
     "author": "Avalance Tech Solutions",
     "license": "MIT",
     "devDependencies": {
-        "wrangler": "^3.0.0"
+        "wrangler": "^4.0.0"
     },
     "engines": {
         "node": ">=16.0.0"

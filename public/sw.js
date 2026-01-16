@@ -4,16 +4,16 @@ const urlsToCache = [
   '/index.html',
   '/assets/css/theme-styles.css',
   '/assets/css/custom-styles.css',
-  '/assets/css/loading-spinner.css',
-  '/assets/css/header-nav.css',
+  '/assets/css/home-section.css',
+  '/assets/css/services.css',
+  '/assets/css/responsive-sections.css',
   '/assets/css/about-section.css',
   '/assets/css/clients.css',
   '/assets/css/modal-styles.css',
+  '/assets/js/main.js',
   '/assets/js/contact.js',
-  '/assets/images/favicon.ico',
-  '/site.webmanifest',
-  '/assets/images/pwa-icon-192.png',
-  '/assets/images/pwa-icon-512.png'
+  '/assets/images/avalance.gif',
+  '/site.webmanifest'
 ];
 
 // Install event

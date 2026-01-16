@@ -19,14 +19,14 @@ A modern IT consultation and cloud services platform built with Cloudflare Worke
 
 ```
 .
-├── public/               # Static files served by Cloudflare Workers
+├── public/               # Static files served by Cloudflare Pages
 │   ├── assets/          # Static assets (CSS, JS, images, videos, fonts)
 │   ├── index.html       # Main HTML page with video background
 │   ├── services.html    # Services page with video background
 │   ├── faq.html        # FAQ page with video background
 │   └── ...
 ├── src/                # Cloudflare Worker source
-│   └── worker-simple.js # Main worker with routing and API
+│   └── api-worker.js   # Main worker with API endpoints
 ├── wrangler.toml       # Cloudflare Workers configuration
 ├── .env.example        # Environment variables template
 └── package.json        # Project metadata and dependencies

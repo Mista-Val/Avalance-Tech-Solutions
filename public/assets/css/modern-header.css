@@ -97,9 +97,15 @@ header.main-header {
     gap: 1.5rem;
 }
 
+/* Navigation Container */
+.nav-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-
-/* Logo */
+/* Logo moved to right */
 .logo {
     display: flex;
     flex-direction: column;
@@ -109,6 +115,7 @@ header.main-header {
     flex-shrink: 0;
     height: 100%;
     transition: transform 0.3s ease;
+    order: 2; /* Move logo to the right */
 }
 
 .logo:hover {
@@ -276,7 +283,9 @@ header.main-header {
     transition: all 0.3s ease;
     z-index: 1001;
     position: relative;
-    margin-left: auto;
+    margin-left: 0;
+    margin-right: auto;
+    order: 0; /* Mobile toggle on the left */
 }
 
 .navbar-toggler:hover,
@@ -372,7 +381,7 @@ header.main-header {
     
     .logo {
         position: absolute;
-        left: 60px; /* Make room for the mobile menu button */
+        right: 60px; /* Move logo to the right side */
         transform: none;
         margin: 0;
         padding: 0.25rem 0;
@@ -891,6 +900,7 @@ body.no-scroll {
         height: 100%;
         display: flex;
         align-items: center;
+        order: 1; /* Navigation in the center */
     }
     
     .nav-list {

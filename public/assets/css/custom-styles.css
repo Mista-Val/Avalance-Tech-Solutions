@@ -1,5 +1,31 @@
 /* Header styles are now in modern-header.css */
 
+/* Prevent horizontal scrollbar */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body > * {
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Fix for footer container */
+#footer .container,
+#footer .footer-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+}
+
 .main-header .logo {
     display: flex;
     align-items: center;
