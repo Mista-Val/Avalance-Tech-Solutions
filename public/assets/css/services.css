@@ -1,34 +1,43 @@
 
 :root {
-    /* Color System */
+    /* Enhanced Color System */
     --primary-color: #4f46e5;
     --primary-light: #818cf8;
     --primary-dark: #4338ca;
     --accent-color: #ec4899;
-    --accent-secondary: #60a5fa;
+    --accent-secondary: #38bdf8;
+    --accent-tertiary: #c084fc;
     --text-primary: #ffffff;
     --text-secondary: #f0f4ff;
     --text-muted: #c7d2fe;
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
-    --card-bg: rgba(30, 41, 59, 0.8);
-    --border-color: rgba(99, 102, 241, 0.2);
-    --glass-bg: rgba(30, 41, 59, 0.8);
-    --glass-border: rgba(99, 102, 241, 0.2);
+    --card-bg: rgba(30, 41, 59, 0.9);
+    --border-color: rgba(99, 102, 241, 0.3);
+    --glass-bg: rgba(30, 41, 59, 0.9);
+    --glass-border: rgba(99, 102, 241, 0.3);
     --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     --gradient-text: linear-gradient(90deg, var(--primary-light), var(--accent-color));
     --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--primary-light));
     --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --gradient-hero: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.95) 0%, 
+        rgba(30, 41, 59, 0.9) 25%, 
+        rgba(56, 189, 248, 0.2) 50%, 
+        rgba(129, 140, 248, 0.2) 75%, 
+        rgba(15, 23, 42, 0.95) 100%);
     
     /* Spacing & Sizing */
     --section-padding: 6rem 0;
     --container-padding: 1.5rem;
-    --border-radius: 16px;
-    --border-radius-sm: 8px;
+    --border-radius: 20px;
+    --border-radius-sm: 12px;
     
-    /* Effects */
-    --box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Enhanced Effects */
+    --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --box-shadow-hover: 0 16px 48px rgba(56, 189, 248, 0.3);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --backdrop-blur: blur(12px);
     
     /* Typography */
     --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -395,21 +404,21 @@ a:not(.btn):hover {
     width: 100%;
 }
 
-/* Card Styles */
+/* Enhanced Card Styles */
 .service-card {
-    background: rgba(30, 41, 59, 0.7);
-    border-radius: 20px;
+    background: var(--glass-bg);
+    border-radius: var(--border-radius);
     padding: 2.5rem 2rem;
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
     transform: translateY(0);
 }
 
@@ -426,32 +435,60 @@ a:not(.btn):hover {
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--box-shadow-hover);
+    border-color: rgba(56, 189, 248, 0.5);
 }
 
 .service-card:hover::before {
     height: 100%;
-    opacity: 0.1;
+    opacity: 0.15;
 }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
+/* Enhanced Service Icons */
+.service-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: var(--border-radius-sm);
     background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: white;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+.service-card:hover .service-icon {
+    transform: translateY(-5px) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+}
+
+/* Enhanced Service Typography */
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
     transition: var(--transition);
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    border-color: rgba(99, 102, 241, 0.3);
-    background: rgba(30, 41, 59, 0.9);
+.service-card:hover h3 {
+    background: var(--gradient-text);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
 }
 
 /* Card Content */

@@ -199,6 +199,253 @@
   .contact-info-subtitle,
   .text-muted {
     font-size: 1.1rem;
+    max-width: 100%;
+  }
+  
+  .contact-item {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Container improvements */
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .contact-form {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+  /* Logo responsiveness */
+  .logo-img {
+    max-width: 120px;
+    height: auto;
+  }
+  
+  .footer-logo {
+    max-width: 100px;
+    height: auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Mobile Contact Section */
+  #contact {
+    padding: 3rem 0;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-info {
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-info-title {
+    font-size: 1.4rem;
+  }
+  
+  .contact-info-subtitle,
+  .text-muted {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Form improvements */
+  .contact-form {
+    padding: 1.5rem 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 1rem;
+  }
+  
+  /* Button improvements */
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  /* Container improvements */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Logo improvements */
+  .logo-img {
+    max-width: 80px;
+  }
+  
+  .footer-logo {
+    max-width: 80px;
+  }
+  
+  /* Contact icon improvements */
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Extra Small Devices */
+  #contact {
+    padding: 2rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .contact-info {
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  
+  .contact-info-title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .contact-info-subtitle,
+  .text-muted {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  
+  /* Form improvements */
+  .contact-form {
+    padding: 1rem 0.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Container improvements */
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* Logo improvements */
+  .logo-img {
+    max-width: 60px;
+  }
+  
+  .footer-logo {
+    max-width: 60px;
+  }
+  
+  /* Contact icon improvements */
+  .contact-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.75rem;
+  }
+  
+  .contact-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Additional responsive improvements for all sections */
+@media (max-width: 991.98px) {
+  /* Improve all containers */
+  .container,
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Improve all sections */
+  section {
+    padding: 4rem 0;
+  }
+  
+  /* Improve all cards */
+  .service-card,
+  .team-member,
+  .contact-info {
+    margin-bottom: 2rem;
+  }
+  
+  /* Improve all images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Tablet improvements */
+  .container,
+  .container-fluid {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  section {
+    padding: 3rem 0;
+  }
+  
+  .service-card,
+  .team-member {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Mobile improvements */
+  .container,
+  .container-fluid {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  section {
+    padding: 2rem 0;
+  }
+  
+  .service-card,
+  .team-member {
+    margin-bottom: 1rem;
+  }
+  
+  /* Text improvements */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+}
+  
+  .text-muted {
+    font-size: 1.1rem;
     line-height: 1.7;
   }
   

@@ -2,8 +2,7 @@ name = "avalance-tech-solutions-worker"
 account_id = "752bbe0ed58bff7d2253e7e125fccebb"
 workers_dev = true
 compatibility_date = "2026-01-09"
-main = "src/worker-simple.js"
-site = { bucket = "./public", include = ["**/*"] }
+main = "src/api-worker.js"
 
 # KV Namespaces for data persistence
 [[kv_namespaces]]
@@ -26,7 +25,7 @@ ADMIN_EMAIL = "avalancetechpartner@gmail.com"
 [env.production]
 [env.production.vars]
 ENVIRONMENT = "production"
-FROM_EMAIL = "info@avalance-resources.online"
+FROM_EMAIL = "avalancetechpartner@gmail.com"
 ADMIN_EMAIL = "avalancetechpartner@gmail.com"
 
 # Secrets (to be set via wrangler secret put)
