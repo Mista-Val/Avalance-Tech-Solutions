@@ -19,27 +19,11 @@ secrets/
 *.swp
 *.swo
 
-# OS generated files
+# REMOVED: Project gitignore trimmed for Cloudflare Workers deployment.
+# Keep relevant ignore rules as needed locally.
+node_modules/
+dist/
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Debug logs
-*.log
-
 .env
 secrets/
-setup-secrets.sh
-.dockerignore
-.dockerfile
-# Twilio 2FA recovery code
-twilio_2FA_recovery_code.txt
+Thumbs.db

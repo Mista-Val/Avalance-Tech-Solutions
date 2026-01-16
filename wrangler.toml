@@ -1,0 +1,34 @@
+name = "avalance-tech-solutions-worker"
+account_id = "752bbe0ed58bff7d2253e7e125fccebb"
+workers_dev = true
+compatibility_date = "2026-01-09"
+main = "src/worker-simple.js"
+site = { bucket = "./public", include = ["**/*"] }
+
+# KV Namespaces for data persistence
+[[kv_namespaces]]
+binding = "CONTACT_KV"
+id = "642a8a62bafc4437bfd81c905b1891d6"
+preview_id = "contact_kv_preview"
+
+[[kv_namespaces]]
+binding = "PRICING_KV"
+id = "b652037c510749ed8fac340601187598"
+preview_id = "pricing_kv_preview"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+FROM_EMAIL = "info@avalance-resources.online"
+ADMIN_EMAIL = "avalancetechpartner@gmail.com"
+
+# Production environment variables
+[env.production]
+[env.production.vars]
+ENVIRONMENT = "production"
+FROM_EMAIL = "info@avalance-resources.online"
+ADMIN_EMAIL = "avalancetechpartner@gmail.com"
+
+# Secrets (to be set via wrangler secret put)
+# SENDGRID_API_KEY
+# JWT_SECRET (if needed for future auth)

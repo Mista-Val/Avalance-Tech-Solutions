@@ -10,7 +10,36 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%);
     overflow: hidden;
     padding: 14rem 0 10rem;
+    /* Fallback background for browsers that don't support video */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero-banner.jpg') no-repeat center center/cover fixed;
+}
+
+/* Video Background */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -2;
+    object-fit: cover;
+}
+
+/* Video Overlay */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.7) 0%, 
+        rgba(0, 229, 255, 0.2) 50%, 
+        rgba(0, 0, 0, 0.8) 100%);
+    z-index: -1;
 }
 
 /* Typography */
