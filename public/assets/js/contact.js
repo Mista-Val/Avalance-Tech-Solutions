@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const apiEndpoint = isPricingRequest ? '/api/pricing-request' : '/api/contact';
                 
                 // Send data to server
-                const response = await fetch(apiEndpoint, {
+                const response = await fetch(window.location.origin + apiEndpoint, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

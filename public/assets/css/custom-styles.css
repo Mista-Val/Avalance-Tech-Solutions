@@ -207,6 +207,12 @@ body > * {
     align-items: center;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .main-nav .nav-link i {

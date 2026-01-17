@@ -1,11 +1,11 @@
-// This file routes requests to the appropriate Pages Function
+// This file routes requests to appropriate Pages Function
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     
     // Route to Pages Functions
     if (url.pathname.startsWith('/api/')) {
-      // Import the appropriate function based on the path
+      // Import appropriate function based on path
       if (url.pathname === '/api/health') {
         const { onRequestGet } = await import('./api/health.js');
         return onRequestGet({ request, env, ctx });
@@ -36,9 +36,13 @@ export default {
           }
         });
       }
+      
+      // Return 404 for unknown API routes
+      return new Response('API endpoint not found', { status: 404 });
     }
     
-    // For non-API routes, serve static content (this will be handled by Pages automatically)
-    return new Response('API endpoint not found', { status: 404 });
+    // For non-API routes, let Pages handle static content
+    // This will be handled automatically by Cloudflare Pages
+    return fetch(request);
   }
 };
