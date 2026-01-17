@@ -27,6 +27,12 @@ export default {
         return await onRequestGet({ request, env, ctx });
       }
 
+      // API: Admin Pricing Requests
+      if (url.pathname === '/api/admin/pricing-requests' && request.method === 'GET') {
+        const { onRequestGet } = await import('./api/admin/pricing-requests.js');
+        return await onRequestGet({ request, env, ctx });
+      }
+
       // CORS preflight
       if (request.method === 'OPTIONS') {
         return new Response(null, {

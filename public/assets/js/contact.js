@@ -328,10 +328,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 `;
                 
-                
                 // Remove any existing error messages
                 const existingErrorAlerts = form.querySelectorAll('.alert.alert-danger');
                 existingErrorAlerts.forEach(alert => alert.remove());
+                
+                // Insert success message at the top of the form
+                form.prepend(successAlert);
                 
                 // Reset form
                 form.reset();
