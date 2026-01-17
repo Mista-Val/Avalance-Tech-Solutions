@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Test - Avalance Tech Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 2rem;
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test-section">
+            <h1><i class="fas fa-shield-alt me-2"></i>Admin Test Dashboard</h1>
+            <p class="admin-email">
+                <i class="fas fa-envelope me-2"></i>
+                avalancetechpartner@gmail.com
+            </p>
+            
+            <div id="results">
+                <h2>API Test Results</h2>
+                <div id="loading">Loading...</div>
+                <div id="error" style="display: none; color: red;"></div>
+                <div id="data-display"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Test dashboard loaded');
+            
+            var loading = document.getElementById('loading');
+            var error = document.getElementById('error');
+            var dataDisplay = document.getElementById('data-display');
+            
+            // Test 1: Load contacts
+            testContacts();
+            
+            function testContacts() {
+                console.log('Testing contacts API...');
+                
+                var xhr1 = new XMLHttpRequest();
+                xhr1.open('GET', '/api/admin/contacts', true);
+                xhr1.onreadystatechange = function() {
+                    if (xhr1.readyState === 4) {
+                        console.log('Contacts status:', xhr1.status);
+                        console.log('Contacts response:', xhr1.responseText);
+                        
+                        if (xhr1.status === 200) {
+                            try {
+                                var contactsData = JSON.parse(xhr1.responseText);
+                                console.log('Contacts parsed:', contactsData);
+                                testPricing(contactsData);
+                            } catch (e) {
+                                showError('Contacts parse error: ' + e.message);
+                            }
+                        } else {
+                            showError('Contacts HTTP error: ' + xhr1.status);
+                        }
+                    }
+                };
+                xhr1.onerror = function() {
+                    showError('Contacts network error');
+                };
+                xhr1.send();
+            }
+            
+            function testPricing(contactsData) {
+                console.log('Testing pricing API...');
+                console.log('Contacts data passed:', contactsData);
+                
+                var xhr2 = new XMLHttpRequest();
+                xhr2.open('GET', '/api/admin/pricing-requests', true);
+                xhr2.onreadystatechange = function() {
+                    if (xhr2.readyState === 4) {
+                        console.log('Pricing status:', xhr2.status);
+                        console.log('Pricing response:', xhr2.responseText);
+                        
+                        loading.style.display = 'none';
+                        
+                        if (xhr2.status === 200) {
+                            try {
+                                var pricingData = JSON.parse(xhr2.responseText);
+                                console.log('Pricing parsed:', pricingData);
+                                displayResults(contactsData, pricingData);
+                            } catch (e) {
+                                showError('Pricing parse error: ' + e.message);
+                            }
+                        } else {
+                            showError('Pricing HTTP error: ' + xhr2.status);
+                        }
+                    }
+                };
+                xhr2.onerror = function() {
+                    loading.style.display = 'none';
+                    showError('Pricing network error');
+                };
+                xhr2.send();
+            }
+            
+            function showError(message) {
+                loading.style.display = 'none';
+                error.style.display = 'block';
+                error.textContent = message;
+                console.error('Error:', message);
+            }
+            
+            function displayResults(contactsData, pricingData) {
+                console.log('Displaying results...');
+                console.log('Contacts:', contactsData);
+                console.log('Pricing:', pricingData);
+                
+                var html = '<div class="row">';
+                html += '<div class="col-md-6"><div class="card bg-primary bg-opacity-10 border-primary"><div class="card-body"><h5>Contacts</h5><p>Status: ' + (contactsData && contactsData.success ? 'SUCCESS' : 'FAILED') + '</p><p>Count: ' + (contactsData && contactsData.total_contacts ? contactsData.total_contacts : 0) + '</p></div></div></div>';
+                html += '<div class="col-md-6"><div class="card bg-success bg-opacity-10 border-success"><div class="card-body"><h5>Pricing Requests</h5><p>Status: ' + (pricingData && pricingData.success ? 'SUCCESS' : 'FAILED') + '</p><p>Count: ' + (pricingData && pricingData.total_pricing_requests ? pricingData.total_pricing_requests : 0) + '</p></div></div></div>';
+                html += '</div>';
+                
+                dataDisplay.innerHTML = html;
+            }
+        });
+    </script>
+</body>
+</html>

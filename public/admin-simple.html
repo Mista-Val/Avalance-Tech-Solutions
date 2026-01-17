@@ -76,90 +76,85 @@
         </div>
 
         <div class="contacts-section">
-            <h2><i class="fas fa-users me-2"></i>Contact Submissions</h2>
+            <h2><i class="fas fa-users me-2"></i>All Submissions</h2>
             <div id="loading" class="loading">
                 <i class="fas fa-spinner fa-spin fa-3x"></i>
-                <p>Loading contact submissions...</p>
+                <p>Loading submissions...</p>
             </div>
             <div id="error" class="error" style="display: none;">
                 <i class="fas fa-exclamation-triangle fa-2x"></i>
-                <p>Error loading contacts. Please try again.</p>
+                <p>Error loading submissions. Please try again.</p>
             </div>
-            <div id="contacts-list" style="display: none;">
-                <!-- Contacts will be loaded here -->
+            <div id="results">
+                <!-- Results will be loaded here -->
             </div>
         </div>
     </div>
 
     <script>
-        // Simple and robust admin dashboard
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Admin dashboard loaded');
             
             var loading = document.getElementById('loading');
             var error = document.getElementById('error');
-            var contactsList = document.getElementById('contacts-list');
+            var results = document.getElementById('results');
             
-            // Load contacts first, then pricing requests
-            loadContacts();
+            // Load both APIs
+            loadSubmissions();
             
-            function loadContacts() {
-                console.log('Loading contacts...');
+            function loadSubmissions() {
+                console.log('Loading submissions...');
                 
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/api/admin/contacts', true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
+                var xhr1 = new XMLHttpRequest();
+                xhr1.open('GET', '/api/admin/contacts', true);
+                xhr1.onreadystatechange = function() {
+                    if (xhr1.readyState === 4) {
+                        if (xhr1.status === 200) {
                             try {
-                                var contactsData = JSON.parse(xhr.responseText);
-                                if (contactsData.success) {
-                                    loadPricingRequests(contactsData);
-                                } else {
-                                    showError('Failed to load contacts: ' + (contactsData.error || 'Unknown error'));
-                                }
+                                var contactsData = JSON.parse(xhr1.responseText);
+                                console.log('Contacts loaded:', contactsData);
+                                loadPricingRequests(contactsData);
                             } catch (e) {
-                                showError('Error parsing contacts response: ' + e.message);
+                                showError('Error parsing contacts: ' + e.message);
                             }
                         } else {
-                            showError('HTTP Error loading contacts: ' + xhr.status);
+                            showError('HTTP error loading contacts: ' + xhr1.status);
                         }
                     }
                 };
-                xhr.onerror = function() {
-                    showError('Network error loading contacts. Please check your connection.');
+                xhr1.onerror = function() {
+                    showError('Network error loading contacts');
                 };
-                xhr.send();
+                xhr1.send();
             }
             
             function loadPricingRequests(contactsData) {
                 console.log('Loading pricing requests...');
                 
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/api/admin/pricing-requests', true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
+                var xhr2 = new XMLHttpRequest();
+                xhr2.open('GET', '/api/admin/pricing-requests', true);
+                xhr2.onreadystatechange = function() {
+                    if (xhr2.readyState === 4) {
+                        loading.style.display = 'none';
+                        
+                        if (xhr2.status === 200) {
                             try {
-                                var pricingData = JSON.parse(xhr.responseText);
-                                loading.style.display = 'none';
-                                if (pricingData.success) {
-                                    displayAllSubmissions(contactsData, pricingData);
-                                } else {
-                                    showError('Failed to load pricing requests: ' + (pricingData.error || 'Unknown error'));
-                                }
+                                var pricingData = JSON.parse(xhr2.responseText);
+                                console.log('Pricing loaded:', pricingData);
+                                displayResults(contactsData, pricingData);
                             } catch (e) {
-                                showError('Error parsing pricing response: ' + e.message);
+                                showError('Error parsing pricing: ' + e.message);
                             }
                         } else {
-                            showError('HTTP Error loading pricing requests: ' + xhr.status);
+                            showError('HTTP error loading pricing: ' + xhr2.status);
                         }
                     }
                 };
-                xhr.onerror = function() {
-                    showError('Network error loading pricing requests. Please check your connection.');
+                xhr2.onerror = function() {
+                    loading.style.display = 'none';
+                    showError('Network error loading pricing');
                 };
-                xhr.send();
+                xhr2.send();
             }
             
             function showError(message) {
@@ -169,27 +164,47 @@
                 console.error('Error:', message);
             }
             
-            function displayAllSubmissions(contactsData, pricingData) {
-                console.log('Displaying all submissions:', contactsData.contacts.length, 'contacts,', pricingData.pricing_requests.length, 'pricing requests');
+            function displayResults(contactsData, pricingData) {
+                console.log('Displaying results...');
+                console.log('Contacts data:', contactsData);
+                console.log('Pricing data:', pricingData);
                 
-                // Safety checks for undefined data
-                var contacts = contactsData && contactsData.contacts ? contactsData.contacts : [];
-                var pricingRequests = pricingData && pricingData.pricing_requests ? pricingData.pricing_requests : [];
-                var totalContacts = contactsData && contactsData.total_contacts ? contactsData.total_contacts : 0;
-                var totalPricing = pricingData && pricingData.total_pricing_requests ? pricingData.total_pricing_requests : 0;
+                // Ultra-defensive programming
+                var contacts = [];
+                var pricingRequests = [];
+                var totalContacts = 0;
+                var totalPricing = 0;
+                
+                // Safely extract contacts data
+                if (contactsData && typeof contactsData === 'object') {
+                    if (contactsData.contacts && Array.isArray(contactsData.contacts)) {
+                        contacts = contactsData.contacts;
+                    }
+                    if (typeof contactsData.total_contacts === 'number') {
+                        totalContacts = contactsData.total_contacts;
+                    }
+                }
+                
+                // Safely extract pricing data
+                if (pricingData && typeof pricingData === 'object') {
+                    if (pricingData.pricing_requests && Array.isArray(pricingData.pricing_requests)) {
+                        pricingRequests = pricingData.pricing_requests;
+                    }
+                    if (typeof pricingData.total_pricing_requests === 'number') {
+                        totalPricing = pricingData.total_pricing_requests;
+                    }
+                }
                 
                 var totalSubmissions = contacts.length + pricingRequests.length;
                 
+                console.log('Final counts:', totalContacts, 'contacts,', totalPricing, 'pricing requests');
+                
                 if (totalSubmissions === 0) {
-                    contactsList.innerHTML = '<div class="text-center text-muted"><i class="fas fa-inbox fa-3x mb-3"></i><p>No submissions yet.</p></div>';
-                    contactsList.style.display = 'block';
+                    results.innerHTML = '<div class="text-center text-muted"><i class="fas fa-inbox fa-3x mb-3"></i><p>No submissions yet.</p></div>';
                     return;
                 }
                 
-                var html = '<div class="d-flex justify-content-between align-items-center mb-4"><h3><i class="fas fa-list me-2"></i>All Submissions (' + totalSubmissions + ')</h3><small class="text-muted">Last updated: ' + new Date().toLocaleString() + '</small></div>';
-                
-                // Summary cards
-                html += '<div class="row mb-4">';
+                var html = '<div class="row mb-4">';
                 html += '<div class="col-md-4"><div class="card bg-primary bg-opacity-10 border-primary"><div class="card-body text-center"><h4 class="text-primary">' + totalContacts + '</h4><p class="mb-0">Contact Forms</p></div></div></div>';
                 html += '<div class="col-md-4"><div class="card bg-success bg-opacity-10 border-success"><div class="card-body text-center"><h4 class="text-success">' + totalPricing + '</h4><p class="mb-0">Pricing Requests</p></div></div></div>';
                 html += '<div class="col-md-4"><div class="card bg-info bg-opacity-10 border-info"><div class="card-body text-center"><h4 class="text-info">' + totalSubmissions + '</h4><p class="mb-0">Total Submissions</p></div></div></div>';
@@ -197,46 +212,49 @@
                 
                 // Contact submissions
                 if (contacts.length > 0) {
-                    html += '<div class="mb-5"><h4 class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i>Contact Form Submissions</h4><div class="row">';
+                    html += '<h4 class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i>Contact Form Submissions</h4><div class="row">';
                     
                     for (var i = 0; i < contacts.length; i++) {
                         var contact = contacts[i];
-                        var date = new Date(contact.timestamp).toLocaleString();
-                        var statusBadge = contact.status === 'pending' ? '<span class="badge bg-warning">Pending</span>' : '<span class="badge bg-success">Processed</span>';
-                        
-                        html += '<div class="col-lg-6 mb-3">';
-                        html += '<div class="contact-item border-left-primary">';
-                        html += '<div class="contact-meta"><strong>' + contact.name + '</strong> • ' + contact.email + '<br>' + date + ' • ' + statusBadge + '<span class="badge bg-info ms-2">Contact</span></div>';
-                        html += '<div class="mt-2"><strong>Subject:</strong> ' + contact.subject + '</div>';
-                        html += '<div class="mt-2"><strong>Message:</strong><br>' + (contact.message.length > 200 ? contact.message.substring(0, 200) + '...' : contact.message) + '</div>';
-                        html += '</div></div>';
+                        if (contact && typeof contact === 'object') {
+                            var date = new Date(contact.timestamp).toLocaleString();
+                            var statusBadge = contact.status === 'pending' ? '<span class="badge bg-warning">Pending</span>' : '<span class="badge bg-success">Processed</span>';
+                            
+                            html += '<div class="col-lg-6 mb-3">';
+                            html += '<div class="contact-item border-left-primary">';
+                            html += '<div class="contact-meta"><strong>' + (contact.name || 'Unknown') + '</strong> • ' + (contact.email || 'Unknown') + '<br>' + date + ' • ' + statusBadge + '</div>';
+                            html += '<div class="mt-2"><strong>Subject:</strong> ' + (contact.subject || 'No subject') + '</div>';
+                            html += '<div class="mt-2"><strong>Message:</strong><br>' + (contact.message ? (contact.message.length > 200 ? contact.message.substring(0, 200) + '...' : contact.message) : 'No message') + '</div>';
+                            html += '</div></div>';
+                        }
                     }
                     
-                    html += '</div></div>';
+                    html += '</div>';
                 }
                 
                 // Pricing requests
                 if (pricingRequests.length > 0) {
-                    html += '<div class="mb-5"><h4 class="mb-3"><i class="fas fa-dollar-sign me-2 text-success"></i>Pricing Request Submissions</h4><div class="row">';
+                    html += '<h4 class="mb-3"><i class="fas fa-dollar-sign me-2 text-success"></i>Pricing Request Submissions</h4><div class="row">';
                     
                     for (var i = 0; i < pricingRequests.length; i++) {
                         var pricing = pricingRequests[i];
-                        var date = new Date(pricing.timestamp).toLocaleString();
-                        var statusBadge = pricing.status === 'pending' ? '<span class="badge bg-warning">Pending</span>' : '<span class="badge bg-success">Processed</span>';
-                        
-                        html += '<div class="col-lg-6 mb-3">';
-                        html += '<div class="contact-item border-left-success">';
-                        html += '<div class="contact-meta"><strong>' + pricing.name + '</strong> • ' + pricing.email + '<br>' + date + ' • ' + statusBadge + '<span class="badge bg-success ms-2">Pricing</span></div>';
-                        html += '<div class="mt-2"><strong>Company:</strong> ' + pricing.company + '<br><strong>Service:</strong> ' + pricing.service + '<br><strong>Budget:</strong> ' + pricing.budget + '<br><strong>Timeline:</strong> ' + (pricing.timeline || 'Not specified') + '</div>';
-                        html += '<div class="mt-2"><strong>Details:</strong><br>' + (pricing.message.length > 200 ? pricing.message.substring(0, 200) + '...' : pricing.message) + '</div>';
-                        html += '</div></div>';
+                        if (pricing && typeof pricing === 'object') {
+                            var date = new Date(pricing.timestamp).toLocaleString();
+                            var statusBadge = pricing.status === 'pending' ? '<span class="badge bg-warning">Pending</span>' : '<span class="badge bg-success">Processed</span>';
+                            
+                            html += '<div class="col-lg-6 mb-3">';
+                            html += '<div class="contact-item border-left-success">';
+                            html += '<div class="contact-meta"><strong>' + (pricing.name || 'Unknown') + '</strong> • ' + (pricing.email || 'Unknown') + '<br>' + date + ' • ' + statusBadge + '</div>';
+                            html += '<div class="mt-2"><strong>Company:</strong> ' + (pricing.company || 'Unknown') + '<br><strong>Service:</strong> ' + (pricing.service || 'Unknown') + '<br><strong>Budget:</strong> ' + (pricing.budget || 'Unknown') + '<br><strong>Timeline:</strong> ' + (pricing.timeline || 'Not specified') + '</div>';
+                            html += '<div class="mt-2"><strong>Details:</strong><br>' + (pricing.message ? (pricing.message.length > 200 ? pricing.message.substring(0, 200) + '...' : pricing.message) : 'No details') + '</div>';
+                            html += '</div></div>';
+                        }
                     }
                     
-                    html += '</div></div>';
+                    html += '</div>';
                 }
                 
-                contactsList.innerHTML = html;
-                contactsList.style.display = 'block';
+                results.innerHTML = html;
             }
         });
     </script>
