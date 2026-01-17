@@ -5,6 +5,8 @@ export async function onRequestGet(context) {
     if (!env.CONTACT_KV) {
       return new Response(JSON.stringify({
         error: 'KV storage not configured',
+        message: 'Contact storage is not available',
+        admin_email: 'avalancetechpartner@gmail.com',
         contacts: []
       }), {
         status: 503,
@@ -27,7 +29,16 @@ export async function onRequestGet(context) {
       }
     }
 
-    return new Response(JSON.stringify({ contacts }), {
+    // Sort by timestamp (newest first)
+    contacts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    return new Response(JSON.stringify({ 
+      success: true,
+      admin_email: 'avalancetechpartner@gmail.com',
+      total_contacts: contacts.length,
+      contacts: contacts,
+      last_updated: new Date().toISOString()
+    }), {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -39,7 +50,8 @@ export async function onRequestGet(context) {
     console.error('Admin contacts error:', error);
     return new Response(JSON.stringify({
       error: 'Internal server error',
-      details: error.message
+      details: error.message,
+      admin_email: 'avalancetechpartner@gmail.com'
     }), {
       status: 500,
       headers: {
