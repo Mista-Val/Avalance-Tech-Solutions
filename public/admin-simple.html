@@ -172,7 +172,13 @@
             function displayAllSubmissions(contactsData, pricingData) {
                 console.log('Displaying all submissions:', contactsData.contacts.length, 'contacts,', pricingData.pricing_requests.length, 'pricing requests');
                 
-                var totalSubmissions = contactsData.contacts.length + pricingData.pricing_requests.length;
+                // Safety checks for undefined data
+                var contacts = contactsData && contactsData.contacts ? contactsData.contacts : [];
+                var pricingRequests = pricingData && pricingData.pricing_requests ? pricingData.pricing_requests : [];
+                var totalContacts = contactsData && contactsData.total_contacts ? contactsData.total_contacts : 0;
+                var totalPricing = pricingData && pricingData.total_pricing_requests ? pricingData.total_pricing_requests : 0;
+                
+                var totalSubmissions = contacts.length + pricingRequests.length;
                 
                 if (totalSubmissions === 0) {
                     contactsList.innerHTML = '<div class="text-center text-muted"><i class="fas fa-inbox fa-3x mb-3"></i><p>No submissions yet.</p></div>';
@@ -184,17 +190,17 @@
                 
                 // Summary cards
                 html += '<div class="row mb-4">';
-                html += '<div class="col-md-4"><div class="card bg-primary bg-opacity-10 border-primary"><div class="card-body text-center"><h4 class="text-primary">' + contactsData.total_contacts + '</h4><p class="mb-0">Contact Forms</p></div></div></div>';
-                html += '<div class="col-md-4"><div class="card bg-success bg-opacity-10 border-success"><div class="card-body text-center"><h4 class="text-success">' + pricingData.total_pricing_requests + '</h4><p class="mb-0">Pricing Requests</p></div></div></div>';
+                html += '<div class="col-md-4"><div class="card bg-primary bg-opacity-10 border-primary"><div class="card-body text-center"><h4 class="text-primary">' + totalContacts + '</h4><p class="mb-0">Contact Forms</p></div></div></div>';
+                html += '<div class="col-md-4"><div class="card bg-success bg-opacity-10 border-success"><div class="card-body text-center"><h4 class="text-success">' + totalPricing + '</h4><p class="mb-0">Pricing Requests</p></div></div></div>';
                 html += '<div class="col-md-4"><div class="card bg-info bg-opacity-10 border-info"><div class="card-body text-center"><h4 class="text-info">' + totalSubmissions + '</h4><p class="mb-0">Total Submissions</p></div></div></div>';
                 html += '</div>';
                 
                 // Contact submissions
-                if (contactsData.contacts.length > 0) {
+                if (contacts.length > 0) {
                     html += '<div class="mb-5"><h4 class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i>Contact Form Submissions</h4><div class="row">';
                     
-                    for (var i = 0; i < contactsData.contacts.length; i++) {
-                        var contact = contactsData.contacts[i];
+                    for (var i = 0; i < contacts.length; i++) {
+                        var contact = contacts[i];
                         var date = new Date(contact.timestamp).toLocaleString();
                         var statusBadge = contact.status === 'pending' ? '<span class="badge bg-warning">Pending</span>' : '<span class="badge bg-success">Processed</span>';
                         
@@ -210,11 +216,11 @@
                 }
                 
                 // Pricing requests
-                if (pricingData.pricing_requests.length > 0) {
+                if (pricingRequests.length > 0) {
                     html += '<div class="mb-5"><h4 class="mb-3"><i class="fas fa-dollar-sign me-2 text-success"></i>Pricing Request Submissions</h4><div class="row">';
                     
-                    for (var i = 0; i < pricingData.pricing_requests.length; i++) {
-                        var pricing = pricingData.pricing_requests[i];
+                    for (var i = 0; i < pricingRequests.length; i++) {
+                        var pricing = pricingRequests[i];
                         var date = new Date(pricing.timestamp).toLocaleString();
                         var statusBadge = pricing.status === 'pending' ? '<span class="badge bg-warning">Pending</span>' : '<span class="badge bg-success">Processed</span>';
                         
