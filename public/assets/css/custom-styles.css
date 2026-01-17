@@ -1,12 +1,10 @@
 /* Header styles are now in modern-header.css */
 
 /* Prevent horizontal scrollbar */
-html, body {
+html {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 

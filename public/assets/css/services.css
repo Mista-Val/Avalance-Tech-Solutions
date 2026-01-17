@@ -45,6 +45,180 @@
     --text-scale: clamp(1rem, 0.5rem + 0.5vw, 1.25rem);
 }
 
+/* Enhanced Service Card with Video Background */
+.service-card {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: var(--transition);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--box-shadow);
+}
+
+/* Video Container */
+.service-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.service-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.9) 0%, 
+        rgba(30, 41, 59, 0.8) 50%, 
+        rgba(15, 23, 42, 0.9) 100%);
+    z-index: 2;
+}
+
+/* Service Content */
+.service-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.service-card:hover .service-video {
+    opacity: 0.5;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--box-shadow-hover);
+    border-color: var(--accent-secondary);
+}
+
+/* Service Icon */
+.service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.service-card:hover .service-icon::before {
+    left: 100%;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Service Typography */
+.service-card h3 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.service-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.service-card:hover h3::after {
+    width: 100px;
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    font-size: var(--text-scale);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* Service Features */
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.service-features li {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.service-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-secondary);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.service-card:hover .service-features li {
+    color: var(--text-secondary);
+    transform: translateX(5px);
+}
+
+.service-card:hover .service-features li::before {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
 /* Base Styles */
 html {
     scroll-behavior: smooth;
@@ -972,5 +1146,61 @@ html {
     }
     100% {
         background-position: 0% 50%;
+    }
+}
+
+/* Responsive Video Backgrounds */
+@media (max-width: 768px) {
+    .service-video-container {
+        display: none;
+    }
+    
+    .service-card {
+        background: var(--glass-bg);
+        backdrop-filter: var(--backdrop-blur);
+        -webkit-backdrop-filter: var(--backdrop-blur);
+    }
+    
+    .service-content {
+        position: static;
+        z-index: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .service-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .service-features li {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+}
+
+/* Video Performance Optimization */
+@media (prefers-reduced-motion: reduce) {
+    .service-video {
+        animation: none;
+    }
+    
+    .service-card:hover .service-video {
+        opacity: 0.3;
+    }
+    
+    .service-card:hover {
+        transform: none;
     }
 }

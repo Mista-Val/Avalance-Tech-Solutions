@@ -49,15 +49,9 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    padding-top: var(--header-height); /* Account for fixed header */
+    box-sizing: border-box;
     background-color: #fff;
-    padding-top: var(--header-height-mobile);
-}
-
-/* Adjust padding for desktop */
-@media (min-width: 992px) {
-    body {
-        padding-top: var(--header-height);
-    }
 }
 
 /* Main Header */
@@ -70,7 +64,7 @@ header.main-header {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    height: var(--header-height-mobile);
+    height: var(--header-height);
     display: flex;
     align-items: center;
     z-index: var(--z-header);
@@ -80,6 +74,7 @@ header.main-header {
     padding: 0;
     box-sizing: border-box;
     transition: height 0.3s ease;
+    overflow: hidden; /* Prevent any overflow */
 }
 
 /* Header Content */

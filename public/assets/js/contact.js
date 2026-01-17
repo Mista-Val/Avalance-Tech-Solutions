@@ -286,8 +286,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             try {
-                // Determine the API endpoint based on form type
-                const apiEndpoint = isPricingRequest ? '/api/pricing-requests' : '/api/contacts';
+                // Determine API endpoint based on form type
+                const apiEndpoint = isPricingRequest ? '/api/pricing-request' : '/api/contact';
                 
                 // Send data to server
                 const response = await fetch(apiEndpoint, {
