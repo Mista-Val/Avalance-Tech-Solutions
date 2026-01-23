@@ -137,6 +137,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    transition: transform 0.3s ease;
 }
 
 .company-logo {
@@ -148,11 +149,16 @@
     opacity: 0.9;
     transition: all 0.3s ease;
     filter: brightness(1) contrast(1);
+    display: block;
+    margin: 0 auto;
+}
+
+.client-btn:hover .client-logo {
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 .client-btn:hover .company-logo {
     opacity: 1;
-    transform: scale(1.1);
     filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
 }
 
